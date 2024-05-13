@@ -5,7 +5,8 @@ import PasswordIcon from "../assets/icons/password.png";
 import Logo from "../assets/logo.png";
 
 export default function Login() {
-  const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   return (
     <>
@@ -27,7 +28,7 @@ export default function Login() {
                 </label>
                 <div className="flex items-center border border-gray-400 rounded w-full h-[50px]">
                   <img src={EmailIcon} alt="email-icon" className="ml-[20px]" style={{ width: '20px', height: '20px', verticalAlign: 'middle' }} />
-                  <input className="w-full py-2 px-5  text-gray-700 focus:outline-none" id="username" type="text" placeholder="Enter your email" />
+                  <input className="w-full py-2 px-5  text-gray-700 focus:outline-none" id="username" type="text" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)}/>
                 </div>
               </div>
               <div className="mb-6 space-y-3">
@@ -36,7 +37,7 @@ export default function Login() {
                 </label>
                 <div className="flex items-center border border-gray-400 rounded w-full h-[50px]">
                   <img src={PasswordIcon} alt="email-icon" className="ml-[20px]" style={{ width: '20px', height: '20px', verticalAlign: 'middle' }} />
-                  <input className="w-full py-2 px-5  text-gray-700 focus:outline-none" id="username" type="password" placeholder="Enter your password" />
+                  <input className="w-full py-2 px-5  text-gray-700 focus:outline-none" id="username" type="password" placeholder="Enter your password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                 </div>
                 <h1 className="text-[#728969] flex flex-row justify-end">Forgot Password?</h1>
               </div>
