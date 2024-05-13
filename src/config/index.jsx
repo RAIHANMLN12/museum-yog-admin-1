@@ -8,7 +8,7 @@ export default function IndexPage() {
       <Login />
     //   <SignUp />
     //   <ForgotPassword />
-    //   <EnterCode />
+      // <EnterCode />
     //   <NewPassword />
  
   );

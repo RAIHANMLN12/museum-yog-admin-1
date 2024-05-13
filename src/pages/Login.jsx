@@ -1,108 +1,62 @@
 import React, { useState } from "react";
-import { AiOutlineMail, AiOutlineLock } from "react-icons/ai";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import BackgroundImage from "../assets/background.png"
+import EmailIcon from "../assets/icons/email.png";
+import PasswordIcon from "../assets/icons/password.png";
+import Logo from "../assets/logo.png";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div
-      className="flex flex-col items-center justify-center min-h-screen bg-gray-100"
-      style={{
-        backgroundImage: `url('src/assets/background.png')`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
-      <header className="absolute top-5 left-0 right-0 px-12 py-6 flex items-center justify-between">
-        <div>
-          <img
-            src="src/assets/logo.png"
-            alt="Logo"
-            className="h-10 vw-20 mr-5"
-          />
+    <>
+      <div 
+        className="bg-scroll h-screen bg-no-repeat bg-cover" // Menengahkan card
+        style={{
+          backgroundImage: `url(${BackgroundImage})`
+        }} 
+      >
+        <img src={Logo} alt="logo" className="m-10 justify-start"/>
+
+        <div className="flex justify-center items-center">
+          <div className="w-[750px] bg-white p-10 rounded-[8px] shadow-[0px_8px_28px_0px_rgba(0,0,0,0.10)]">
+            <h1 className="text-center mt-5 mb-10 font-bold text-[24px]">Welcome Back</h1>
+            <form className="rounded space-y-9">
+              <div className="mb-4 space-y-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
+                  Email
+                </label>
+                <div className="flex items-center border border-gray-400 rounded w-full h-[50px]">
+                  <img src={EmailIcon} alt="email-icon" className="ml-[20px]" style={{ width: '20px', height: '20px', verticalAlign: 'middle' }} />
+                  <input className="w-full py-2 px-5  text-gray-700 focus:outline-none" id="username" type="text" placeholder="Enter your email" />
+                </div>
+              </div>
+              <div className="mb-6 space-y-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+                  Password
+                </label>
+                <div className="flex items-center border border-gray-400 rounded w-full h-[50px]">
+                  <img src={PasswordIcon} alt="email-icon" className="ml-[20px]" style={{ width: '20px', height: '20px', verticalAlign: 'middle' }} />
+                  <input className="w-full py-2 px-5  text-gray-700 focus:outline-none" id="username" type="password" placeholder="Enter your password" />
+                </div>
+                <h1 className="text-[#728969] flex flex-row justify-end">Forgot Password?</h1>
+              </div>
+              <div className="flex items-center justify-center">
+                <button className="bg-[#728969] hover:bg-[#728969] text-white font-bold w-full py-4 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                  Login
+                </button>
+              </div>
+            </form>
+            <div className="flex flex-row space-x-2 my-10 justify-center items-center font-light ">
+              <h1 className="text-black text-[20px]">
+                Don’t have an account?
+              </h1>
+              <h1 className="text-[#728969] text-[20px]">
+                Sign Up
+              </h1>
+            </div>
+          </div>
         </div>
-      </header>
-      <div className="mt-6 p-12 bg-white rounded-lg shadow-md max-w-lg">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-8 text-center">
-          Welcome Back
-        </h2>
-        <form className="flex flex-col w-full">
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 font-semibold"
-              htmlFor="email"
-            >
-              Email
-            </label>
-            <div className="relative">
-              <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-                <AiOutlineMail className="h-5 w-5 text-gray-400" />
-              </span>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Enter your email"
-                className="pl-10 mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
-                required
-              />
-            </div>
-          </div>
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 font-semibold"
-              htmlFor="password"
-            >
-              Password
-            </label>
-            <div className="relative">
-              <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-                <AiOutlineLock className="h-5 w-5 text-gray-400" />
-              </span>
-              <input
-                type={showPassword ? "text" : "password"}
-                id="password"
-                name="password"
-                placeholder="Enter your password"
-                className="pl-10 mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
-                required
-              />
-              <button
-                type="button"
-                className="absolute inset-y-0 right-0 flex items-center px-3"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? (
-                  <FaEyeSlash className="h-5 w-5 text-gray-400" />
-                ) : (
-                  <FaEye className="h-5 w-5 text-gray-400" />
-                )}
-              </button>
-            </div>
-          </div>
-          <div className="text-sm text-right mb-4">
-            <a href="#" className="text-black-500 hover:underline">
-              Forgot Password?
-            </a>
-          </div>
-          <button
-            type="submit"
-            className="w-full px-4 py-2 bg-green-500 text-white font-medium rounded-md hover:bg-green-600 focus:outline-none focus:ring-1 focus:ring-green-500 mb-4"
-          >
-            Login
-          </button>
-          <div className="text-sm text-center">
-            Don't have an account?{" "}
-            <a
-              href="#"
-              className="text-green-500 hover:underline font-semibold"
-            >
-              Sign Up
-            </a>
-          </div>
-        </form>
       </div>
-    </div>
+    </>
   );
 }
