@@ -1,90 +1,88 @@
 import React, { useState, useRef } from "react";
+import BackgroundImage from "../assets/background.png";
+import Logo from "../assets/logo.png";
 
-export default function EnterCode() {
+// Input code with larger individual boxes
+export default function EnterCode({ userEmail }) {
   const [code, setCode] = useState(["", "", "", ""]);
-  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
   const inputRefs = useRef([]);
 
-  const handleChange = (index, value) => {
-    if (!isNaN(value) && value !== "") {
+  const handleChange = (e, index) => {
+    const value = e.target.value;
+    if (value.length <= 1) {
       const newCode = [...code];
       newCode[index] = value;
       setCode(newCode);
 
-      if (inputRefs.current[index + 1]) {
+      if (value && index < 3) {
         inputRefs.current[index + 1].focus();
       }
     }
   };
 
-  const handleKeyDown = (e, index) => {
-    if (e.key === "Backspace" && index > 0 && code[index] === "") {
-      const newCode = [...code];
-      newCode[index - 1] = "";
-      setCode(newCode);
-
-      if (inputRefs.current[index - 1]) {
-        inputRefs.current[index - 1].focus();
-      }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setError("");
+    setMessage("");
+    const enteredCode = code.join("");
+    if (enteredCode.length !== 4) {
+      setError("Code must be exactly 4 characters long.");
+      return;
     }
+    setMessage("Code submitted successfully!");
   };
 
   return (
     <div
-      className="flex flex-col items-center justify-center min-h-screen bg-gray-100"
+      className="min-h-screen flex flex-col items-center justify-center bg-fixed bg-center bg-cover"
       style={{
-        backgroundImage: `url('src/assets/background.png')`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
+        backgroundImage: `url(${BackgroundImage})`
       }}
     >
-      <header className="absolute top-5 left-0 right-0 px-12 py-6 flex items-center justify-between">
-        <div>
-          <img
-            src="src/assets/logo.png"
-            alt="Logo"
-            className="h-10 vw-20 mr-5"
-          />
+      <img src={Logo} alt="logo" className="m-10 self-start" />
+
+      <div className="flex flex-grow justify-center items-center w-full">
+        <div className="w-[750px] bg-white p-10 rounded-[8px] shadow-[0px_8px_28px_0px_rgba(0,0,0,0.10)]">
+          <h1 className="text-center mt-5 mb-4 font-bold text-[24px]">Enter Code</h1>
+          {/* Centered Paragraph */}
+          <div className="flex justify-center mb-6">
+            <p className="text-gray-600">We sent a code to your email {userEmail}</p>
+          </div>
+          {/* Error Message */}
+          {error && <p className="text-red-500 mb-6 text-center">{error}</p>}
+          {/* Success Message */}
+          {message && <p className="text-green-500 mb-6 text-center">{message}</p>}
+          {/* Form */}
+          <form className="space-y-9" onSubmit={handleSubmit}>
+            <div className="flex justify-center space-x-3 mb-4">
+              {code.map((value, index) => (
+                <input
+                  key={index}
+                  ref={(el) => (inputRefs.current[index] = el)}
+                  className="w-20 h-20 text-center border border-gray-400 rounded-lg focus:outline-none text-2xl"
+                  type="text"
+                  maxLength="1"
+                  value={value}
+                  onChange={(e) => handleChange(e, index)}
+                />
+              ))}
+              
+            </div>
+            <div className="flex flex-row space-x-2 my-10 justify-center items-center font-light ">
+              <h1 className="flex justify-center mb-6">
+                Didn't receive the code?
+              </h1>
+              <button className="flex justify-center mb-6 font-semibold">Resend The Code</button>
+            </div>
+            <div className="flex items-center justify-center">
+              <button className="bg-[#728969] hover:bg-[#728969] text-white font-bold w-full py-4 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                Continue
+              </button>
+            </div>
+          </form>
         </div>
-      </header>
-      <div className="mt-6 p-12 bg-white rounded-lg shadow-md text-center">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-          Enter the code
-        </h2>
-        <p className="text-gray-600 mb-6">We send code to {email}</p>
-        <div className="flex justify-center">
-          {code.map((digit, index) => (
-            <input
-              key={index}
-              ref={(el) => (inputRefs.current[index] = el)}
-              type="text"
-              maxLength="1"
-              value={digit}
-              onChange={(e) => handleChange(index, e.target.value)}
-              onKeyDown={(e) => handleKeyDown(e, index)}
-              style={{
-                width: "60px",
-                height: "60px",
-                fontSize: "24px",
-                textAlign: "center",
-                margin: "0 5px",
-              }}
-              className="bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
-            />
-          ))}
-        </div>
-        <div className="text-sm text-center mb-8 mt-4">
-          Didn't receive the email?{" "}
-          <a href="#" className="text-black-500 hover:underline font-semibold">
-            Resend the code
-          </a>
-        </div>
-        <button
-          type="submit"
-          className="w-full px-4 py-2 bg-green-500 text-white font-medium rounded-md hover:bg-green-600 focus:outline-none focus:ring-1 focus:ring-green-500"
-        >
-          Continue
-        </button>
       </div>
     </div>
   );

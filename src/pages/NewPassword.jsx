@@ -1,118 +1,92 @@
 import React, { useState } from "react";
-import { AiOutlineMail, AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import BackgroundImage from "../assets/background.png";
+import EmailIcon from "../assets/icons/email.png";
+import PasswordIcon from "../assets/icons/password.png";
+import Logo from "../assets/logo.png";
+
+// NewPassword component with form for password, confirm password
 
 export default function NewPassword() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Password:", password, "Confirm Password:", confirmPassword);
+    if (password.length !== 8) {
+      setError("Password must be exactly 8 characters long.");
+      return;
+    }
+    if (password !== confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
+    setError("");
+    // Proceed with form submission
+    console.log("Password set successfully!");
   };
 
   return (
-    <div
-      className="flex flex-col items-center justify-center min-h-screen bg-gray-100"
+    <div 
+      className="min-h-screen flex flex-col items-center justify-center bg-fixed bg-center bg-cover" 
       style={{
-        backgroundImage: `url('src/assets/background.png')`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
+        backgroundImage: `url(${BackgroundImage})`
+      }} 
     >
-      <header className="absolute top-5 left-0 right-0 px-12 py-6 flex items-center justify-between w-full">
-        <div>
-          <img
-            src="src/assets/logo.png"
-            alt="Logo"
-            className="h-10 vw-20 mr-5"
-          />
+      <img src={Logo} alt="logo" className="m-10 self-start"/>
+
+      <div className="flex flex-grow justify-center items-center w-full">
+        <div className="w-[750px] bg-white p-10 rounded-[8px] shadow-[0px_8px_28px_0px_rgba(0,0,0,0.10)]">
+          <h1 className="text-center mt-5 mb-4 font-bold text-[24px]">Set New Password</h1>
+          {/* Centered Paragraph */}
+          <div className="flex justify-center mb-6">
+            <p className="text-gray-600">Password must be exactly 8 characters long.</p>
+          </div>
+          {/* Error Message */}
+          {error && <p className="text-red-500 mb-6 text-center">{error}</p>}
+          {/* Form */}
+          <form className="space-y-9" onSubmit={handleSubmit}>
+            <div className="mb-4 space-y-3">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+                Password
+              </label>
+              <div className="flex items-center border border-gray-400 rounded w-full h-[50px]">
+                <img src={PasswordIcon} alt="password-icon" className="ml-[20px]" style={{ width: '20px', height: '20px', verticalAlign: 'middle' }} />
+                <input 
+                  className="w-full py-2 px-5 text-gray-700 focus:outline-none" 
+                  id="password" 
+                  type="password" 
+                  placeholder="Enter your password" 
+                  value={password} 
+                  onChange={(e) => setPassword(e.target.value)}
+                  maxLength={8} // Restrict input to 8 characters
+                />
+              </div>
+            </div>
+            <div className="mb-4 space-y-3">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="confirm-password">
+                Confirm Password
+              </label>
+              <div className="flex items-center border border-gray-400 rounded w-full h-[50px]">
+                <img src={PasswordIcon} alt="confirm-password-icon" className="ml-[20px]" style={{ width: '20px', height: '20px', verticalAlign: 'middle' }} />
+                <input 
+                  className="w-full py-2 px-5 text-gray-700 focus:outline-none" 
+                  id="confirm-password" 
+                  type="password" 
+                  placeholder="Confirm your password" 
+                  value={confirmPassword} 
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  maxLength={8} // Restrict input to 8 characters
+                />
+              </div>
+            </div>
+            <div className="flex items-center justify-center">
+              <button className="bg-[#728969] hover:bg-[#728969] text-white font-bold w-full py-4 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                Set new password
+              </button>
+            </div>
+          </form>
         </div>
-      </header>
-      <div className="mt-6 p-12 bg-white rounded-lg shadow-md w-full max-w-md">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-8 text-center">
-          Set New Password
-        </h2>
-        <p className="text-gray-600 text-center mb-6">
-          Must be at least 8 characters
-        </p>
-        <form className="flex flex-col w-full" onSubmit={handleSubmit}>
-          <div className="mb-4 relative">
-            <label
-              className="block text-gray-700 font-semibold"
-              htmlFor="password"
-            >
-              Password
-            </label>
-            <div className="relative">
-              <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-                <AiOutlineMail className="h-5 w-5 text-gray-400" />
-              </span>
-              <input
-                type={showPassword ? "text" : "password"}
-                id="password"
-                name="password"
-                placeholder="Enter your password"
-                className="pl-10 mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                maxLength={8} // Max length set to 8 characters
-              />
-              <span
-                className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? (
-                  <AiFillEyeInvisible className="h-5 w-5 text-gray-400" />
-                ) : (
-                  <AiFillEye className="h-5 w-5 text-gray-400" />
-                )}
-              </span>
-            </div>
-          </div>
-          <div className="mb-4 relative">
-            <label
-              className="block text-gray-700 font-semibold"
-              htmlFor="confirmPassword"
-            >
-              Confirm Password
-            </label>
-            <div className="relative">
-              <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-                <AiOutlineMail className="h-5 w-5 text-gray-400" />
-              </span>
-              <input
-                type={showConfirmPassword ? "text" : "password"}
-                id="confirmPassword"
-                name="confirmPassword"
-                placeholder="Confirm your password"
-                className="pl-10 mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
-                required
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                maxLength={8} // Max length set to 8 characters
-              />
-              <span
-                className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
-                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-              >
-                {showConfirmPassword ? (
-                  <AiFillEyeInvisible className="h-5 w-5 text-gray-400" />
-                ) : (
-                  <AiFillEye className="h-5 w-5 text-gray-400" />
-                )}
-              </span>
-            </div>
-          </div>
-          <button
-            type="submit"
-            className="bg-green-500 text-white font-semibold px-4 py-2 rounded-md hover:bg-green-600"
-          >
-            Continue
-          </button>
-        </form>
       </div>
     </div>
   );
