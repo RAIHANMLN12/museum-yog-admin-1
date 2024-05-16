@@ -4,7 +4,7 @@ import { EnterCode, ForgotPassword, Login, NewPassword, SignUp } from "./pages";
 
 // Define routes with the correct redirection for the root path
 const router = createBrowserRouter([
-  { path: "/", element: <Navigate to="/login" replace /> },
+  { path: "/", element: <Login />},
   { path: "login", element: <Login /> },
   { path: "signup", element: <SignUp /> },
   { path: "forgot_password", element: <ForgotPassword /> },
