@@ -26,15 +26,14 @@ export default function Login() {
   return (
     <>
       <div 
-        className="bg-scroll h-screen bg-no-repeat bg-cover" 
+        className="bg-scroll bg-no-repeat bg-cover" 
         style={{
           backgroundImage: `url(${BackgroundImage})`
         }} 
       >
         <img src={Logo} alt="logo" className="m-10 justify-start"/>
-
         <div className="flex justify-center items-center">
-          <div className="w-[750px] bg-white p-10 rounded-[8px] shadow-[0px_8px_28px_0px_rgba(0,0,0,0.10)]">
+          <div className="w-[750px] bg-white mb-[50px] p-10 rounded-[8px] shadow-[0px_8px_28px_0px_rgba(0,0,0,0.10)]">
             <h1 className="text-center mt-5 mb-10 font-bold text-[24px]">Welcome Back</h1>
             {error && <p className="text-red-500 mb-4 text-center">{error}</p>}
             <form className="rounded space-y-9" onSubmit={handleSubmit}>

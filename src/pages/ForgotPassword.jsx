@@ -3,6 +3,7 @@ import BackgroundImage from "../assets/background.png";
 import EmailIcon from "../assets/icons/email.png";
 import Logo from "../assets/logo.png";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // Mock function to simulate sending an email
 const sendResetCode = async (email) => {
@@ -75,9 +76,11 @@ export default function ForgotPassword() {
               </div>
             </div>
             <div className="flex items-center justify-center">
-                <button className="bg-[#728969] hover:bg-[#728969] text-white font-bold w-full py-4 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+              <button className="bg-[#728969] hover:bg-[#728969] text-white font-bold w-full py-4 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                <Link to={"/code_verification"}>
                   Send Code
-                </button>
+                </Link>
+              </button>
             </div>
           </form>
         </div>

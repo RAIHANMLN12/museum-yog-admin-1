@@ -35,7 +35,7 @@ export default function SignUp() {
       <img src={Logo} alt="logo" className="m-10 self-start"/>
 
       <div className="flex flex-grow justify-center items-center w-full">
-        <div className="w-[750px] bg-white p-10 rounded-[8px] shadow-[0px_8px_28px_0px_rgba(0,0,0,0.10)]">
+        <div className="w-[750px] mb-[50px] bg-white p-10 rounded-[8px] shadow-[0px_8px_28px_0px_rgba(0,0,0,0.10)]">
           <h1 className="text-center mt-5 mb-10 font-bold text-[24px]">Sign Up</h1>
           {error && <p className="text-red-500 mb-4 text-center">{error}</p>}
           <form className="space-y-9" onSubmit={handleSubmit}>
