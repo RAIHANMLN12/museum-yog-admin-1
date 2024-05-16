@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import BackgroundImage from "../assets/background.png";
 import EmailIcon from "../assets/icons/email.png";
 import PasswordIcon from "../assets/icons/password.png";
+import ProfileIcon from "../assets/icons/profile.png";
+import AlertIcon from "../assets/icons/danger.png";
+import PhoneIcon from "../assets/icons/phone.png";
 import Logo from "../assets/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -53,7 +56,7 @@ export default function SignUp() {
                 Name
               </label>
               <div className="flex items-center border border-gray-400 rounded w-full h-[50px]">
-                <img src={EmailIcon} alt="name-icon" className="ml-[20px]" style={{ width: '20px', height: '20px', verticalAlign: 'middle' }} />
+                <img src={ProfileIcon} alt="name-icon" className="ml-[20px]" style={{ width: '20px', height: '20px', verticalAlign: 'middle' }} />
                 <input className="w-full py-2 px-5 text-gray-700 focus:outline-none" id="name" type="text" placeholder="Enter your name" value={name} onChange={(e) => setName(e.target.value)}/>
               </div>
             </div>
@@ -62,7 +65,7 @@ export default function SignUp() {
                 Museum
               </label>
               <div className="flex items-center border border-gray-400 rounded w-full h-[50px]">
-                <img src={EmailIcon} alt="museum-icon" className="ml-[20px]" style={{ width: '20px', height: '20px', verticalAlign: 'middle' }} />
+                <img src={AlertIcon} alt="museum-icon" className="ml-[20px]" style={{ width: '20px', height: '20px', verticalAlign: 'middle' }} />
                 <input className="w-full py-2 px-5 text-gray-700 focus:outline-none" id="museum" type="text" placeholder="Enter your museum" value={museum} onChange={(e) => setMuseum(e.target.value)}/>
               </div>
             </div>
@@ -71,7 +74,7 @@ export default function SignUp() {
                 Phone Number
               </label>
               <div className="flex items-center border border-gray-400 rounded w-full h-[50px]">
-                <img src={EmailIcon} alt="phone-icon" className="ml-[20px]" style={{ width: '20px', height: '20px', verticalAlign: 'middle' }} />
+                <img src={PhoneIcon} alt="phone-icon" className="ml-[20px]" style={{ width: '20px', height: '20px', verticalAlign: 'middle' }} />
                 <input className="w-full py-2 px-5 text-gray-700 focus:outline-none" id="phone" type="text" placeholder="Enter your phone number" value={phone} onChange={(e) => setPhone(e.target.value)}/>
               </div>
             </div>
