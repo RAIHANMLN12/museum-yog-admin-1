@@ -8,7 +8,11 @@ import PhoneIcon from "../assets/icons/phone.png";
 import Logo from "../assets/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 
-// SignUp component with form for email, name, museum, phone number, and password
+
+const dummyUsers = [
+  { email: "existinguser@example.com", password: "password", name: "John Doe", museum: "Art Museum", phone: "1234567890" }
+];
+
 export default function SignUp() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -16,16 +20,29 @@ export default function SignUp() {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+   
+    if (dummyUsers.some(user => user.email === email)) {
+      setError("Email is already in use.");
+      return;
+    }
+
     if (password.length !== 8) {
       setError("Password must be exactly 8 characters long.");
       return;
     }
+
+
+    dummyUsers.push({ email, password, name, museum, phone });
     setError("");
-    // Proceed with form submission
-    console.log("Form submitted successfully!");
+    console.log("Form submitted successfully!", dummyUsers);
+
+
+    navigate("/login");
   };
 
   return (
@@ -94,13 +111,13 @@ export default function SignUp() {
             </div>
           </form>
           <div className="flex flex-row space-x-2 my-10 justify-center items-center font-light ">
-              <h1 className="text-black text-[20px]">
-                Alredy have an account?
-              </h1>
-              <Link to={'/login'}>
-                <button className="text-[#728969] font-bold">Login</button>
-              </Link>
-            </div>
+            <h1 className="text-black text-[20px]">
+              Already have an account?
+            </h1>
+            <Link to={'/login'}>
+              <button className="text-[#728969] font-bold">Login</button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
