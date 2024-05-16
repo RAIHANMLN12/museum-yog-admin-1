@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from '../components/navbar';
+import Sidebar from '../components/sidebar'
 
 const users = [
     {
@@ -26,6 +27,8 @@ export default function Dashboard() {
         <p>Selamat datang di halaman dashboard Anda!</p>
         {/* Tambahkan konten dashboard lainnya di sini */}
       </div>
+      <div><Sidebar /></div>
     </div>
+    
   );
 }
