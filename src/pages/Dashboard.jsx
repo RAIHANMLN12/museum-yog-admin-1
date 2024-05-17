@@ -27,7 +27,7 @@ export default function Dashboard() {
             <Navbar user={currentUser} className="h-16 bg-gray-800 text-white flex items-center px-4" />
             <div className="flex flex-1 overflow-hidden">
                 <Sidebar />
-                <div className="flex-1 p-4 overflow-y-auto ml-[280px] mt-16"> {/* Adjusted margin-left and margin-top */}
+                <div className="flex-1 p-4 overflow-y-auto ml-[280px] mt-16 pt-10"> {/* Adjusted margin-left and margin-top */}
                     <h1 className="text-2xl font-bold">Dashboard</h1>
                     <div className="grid grid-cols-3 gap-4 mt-4">
                         <div className="bg-white p-4 rounded-lg shadow-md">
