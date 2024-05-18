@@ -1,5 +1,4 @@
 import React, { useRef, useEffect } from 'react';
-import Chart from 'chart.js/auto';
 
 const Barchart = () => {
     const chartRef = useRef(null);

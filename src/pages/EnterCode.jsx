@@ -93,12 +93,14 @@ export default function EnterCode({ userEmail }) {
               </button>
             </div>
             <div className="flex items-center justify-center">
-              <button
-                className="bg-[#728969] hover:bg-[#728969] text-white font-bold w-full py-4 px-4 rounded focus:outline-none focus:shadow-outline"
-                type="submit"
-              >
-                Continue
-              </button>
+              <Link to={'/new_password'}>
+                <button
+                  className="bg-[#728969] hover:bg-[#728969] text-white font-bold w-full py-4 px-4 rounded focus:outline-none focus:shadow-outline"
+                  type="submit"
+                >
+                  Continue
+                </button>
+              </Link>
             </div>
           </form>
         </div>
