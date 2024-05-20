@@ -7,3 +7,5 @@ export {default as CmsPage} from "./CMS/CmsScreen";
 export {default as MuseumInformation} from "./CMS/MuseumInfo";
 export {default as Dashboard} from "./Dashboard";
 export {default as EditInformationScreen} from "./CMS/EditInfoScreen";
+export {default as Ticket} from "./Ticket";
+export {default as Events} from "./Event";
