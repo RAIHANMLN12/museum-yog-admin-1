@@ -1,16 +1,10 @@
-<<<<<<< HEAD:src/pages/Dashboard/Dashboard.jsx
 import React, { useState } from 'react';
 import Navbar from '../../components/navbar';
 import Sidebar from '../../components/sidebar';
 import Barchart from '../../components/Barchart';
+import DiagramBatang from '../../components/Barchart';
+import DiagramLingkaran from '../../components/Circlechart';
 
-=======
-import React, { useState } from "react";
-import Navbar from "../components/navbar";
-import Sidebar from "../components/sidebar";
-import DiagramBatang from "../components/Barchart";
-import DiagramLingkaran from "../components/Circlechart";
->>>>>>> f9df88dd54579fcce1a34c1e37176a66a78b4add:src/pages/Dashboard.jsx
 
 const users = [
   {

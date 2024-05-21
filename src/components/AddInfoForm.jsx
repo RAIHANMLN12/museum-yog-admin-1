@@ -308,9 +308,12 @@ const AddInformationForm = () => {
                             </button>
                         </div>
 
-                        <button className="w-full px-5 py-3 text-center text-white bg-[#728969] border border-[#CBCBCB] rounded-md">
-                            Save
-                        </button>
+                        <Link to={'/cms_page'}>
+                            <button className="w-full px-5 py-3 text-center text-white bg-[#728969] border border-[#CBCBCB] rounded-md">
+                                Save
+                            </button>
+                        </Link>
+
                     </div>  
                 </div>
             </div>

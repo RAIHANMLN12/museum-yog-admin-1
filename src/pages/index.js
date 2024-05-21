@@ -1,5 +1,5 @@
 export { default as Login } from "./Login/Login";
-export { default as SignUp } from "./SignUp";
+export { default as SignUp } from "./SignUp/SignUp";
 export { default as ForgotPassword } from "./Login/ForgotPassword";
 export { default as EnterCode } from "./Login/EnterCode";
 export { default as NewPassword } from "./Login/NewPassword";
@@ -7,6 +7,6 @@ export {default as CmsPage} from "./CMS/CmsScreen";
 export {default as MuseumInformation} from "./CMS/MuseumInfo";
 export {default as Dashboard} from "./Dashboard/Dashboard";
 export {default as EditInformationScreen} from "./CMS/EditInfoScreen";
-export {default as Ticket} from "./Ticket";
-export {default as Events} from "./Event";
+export {default as Ticket} from "./Ticket/Ticket";
+export {default as Events} from "./EventManagement/Event";
 export {default as AddInformationScreen} from "../pages/CMS/AddInfoScreen";

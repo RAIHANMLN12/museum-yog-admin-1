@@ -10,32 +10,11 @@ import { Link } from "react-router-dom";
 
 
 const MuseumInformation = ({data}) => {
-    const SampleData = {
-        namaMuseum: 'Museum Keraton Ngayogyakarta Hadiningrat',
-        gambarMuseum: [Image, Image, Image, Image],
-        alamatMuseum: {
-            icon: LocationIcon,
-            alamat: 'Jl. Rotowijayan, Kadipaten, Kecamatan Kraton, Kota Yogyakarta, Daerah Istimewa Yogyakarta 55132',
-        },
-        operasionalMuseum: {
-            waktu: 'Buka setiap hari: 08.00 - 13.30 WIB',
-            khususJumat: 'Khusus hari jumat: 08.00 - 13.00 WIB',
-            libur: 'Libur pada upacara kebesaran Keraton',
-        },
-        fasilitasMuseum: [
-            { icon: ToiletIcon, fasilitas: "Toilet duduk dan jongkok" },
-            { icon: MosqueIcon, fasilitas: "Mushola" },
-        ],
-        transportMuseum: [
-            { transport: "Stasiun Yogyakarta", jarak: "200m" },
-            { transport: "Stasiun Lempuyangan", jarak: "300m" },
-        ],
-    };
 
     return (
         <>
             <div className="flex-1 p-4 overflow-y-auto ml-[250px] mt-16 pt-10">
-                <div className="flex flex-col mx-10 my-9 space-y-5">
+                <div className="flex flex-col mx-10 my-9 space-y-8">
                     <div className="flex flex-row justify-between items-center">
                         <h1 className="text-black font-[700] text-[30px]">Museum Information</h1>
                         <div className="flex flex-row justify-center items-center space-x-3 border border-[#728969] rounded-md p-2 w-[100px]">
@@ -47,7 +26,7 @@ const MuseumInformation = ({data}) => {
                     </div>
                     <div className="space-y-4">
                         <h1 className="text-black font-[500] text-[26px]">Nama Museum</h1>
-                        <p className="text-[#5B6D54] font-[400] text-[16px]">{data.museum}</p>
+                        <p className="text-[#5B6D54] font-[400] text-[16px]">{data.namaMuseum}</p>
                     </div>
                     <div className="space-y-4">
                         <h1 className="text-black font-[500] text-[26px]">Gambar Museum</h1>
@@ -61,37 +40,38 @@ const MuseumInformation = ({data}) => {
                         <h1 className="text-black font-[500] text-[26px]">Alamat Museum</h1>
                         <div className="flex items-center space-x-4">
                             <img src={LocationIcon} alt="Location Icon" />
-                            <p className="text-[#5B6D54] font-[400] text-[16px]">{SampleData.alamatMuseum.alamat}</p>
+                            <p className="text-[#5B6D54] font-[400] text-[16px]">{data.alamatMuseum}</p>
                         </div>
                     </div>
                     <div className="space-y-4">
                         <h1 className="text-black font-[500] text-[26px]">Operasional Museum</h1>
                         <div className="flex flex-row items-start space-x-4">
                             <img src={TimeIcon} alt="" />
-                            <p className="text-[#5B6D54] font-[400] text-[16px]">{SampleData.operasionalMuseum.waktu} <br /> {SampleData.operasionalMuseum.khususJumat} <br /> {SampleData.operasionalMuseum.libur}</p>
+                            <p className="text-[#5B6D54] font-[400] text-[16px]">{data.operasionalMuseum.waktu} <br /> {data.operasionalMuseum.keterangan} </p>
                         </div>
                     </div>
-                    <div className="space-y-4">
-                        <h1 className="text-black font-[500] text-[26px]">Fasilitas Museum</h1>
+                    <div className="flex flex-row justify-between items-center">
                         <div className="space-y-4">
-                            {SampleData.fasilitasMuseum.map((fasilitas, index) => (
-                                <div key={index} className="flex flex-row items-center space-x-4">
-                                    <img src={fasilitas.icon} alt="" />
-                                    <p className="text-[#5B6D54] font-[400] text-[16px] ml-2">{fasilitas.fasilitas}</p>
-                                </div>
-                            ))}
+                            <h1 className="text-black font-[500] text-[26px]">Fasilitas Museum</h1>
+                            <div className="space-y-4">
+                                {data.fasilitasMuseum.map((fasilitas, index) => (
+                                    <div key={index} className="flex flex-row items-center">
+                                        <p className="text-[#5B6D54] font-[400] text-[16px]">{fasilitas}</p>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
-                    </div>
-                    <div className="space-y-4">
-                        <h1 className="text-black font-[500] text-[26px]">Transport Museum</h1>
                         <div className="space-y-4">
-                            {SampleData.transportMuseum.map((transport, index) => (
-                                <div key={index} className="flex flex-row items-center space-x-4">
-                                    <img src={TrainIcon} alt="" />
-                                    <p className="text-[#5B6D54] font-[400] text-[16px] ml-2">{transport.transport}</p>
-                                    <p className="text-[#5B6D54] font-[400] text-[16px] ml-2">{transport.jarak}</p>
-                                </div>
-                            ))}
+                            <h1 className="text-black font-[500] text-[26px]">Transport Museum</h1>
+                            <div className="space-y-4">
+                                {data.transportMuseum.map((transport, index) => (
+                                    <div key={index} className="flex flex-row items-center space-x-4">
+                                        <img src={TrainIcon} alt="" />
+                                        <p className="text-[#5B6D54] font-[400] text-[16px] ml-2">{transport.transportName}</p>
+                                        <p className="text-[#5B6D54] font-[400] text-[16px] ml-2">{transport.jarak}</p>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>

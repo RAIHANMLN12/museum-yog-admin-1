@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Navbar from "../components/navbar";
-import Sidebar from "../components/sidebar";
+import Navbar from "../../components/navbar";
+import Sidebar from "../../components/sidebar";
 
 const users = [
     {
@@ -19,7 +19,7 @@ const users = [
 
 const currentUser = users[1];
 
-export default function Events() {
+export default function Ticket() {
     return (
         <div className="h-screen flex flex-col">
         <Navbar
@@ -29,11 +29,12 @@ export default function Events() {
         <div className="flex flex-1 overflow-hidden">
             <Sidebar />
             <div className="flex-1 p-4 overflow-y-auto ml-[280px] mt-16 pt-10">
-            <h1 className="text-2xl font-bold">Events</h1>
+            <h1 className="text-2xl font-bold">Ticket</h1>
             </div>
         </div>
         </div>
     );
     }
+
 
     

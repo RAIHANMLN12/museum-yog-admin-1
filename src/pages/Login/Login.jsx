@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import BackgroundImage from "../assets/background.png";
-import EmailIcon from "../assets/icons/email.png";
-import PasswordIcon from "../assets/icons/password.png";
+import BackgroundImage from "/src/assets/background.png";
+import EmailIcon from "/src/assets/icons/email.png";
+import PasswordIcon from "/src/assets/icons/password.png";
 import { useNavigate, Link } from "react-router-dom";
-import Logo from "../assets/logo.png";
+import Logo from "/src/assets/logo.png";
 
 const dummyUser = {
   email: "test@example.com",
