@@ -12,7 +12,7 @@ const Sidebar = () => {
         <div className='fixed top-0 left-0 w-[280px] bg-[#5B6D54] h-full flex flex-col pt-20'>
             <div className='text-white mb-4 px-4 py-2'>
                 <div className="text-center mb-4 pt-10">
-                    <img src={Building} alt="building" className="w-14 h-14 mx-auto"/>
+                    <img src={Building} alt="building" className="w-14 h-14 mb-4 mx-auto"/>
                     <h1 className='text-[24px] font-bold'>Museum</h1>
                     <h1 className='text-[24px] font-bold mb-4'>Keraton Yogyakarta</h1>
                 </div>    
