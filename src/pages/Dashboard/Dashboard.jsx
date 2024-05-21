@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Navbar from '../components/navbar';
-import Sidebar from '../components/sidebar';
-import Barchart from '../components/Barchart';
+import Navbar from '../../components/navbar';
+import Sidebar from '../../components/sidebar';
+import Barchart from '../../components/Barchart';
 
 
 const users = [

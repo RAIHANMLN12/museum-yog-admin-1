@@ -8,7 +8,8 @@ import TimeIcon from "/src/assets/icons/time-icon.png";
 import EditIcon from "/src/assets/icons/edit-icon.png";
 import { Link } from "react-router-dom";
 
-const MuseumInformation = () => {
+
+const MuseumInformation = ({data}) => {
     const SampleData = {
         namaMuseum: 'Museum Keraton Ngayogyakarta Hadiningrat',
         gambarMuseum: [Image, Image, Image, Image],
@@ -46,12 +47,12 @@ const MuseumInformation = () => {
                     </div>
                     <div className="space-y-4">
                         <h1 className="text-black font-[500] text-[26px]">Nama Museum</h1>
-                        <p className="text-[#5B6D54] font-[400] text-[16px]">{SampleData.namaMuseum}</p>
+                        <p className="text-[#5B6D54] font-[400] text-[16px]">{data.museum}</p>
                     </div>
                     <div className="space-y-4">
                         <h1 className="text-black font-[500] text-[26px]">Gambar Museum</h1>
                         <div className="flex flex-row space-x-4">
-                            {SampleData.gambarMuseum.map((gambar, index) => (
+                            {data.gambarMuseum.map((gambar, index) => (
                                 <img key={index} src={gambar} alt={`Museum ${index + 1}`} className="w-1/4" />
                             ))}
                         </div>
@@ -59,7 +60,7 @@ const MuseumInformation = () => {
                     <div className="space-y-4">
                         <h1 className="text-black font-[500] text-[26px]">Alamat Museum</h1>
                         <div className="flex items-center space-x-4">
-                            <img src={SampleData.alamatMuseum.icon} alt="Location Icon" />
+                            <img src={LocationIcon} alt="Location Icon" />
                             <p className="text-[#5B6D54] font-[400] text-[16px]">{SampleData.alamatMuseum.alamat}</p>
                         </div>
                     </div>

@@ -1,6 +1,7 @@
+import React from 'react';
+import AddInformationForm from '../../components/AddInfoForm';
 import Navbar from "../../components/navbar"
 import Sidebar from "../../components/sidebar"
-import EditInformationForm from "../../components/EditInfoForm";
 
 const users = [
     {
@@ -15,18 +16,18 @@ const users = [
     }
 ];
 
-const EditInfoScreen = () => {
+const AddInformationScreen = () => {
     return (
         <>
             <div className="flex flex-col h-screen">
                 <Navbar user={users[0]} className="h-16 bg-gray-800 text-white flex items-center px-4" />
                 <div className="flex flex-1 overflow-hidden">
                     <Sidebar />
-                    <EditInformationForm />
+                    <AddInformationForm />
                 </div>
             </div>
         </>
     )
 }
 
-export default EditInfoScreen;
+export default AddInformationScreen;

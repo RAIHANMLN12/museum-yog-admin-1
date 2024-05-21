@@ -7,7 +7,7 @@ import LocationIcon from "/src/assets/icons/location-icon.png";
 import DropdownIcon from "/src/assets/icons/arrow-down.png";
 
 
-const InformationForm = () => {
+const EditInformationForm = () => {
     const [museumName, setMuseumName] = useState("");
     const [museumDesc,setMuseumDesc] = useState("");
     const [museumAddress, setMuseumAddress] = useState("");
@@ -387,4 +387,4 @@ const InformationForm = () => {
     );
 }
 
-export default InformationForm;
+export default EditInformationForm;
