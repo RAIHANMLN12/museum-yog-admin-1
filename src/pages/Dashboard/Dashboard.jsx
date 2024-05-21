@@ -5,7 +5,6 @@ import Barchart from '../../components/Barchart';
 import DiagramBatang from '../../components/Barchart';
 import DiagramLingkaran from '../../components/Circlechart';
 
-
 const users = [
   {
     name: "John Doe",
