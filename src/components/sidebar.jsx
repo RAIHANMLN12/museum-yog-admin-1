@@ -1,5 +1,6 @@
 import React from 'react';
 import { MdOutlineLocationOn } from "react-icons/md";
+import { Link } from "react-router-dom";
 import Building from "../assets/building.png";
 import DashboardIcon from "../assets/icons/dashboard.png";
 import Ticket from "../assets/icons/ticket.png";
@@ -21,37 +22,37 @@ const Sidebar = () => {
                     <h1 className='text-[12px] px-2'>Jl. Rotowijayan, Kadipaten, Kecamatan Kraton, Kota Yogyakarta, Daerah Istimewa Yogyakarta 55132</h1>
                 </div>
             </div>
-            <div className='bg-[#7F9275] flex-1 px-0 py-4'> {/* Remove left and right padding */}
+            <div className='bg-[#7F9275] flex-1 px-0 py-4'>
                 <ul className='text-white font-bold space-y-2'>
-                    <li className='rounded hover:shadow hover:bg-[#5B6D54] mx-4'> {/* Add horizontal margin */}
-                        <a href="#" className='flex items-center p-2'>
+                    <li className='rounded hover:shadow hover:bg-[#5B6D54] mx-4'>
+                        <Link to="/dashboard" className='flex items-center p-2'>
                             <img src={DashboardIcon} alt="dashboard" className="w-6 h-6"/>
                             <h1 className='text-[16px] font-medium ml-4'>Dashboard</h1>
-                        </a>
+                        </Link>
                     </li>
                     <li className='rounded hover:shadow hover:bg-[#5B6D54] mx-4'>
-                        <a href="#" className='flex items-center p-2'>
-                            <img src={Ticket} alt="ticket" className="w-6 h-6"/>
-                            <h1 className='text-[16px] font-medium ml-4'>Ticket</h1>
-                        </a>
-                    </li>
-                    <li className='rounded hover:shadow hover:bg-[#5B6D54] mx-4'>
-                        <a href="#" className='flex items-center p-2'>
+                        <Link to="/events" className='flex items-center p-2'>
                             <img src={Events} alt="events" className="w-6 h-6"/>
                             <h1 className='text-[16px] font-medium ml-4'>Events</h1>
-                        </a>
+                        </Link>
                     </li>
                     <li className='rounded hover:shadow hover:bg-[#5B6D54] mx-4'>
-                        <a href="#" className='flex items-center p-2'>
+                        <Link to="/ticket" className='flex items-center p-2'>
+                            <img src={Ticket} alt="ticket" className="w-6 h-6"/>
+                            <h1 className='text-[16px] font-medium ml-4'>Ticket</h1>
+                        </Link>
+                    </li>
+                    <li className='rounded hover:shadow hover:bg-[#5B6D54] mx-4'>
+                        <Link to="/cms_page" className='flex items-center p-2'>
                             <img src={CMS} alt="cms" className="w-6 h-6"/>
                             <h1 className='text-[16px] font-medium ml-4'>CMS</h1>
-                        </a>
+                        </Link>
                     </li>
                     <li className='rounded hover:shadow hover:bg-[#5B6D54] mx-4'>
-                        <a href="#" className='flex items-center p-2'>
+                        <Link to="/review" className='flex items-center p-2'>
                             <img src={Review} alt="review" className="w-6 h-6"/>
                             <h1 className='text-[16px] font-medium ml-4'>Review</h1>
-                        </a>
+                        </Link>
                     </li>
                 </ul>
             </div>
