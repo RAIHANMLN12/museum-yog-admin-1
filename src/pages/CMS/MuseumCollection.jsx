@@ -2,18 +2,28 @@ import {React, useState} from 'react';
 import MuseumCardCollection from '../../components/MuseumCollectionCard';
 import MuseumCollectionData from '../../dataSample/MuseumCollectionData';
 import AddInfoCollection from '../../components/AddInfoCollection';
+import EditInfoCollection from '../../components/EditInfoCollection';
 
 
 const MuseumCollectionScreen = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isAddData, setIsAddData] = useState(false);
+    const [isEditData, setIsEditData] = useState(false);
 
-    const handleOpenModal = () => {
-        setIsModalOpen(true);
+    const handleAddData = () => {
+        setIsAddData(true)
     };
 
-    const handleCloseModal = () => {
-        setIsModalOpen(false);
+    const handleCloseAddData = () => {
+        setIsAddData(false);
     };
+
+    const handleEditData = () => {
+        setIsEditData(true);
+    }
+
+    const handleCloseEditData = () => {
+        setIsEditData(false);
+    }
 
     return (
         <>
@@ -25,16 +35,21 @@ const MuseumCollectionScreen = () => {
                         </h1>
                         <button 
                             className='bg-[#7F9275] rounded-[8px] text-white px-5 py-3'
-                            onClick={handleOpenModal}    
+                            onClick={handleAddData}    
                         >
                             +   Add Museum Collection
                         </button>
                     </div>
-                    <MuseumCardCollection data={MuseumCollectionData} onEdit={handleOpenModal}/>
+                    <MuseumCardCollection data={MuseumCollectionData} onEdit={handleEditData}/>
                 </div>
-                {isModalOpen && (
+                {isAddData && (
                     <div className="fixed pl-[260px] pt-[190px] inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center z-50 overflow-y-auto">
-                        <AddInfoCollection onClose={handleCloseModal}/>
+                        <AddInfoCollection onClose={handleCloseAddData}/>
+                    </div>
+                )}
+                {isEditData && (
+                    <div className="fixed pl-[260px] pt-[190px] inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center z-50 overflow-y-auto">
+                        <EditInfoCollection onClose={handleCloseEditData}/>
                     </div>
                 )}
             </div>

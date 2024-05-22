@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import AddIcon from "/src/assets/icons/add-icon.png";
 import ImageIcon from "/src/assets/icons/image-icon.png";
 
-const AddInfoCollection = ({ onClose }) => {
-    const [imageCollection, setImageCollection] = useState(null);
-    const [titleCollection, setTitleCollection] = useState("");
-    const [descCollection, setDescCollection] = useState("");
+const EditInfoCollection = ({ data, onClose }) => {
+    const [imageCollection, setImageCollection] = useState(data?.imageCollection || null);
+    const [titleCollection, setTitleCollection] = useState(data?.titleCollection || "");
+    const [descCollection, setDescCollection] = useState(data?.descCollection || "");
 
     const handleImageChange = (e) => {
         if (e.target.files.length > 0) {
@@ -19,6 +19,11 @@ const AddInfoCollection = ({ onClose }) => {
     const handleSubmit = () => {
         // Logika untuk menambah koleksi museum bisa ditambahkan di sini
         // Setelah selesai, tutup modal
+        const dataCollection = {
+            imageCollection,
+            titleCollection,
+            descCollection
+        }
         onClose();
     }
 
@@ -95,10 +100,10 @@ const AddInfoCollection = ({ onClose }) => {
 
                 <div className='flex justify-end'>
                     <button 
-                        className='bg-[#7F9275] rounded-[8px] w-[250px] text-white px-3 py-2 text-[14px]'
+                        className='bg-[#7F9275] rounded-[8px] w-[150px] text-white px-3 py-2 text-[14px]'
                         onClick={handleSubmit}
                     >
-                        + Add Museum Collection
+                        Save Changes
                     </button>
                 </div>
             </div>
@@ -106,4 +111,4 @@ const AddInfoCollection = ({ onClose }) => {
     )
 }
 
-export default AddInfoCollection;
+export default EditInfoCollection;
