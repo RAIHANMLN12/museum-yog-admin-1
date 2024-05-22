@@ -103,30 +103,32 @@ export default function EventOverview() {
           </div>
           <div className="mt-5 space-y-4">
             {filteredEvents.map((event, index) => (
-              <div key={index} className="flex items-center p-4 border rounded-lg shadow-sm">
+              <div key={index} className="flex items-start p-4 border rounded-lg shadow-sm space-x-4">
                 <img
                   src={event.image}
                   alt={event.name}
                   className="w-36 h-36 object-cover rounded-lg"
                 />
-                <div className="ml-4 flex">
-                  <div className="mr-4">
-                    <span className="text-lg font-bold block">{event.name}</span>
-                    <p className="text-sm text-gray-600">{event.deskname}</p>
-                  </div>
-                  <div className="mr-4">
-                    <span className="text-lg font-bold block">{event.titleDesk}</span>
-                    <p className="text-sm text-gray-600 ">{event.description}</p>
-                  </div>
-                  <div className="mr-4">
-                    <span className="text-lg font-bold block">{event.titleDate}</span>
-                    <p className="text-sm text-gray-600">{event.date}</p>
-                  </div>
-                  <div className="mr-4">
-                    <span className="text-lg font-bold block">{event.titleStatus}</span>
-                    <span className={`text-sm font-semibold block ${event.status === 'On Going' ? 'text-green-500' : event.status === 'Done' ? 'text-blue-500' : 'text-gray-500'}`}>
+                <div className="flex-1 flex flex-col space-y-2">
+                  <div className="flex flex-row space-x-4">
+                    <div className="flex-1">
+                      <span className="text-lg font-bold block">{event.name}</span>
+                      <p className="text-sm text-gray-600">{event.deskname}</p>
+                    </div>
+                    <div className="flex-1">
+                      <span className="text-lg font-bold block">{event.titleDesk}</span>
+                      <p className="text-sm text-gray-600 break-words">{event.description}</p>
+                    </div>
+                    <div className="flex-1">
+                      <span className="text-lg font-bold block">{event.titleDate}</span>
+                      <p className="text-sm text-gray-600 break-words">{event.date}</p>
+                    </div>
+                    <div className="flex-1">
+                      <span className="text-lg font-bold block">{event.titleStatus}</span>
+                      <span className={`text-sm font-semibold block ${event.status === 'On Going' ? 'text-green-500' : event.status === 'Done' ? 'text-blue-500' : 'text-gray-500'}`}>
                       {event.status}
                     </span>
+                    </div>
                   </div>
                 </div>
               </div>

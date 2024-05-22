@@ -5,7 +5,7 @@ const Tabs = () => {
   return (
     <div className="flex border-b border-gray-300">
       <NavLink 
-        to="/overview" 
+        to="/events" 
         exact 
         className="px-4 py-2 text-gray-600"
         activeClassName="text-green-700 border-b-2 border-green-700"
@@ -13,7 +13,7 @@ const Tabs = () => {
         Overview
       </NavLink>
       <NavLink 
-        to="/setting-event" 
+        to="/setting_event" 
         className="px-4 py-2 text-gray-600"
         activeClassName="text-green-700 border-b-2 border-green-700"
       >
