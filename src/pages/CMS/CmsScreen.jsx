@@ -5,6 +5,7 @@ import Navbar from "../../components/navbar";
 import PlusIcon from "/src/assets/icons/Plus.png";
 import { Link } from "react-router-dom";
 import ImageTesting from "/src/assets/image-test.png";
+import MuseumCollectionScreen from "./MuseumCollection";
 
 const users = [
     {
@@ -21,7 +22,7 @@ const users = [
 
 const SampleData = {
     namaMuseum: 'Museum Keraton Ngayogyakarta Hadiningrat',
-    gambarMuseum: [ImageTesting, ImageTesting, ImageTesting, ImageTesting],
+    gambarMuseum: [ImageTesting, ImageTesting, ImageTesting],
     alamatMuseum: 'Jl. Rotowijayan, Kadipaten, Kecamatan Kraton, Kota Yogyakarta, Daerah Istimewa Yogyakarta 55132',
     operasionalMuseum: {
         waktu: 'Buka setiap hari: 08.00 - 13.30 WIB',
@@ -36,19 +37,48 @@ const SampleData = {
 
 const CmsScreen = () => {
     const [isHaveData, setIsHaveData] = useState(false);
+    const [activeTab, setActiveTab] = useState('information');
 
     const handleAddData = () => {
         // Logika untuk menambah data bisa ditambahkan di sini
         setIsHaveData(true);
     };
+     
+    const handleTabChange = (tab) => {
+        setActiveTab(tab);
+    }
+
 
     return (
         <>
             <div className="flex flex-col h-screen">
                 <Navbar user={users[0]} className="h-16 bg-gray-800 text-white flex items-center px-4" />
-                <div className="flex flex-1 overflow-hidden">
+                
+                <div className="flex">
                     <Sidebar />
-                    {/* card for insert data */}
+                    <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden px-10 space-y-5">
+                        <div className="grid grid-cols-2 text-center ml-[260px] mt-[120px] border-b-4 border-gray-300">
+                            <h1
+                                className={`text-[24px] font-bold cursor-pointer pb-6 relative ${activeTab === 'information' ? 'border-b-4 border-[#728969] text-[#728969] top-[4px]' : ''}`}
+                                onClick={() => handleTabChange('information')}
+                            >
+                                Museum Information
+                            </h1>
+                            <h1
+                                className={`text-[24px] font-bold cursor-pointer pb-6 relative ${activeTab === 'collection' ? 'border-b-4 border-[#728969] text-[#728969] top-[4px]' : ''}`}
+                                onClick={() => handleTabChange('collection')}
+                            >
+                                Museum Collection
+                            </h1>
+                        </div>
+                        <div className="content">
+                            {activeTab === 'information' && <MuseumInformation data={SampleData} />}
+                            {activeTab === 'collection' && <MuseumCollectionScreen />}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* card for insert data */}
                     {/* {!isHaveData ? (
                         <div className="flex-1 p-10 overflow-y-auto ml-[280px] mt-16 pt-10">
                             <div className="flex flex-col space-y-5">
@@ -74,10 +104,7 @@ const CmsScreen = () => {
                         </div>
                     ): (
                         <MuseumInformation data={SampleData} />
-                    )} */}
-                    <MuseumInformation data={SampleData} />
-                </div>
-            </div>
+                    )} */}       
         </>
     );
 };

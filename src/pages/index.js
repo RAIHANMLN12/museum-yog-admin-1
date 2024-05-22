@@ -10,3 +10,4 @@ export {default as EditInformationScreen} from "./CMS/EditInfoScreen";
 export {default as AddInformationScreen} from "../pages/CMS/AddInfoScreen";
 export {default as EventOverview} from "./EventManagement/EventOverview";
 export { default as TicketOverview } from "./Ticket/TicketOverview";
+export {default as MuseumCollection} from "./CMS/MuseumCollection";

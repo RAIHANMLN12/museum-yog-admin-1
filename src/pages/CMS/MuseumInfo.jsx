@@ -13,8 +13,8 @@ const MuseumInformation = ({data}) => {
 
     return (
         <>
-            <div className="flex-1 p-4 overflow-y-auto ml-[250px] mt-16 pt-10">
-                <div className="flex flex-col mx-10 my-9 space-y-8">
+            <div className="flex-1 mt-5 ml-[260px]">
+                <div className="flex flex-col space-y-8 pb-9">
                     <div className="flex flex-row justify-between items-center">
                         <h1 className="text-black font-[700] text-[30px]">Museum Information</h1>
                         <div className="flex flex-row justify-center items-center space-x-3 border border-[#728969] rounded-md p-2 w-[100px]">
@@ -32,7 +32,7 @@ const MuseumInformation = ({data}) => {
                         <h1 className="text-black font-[500] text-[26px]">Gambar Museum</h1>
                         <div className="flex flex-row space-x-4">
                             {data.gambarMuseum.map((gambar, index) => (
-                                <img key={index} src={gambar} alt={`Museum ${index + 1}`} className="w-1/4" />
+                                <img key={index} src={gambar} alt={`Museum ${index - 1 }`} className="w-1/4" />
                             ))}
                         </div>
                     </div>
