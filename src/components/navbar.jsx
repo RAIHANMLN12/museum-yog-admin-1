@@ -1,4 +1,5 @@
 import React from 'react';
+import Bahasa from "../assets/icons/bahasa.png";
 
 export default function Navbar({ user }) {
   return (
@@ -7,10 +8,11 @@ export default function Navbar({ user }) {
         <img src="src/assets/logo.png" alt="Logo" className="h-10" />
       </div>
       <div className="flex items-center">
-        <div className="mr-4">
-          <select className="p-2 bg-white border border-gray-300 rounded">
-            <option value="en">English</option>
-            <option value="id">Bahasa Indonesia</option>
+        <div className="mr-4 flex items-center">
+          <select className="p-2 bg-white border border-gray-300 rounded font-bold">
+            <img src={Bahasa} alt="bahasa" className="w-14 h-14 mx-auto"/>
+            <option value="en">ENG</option>
+            <option value="id">IND</option>
             {/* Add more languages as needed */}
           </select>
         </div>
