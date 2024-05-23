@@ -5,6 +5,9 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    boxShadow: {
+      'custom-shadow': '0px 8px 28px 0px rgba(0, 0, 0, 0.10)'
+    },
     extend: {},
     screens: {
       'tablet': '640px',

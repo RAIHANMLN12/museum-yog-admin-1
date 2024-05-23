@@ -12,3 +12,4 @@ export {default as EventOverview} from "./EventManagement/EventOverview";
 export { default as TicketOverview } from "./Ticket/TicketOverview";
 export {default as MuseumCollection} from "./CMS/MuseumCollection";
 export {default as SettingEvent} from "./EventManagement/SettingEvent";
+export {default as ReviewScreen} from "./Review/ReviewScreen";
