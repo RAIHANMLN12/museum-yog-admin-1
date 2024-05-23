@@ -4,6 +4,7 @@ import Sidebar from '../../components/sidebar';
 import UserSampleAccount from "../../dataSample/UserAccount";
 import ReviewCard from '../../components/ReviewCard';
 import ReviewData from '../../dataSample/ReviewData';
+import ReplyForm from '../../components/ReplyForm';
 
 const ReviewScreen = () => {
     const [isReply, setIsReply] = useState(false);
@@ -32,6 +33,11 @@ const ReviewScreen = () => {
                             )}
                         </div>
                     </div>
+                    {isReply && (
+                        <div className="fixed pl-[260px] pt-[190px] inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center z-50 overflow-y-auto">
+                            <ReplyForm onCancle={doneReply} onSave={doneReply} />
+                        </div>
+                    )}
                 </div>
            </div>
         </>

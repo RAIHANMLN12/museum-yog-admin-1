@@ -27,7 +27,7 @@ const ReviewCard = ({reviewData, onReply}) => {
                 {reviewData.komentar}
             </p>
             <div className='flex flex-row justify-end items-center' onClick={onReply}>
-                <div className='flex flex-row items-center space-x-5 w-[140px] bg-[#728969] px-5 py-4 rounded-[8px] text-white'>
+                <div className='flex flex-row items-center space-x-5 w-[140px] bg-[#728969] px-5 py-4 rounded-[8px] text-white hover:cursor-pointer'>
                     <img src={EditIcon} alt="" />
                     <h1>Reply</h1>
                 </div>
