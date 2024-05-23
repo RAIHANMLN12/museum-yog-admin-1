@@ -38,7 +38,7 @@ const Sidebar = () => {
                     </li>
                     <li className='rounded hover:shadow hover:bg-[#5B6D54] mx-4'>
                         <Link to="/ticket" className='flex items-center p-2'>
-                            <img src={Ticket} alt="ticket" className="w-6 h-6"/>
+                            <img src={Ticket} alt="ticket" className="w-6 h-6 mt-1"/>
                             <h1 className='text-[16px] font-medium ml-4'>Ticket</h1>
                         </Link>
                     </li>
