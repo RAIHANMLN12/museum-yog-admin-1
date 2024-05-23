@@ -43,7 +43,7 @@ const Sidebar = () => {
                         </Link>
                     </li>
                     <li className='rounded hover:shadow hover:bg-[#5B6D54] mx-4'>
-                        <Link to="/cms_page" className='flex items-center p-2'>
+                        <Link to="/cms" className='flex items-center p-2'>
                             <img src={CMS} alt="cms" className="w-6 h-6"/>
                             <h1 className='text-[16px] font-medium ml-4'>CMS</h1>
                         </Link>

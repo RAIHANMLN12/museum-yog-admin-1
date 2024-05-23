@@ -11,7 +11,7 @@ const router = createBrowserRouter([
   { path: "code_verification", element: <EnterCode /> },
   { path: "new_password", element: <NewPassword /> },
   { path: "dashboard", element: <Dashboard />},
-  { path: "cms_page", element: <CmsPage />},
+  { path: "cms", element: <CmsPage />},
   { path: "edit_information", element: <EditInformationScreen />},
   { path: "add_information", element: <AddInformationScreen />},
   { path: "events", element: <EventOverview />},
@@ -19,7 +19,7 @@ const router = createBrowserRouter([
   { path: "museum_collection", element: <MuseumCollection /> },
   { path: "setting_event", element: <SettingEvent /> },
   { path: "*", element: <Navigate to="/" /> },
-  { path: "review_screen", element: <ReviewScreen />}
+  { path: "review", element: <ReviewScreen />}
 ]);
 
 export default function App() {

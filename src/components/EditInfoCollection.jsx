@@ -30,7 +30,7 @@ const EditInfoCollection = ({ data, onClose }) => {
 
     return (
         <>
-            <div className='flex flex-col w-[500px] bg-white mb-[50px] px-7 py-8 space-y-5 rounded-[8px] shadow-sm'>
+            <div className='flex flex-col w-[600px] bg-white mb-[50px] px-7 py-8 space-y-5 rounded-[8px] shadow-sm'>
                 <div className="flex flex-col items-center justify-center py-[40px] w-full border border-[#728969] rounded-md">
                     <input 
                         type="file" 
@@ -68,7 +68,7 @@ const EditInfoCollection = ({ data, onClose }) => {
                 {/* title collection input form */}
                 <div className="flex flex-col justify-start space-y-4">
                     <h1 className="text-[#505050] font-bold text-[24px]">
-                        Museum Name
+                        Collection Name
                     </h1>
                     <input 
                         type="text" 
@@ -82,7 +82,7 @@ const EditInfoCollection = ({ data, onClose }) => {
                 {/* description collection input form */}
                 <div className="flex flex-col justify-start space-y-4">
                     <h1 className="text-[#505050] font-bold text-[24px]">
-                        Description of Museum
+                        Description of collection
                     </h1>
                     <div className="relative w-full">
                     <textarea 
