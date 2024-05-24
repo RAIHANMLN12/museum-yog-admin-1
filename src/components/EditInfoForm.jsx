@@ -41,7 +41,7 @@ const EditInformationForm = () => {
         <>
             <div className="flex-1 p-4 overflow-y-auto ml-[250px] mt-16 pt-10 overflow-x-hidden">
                 <div className="mx-10 my-11 space-y-5">
-                    <Link to={'/cms_page'}>
+                    <Link to={'/cms'}>
                         <div className="flex flex-row items-center">
                             <img src={BackIcon} alt="" className="mr-2"/>
                             <h1 className="text-[#AFAFAF]">Museum Information</h1>
