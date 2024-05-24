@@ -3,21 +3,7 @@ import Navbar from '../../components/navbar';
 import Sidebar from '../../components/sidebar';
 import DiagramBatang from '../../components/Barchart';
 import DiagramLingkaran from '../../components/Circlechart';
-
-const users = [
-  {
-    name: "John Doe",
-    email: "jhon123@gmail.com",
-    image:
-      "https://th.bing.com/th/id/OIP.w6Cs6qz234c71XloeqKdwgHaHa?rs=1&pid=ImgDetMain",
-  },
-  {
-    name: "Jane Doe",
-    email: "jane123@gmail.com",
-    image:
-      "https://th.bing.com/th/id/OIP.w6Cs6qz234c71XloeqKdwgHaHa?rs=1&pid=ImgDetMain",
-  },
-];
+import users from '../../dataSample/UserAccount';
 
 const currentUser = users[1];
 

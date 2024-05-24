@@ -20,7 +20,7 @@ const Tabs = () => {
         Setting Event
       </NavLink>
       <NavLink 
-        to="/report" 
+        to="/report_event" 
         className="px-4 py-2 text-gray-600"
         activeClassName="text-green-700 border-b-2 border-green-700"
       >
