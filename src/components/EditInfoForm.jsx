@@ -377,7 +377,7 @@ const EditInformationForm = () => {
                             </button>
                         </div>
 
-                        <Link to={'/cms_page'}>
+                        <Link to={'/cms'}>
                             <button className="w-full px-5 py-3 text-center text-white bg-[#728969] border border-[#CBCBCB] rounded-md">
                                 Save
                             </button>
