@@ -60,7 +60,7 @@ const EditInformationForm = () => {
                             <input 
                                 type="text" 
                                 placeholder="exp. museum raihan" 
-                                className="w-full h-[60px] border border-[#728969] focus:outline-none rounded-md p-5"
+                                className="w-full h-[60px] border border-[#728969] focus:outline-none rounded-md p-5 bg-[#F8F8F8]"
                                 value={museumName}
                                 onChange={(e) => setMuseumName(e.target.value)}
                             />
@@ -232,7 +232,7 @@ const EditInformationForm = () => {
                             <div className="relative w-full">
                                 <textarea 
                                     placeholder="exp. museum raihan" 
-                                    className="w-full h-[150px] border border-[#728969] focus:outline-none rounded-md p-5 resize-none"
+                                    className="w-full h-[150px] border border-[#728969] focus:outline-none rounded-md p-5 resize-none bg-[#F8F8F8]"
                                     maxLength={150}
                                     value={museumDesc}
                                     onChange={(e) => setMuseumDesc(e.target.value)}
@@ -250,7 +250,7 @@ const EditInformationForm = () => {
                             </h1>
                             <div className="flex items-center border border-gray-400 rounded w-full h-[60px]">
                                 <img src={LocationIcon} alt="location-icon" className="ml-[20px]" style={{ width: '20px', height: '20px', verticalAlign: 'middle' }} />
-                                <input className="w-full py-2 px-5 border-[#728969] text-gray-700 focus:outline-none" id="email" type="text" placeholder="exp. Jalan Kenangan"  value={museumAddress} onChange={(e) => setMuseumAddress(e.target.value)} />
+                                <input className="w-full py-2 px-5 border-[#728969] text-gray-700 focus:outline-none bg-[#F8F8F8]" id="email" type="text" placeholder="exp. Jalan Kenangan"  value={museumAddress} onChange={(e) => setMuseumAddress(e.target.value)} />
                             </div>
                         </div>
 
@@ -292,16 +292,16 @@ const EditInformationForm = () => {
                         <div className="flex flex-row items-center space-x-8 text-[#728969]">
                             <div className="space-y-3">
                                 <p>Open</p>
-                                <input type="text" className="h-[50px] border border-[#728969] focus:outline-none rounded-md px-5 w-[150px]"/>
+                                <input type="text" className="h-[50px] border border-[#728969] focus:outline-none rounded-md px-5 w-[150px] bg-[#F8F8F8]"/>
                             </div>
                             <div className="space-y-3">
                                 <p>Close</p>
-                                <input type="text" className="h-[50px] border border-[#728969] focus:outline-none rounded-md px-5 w-[150px]"/>
+                                <input type="text" className="h-[50px] border border-[#728969] focus:outline-none rounded-md px-5 w-[150px] bg-[#F8F8F8]"/>
                             </div>
                         </div>
                         <div className="space-y-3 text-[#728969]">
                             <p>Other Information</p>
-                            <input type="text" placeholder="exp. Museum is closed during holidays" className="w-full py-2 h-[60px] px-5 border border-[#728969] text-gray-700 focus:outline-none rounded-md"/>
+                            <input type="text" placeholder="exp. Museum is closed during holidays" className="w-full py-2 h-[60px] px-5 border border-[#728969] text-gray-700 focus:outline-none rounded-md bg-[#F8F8F8]"/>
                         </div>
 
                         {/* transportation input field */}
@@ -315,7 +315,7 @@ const EditInformationForm = () => {
                                         <div className="flex flex-col w-1/2 space-y-3">
                                             <p>Transportation</p>
                                             <div className="relative w-[300px] h-[50px]">
-                                                <select className="block appearance-none w-full h-full border border-[#728969] text-[#808080] py-2 px-5 pr-8 rounded leading-tight placeholder:text-[#808080] focus:outline-none focus:border-[#728969]">
+                                                <select className="block appearance-none w-full h-full border border-[#728969] text-[#808080] py-2 px-5 pr-8 rounded leading-tight placeholder:text-[#808080] focus:outline-none focus:border-[#728969] bg-[#F8F8F8]">
                                                     <option value="" disabled selected>Please choose one</option>
                                                     <option value="bus">Bus</option>
                                                     <option value="train">Train</option>
@@ -327,12 +327,12 @@ const EditInformationForm = () => {
                                         </div>
                                         <div className="flex flex-col w-full space-y-3">
                                             <p>Distance</p>
-                                            <input type="text" className="h-[50px] border border-[#728969] focus:outline-none rounded-md px-5 w-full placeholder:text-[#808080]" placeholder="exp. 200m" />
+                                            <input type="text" className="h-[50px] border border-[#728969] focus:outline-none rounded-md px-5 w-full placeholder:text-[#808080] bg-[#F8F8F8]" placeholder="exp. 200m" />
                                         </div>
                                     </div>
                                     <div className="flex flex-col w-full space-y-3">
                                         <p>Transportation Name</p>
-                                        <input type="text" className="h-[50px] border border-[#728969] focus:outline-none rounded-md px-5 w-full placeholder:text-[#808080]" placeholder="exp. Stasiun Balapan"/>
+                                        <input type="text" className="h-[50px] border border-[#728969] focus:outline-none rounded-md px-5 w-full placeholder:text-[#808080] bg-[#F8F8F8]" placeholder="exp. Stasiun Balapan"/>
                                     </div>
                                 </div>
                             ))}
@@ -355,7 +355,7 @@ const EditInformationForm = () => {
                                         <div className="flex flex-col w-1/2 space-y-3">
                                             <p>Facility</p>
                                             <div className="relative w-[300px] h-[50px]">
-                                                <select className="block appearance-none w-full h-full border border-[#728969] text-[#808080] py-2 px-5 pr-8 rounded leading-tight placeholder:text-[#808080] focus:outline-none focus:border-[#728969]">
+                                                <select className="block appearance-none w-full h-full border border-[#728969] text-[#808080] py-2 px-5 pr-8 rounded leading-tight placeholder:text-[#808080] focus:outline-none focus:border-[#728969] bg-[#F8F8F8]">
                                                     <option value="" disabled selected>Please choose one</option>
                                                     <option value="musholla">Musholla</option>
                                                     <option value="kamar_mandi">Kamar Mandi</option>

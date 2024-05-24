@@ -9,7 +9,7 @@ const MuseumCardCollection = ({data, onEdit}) => {
     }
 
     return (
-        <div className="flex flex-col w-full mb-[50px] px-7 py-8 space-y-5 border rounded-lg shadow-sm">
+        <div className="flex flex-col w-full mb-[50px] px-7 py-8 space-y-5 border rounded-lg shadow-custom-shadow bg-white">
             <div className="flex flex-row w-full space-x-5">
                 <img src={data.image} alt="" className="w-[200px] h-[150px]"/>
                 <div className="flex flex-col justify-start space-y-3">
