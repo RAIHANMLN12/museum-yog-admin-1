@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BackgroundImage from "/src/assets/background.png";
 import EmailIcon from "/src/assets/icons/email.png";
 import PasswordIcon from "/src/assets/icons/password.png";
@@ -7,7 +7,7 @@ import Logo from "/src/assets/logo.png";
 
 const dummyUser = {
   email: "test@example.com",
-  password: "password" 
+  password: "password"
 };
 
 export default function Login() {
@@ -16,15 +16,29 @@ export default function Login() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  useEffect(() => {
+    // Check if the user is already logged in, redirect to dashboard
+    if (localStorage.getItem("isLoggedIn") === "true") {
+      navigate("/dashboard", { replace: true });
+    }
+  }, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
   
     if (email === dummyUser.email && password === dummyUser.password) {
       setError("");
       console.log("Form submitted successfully!");
+      localStorage.setItem("isLoggedIn", "true");
       navigate("/dashboard", { replace: true }); // Use replace to prevent back navigation
     } else {
       setError("Invalid email or password.");
+    }
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSubmit(e);
     }
   };
 
@@ -48,7 +62,15 @@ export default function Login() {
                 </label>
                 <div className="flex items-center border border-gray-400 rounded w-full h-[50px]">
                   <img src={EmailIcon} alt="email-icon" className="ml-[20px]" style={{ width: '20px', height: '20px', verticalAlign: 'middle' }} />
-                  <input className="w-full py-2 px-5 text-gray-700 focus:outline-none" id="email" type="text" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                  <input 
+                    className="w-full py-2 px-5 text-gray-700 focus:outline-none" 
+                    id="email" 
+                    type="text" 
+                    placeholder="Enter your email" 
+                    value={email} 
+                    onChange={(e) => setEmail(e.target.value)} 
+                    onKeyPress={handleKeyPress} // Add key press event listener
+                  />
                 </div>
               </div>
               <div className="mb-6 space-y-3">
@@ -57,7 +79,15 @@ export default function Login() {
                 </label>
                 <div className="flex items-center border border-gray-400 rounded w-full h-[50px]">
                   <img src={PasswordIcon} alt="password-icon" className="ml-[20px]" style={{ width: '20px', height: '20px', verticalAlign: 'middle' }} />
-                  <input className="w-full py-2 px-5 text-gray-700 focus:outline-none" id="password" type="password" placeholder="Enter your password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                  <input 
+                    className="w-full py-2 px-5 text-gray-700 focus:outline-none" 
+                    id="password" 
+                    type="password" 
+                    placeholder="Enter your password" 
+                    value={password} 
+                    onChange={(e) => setPassword(e.target.value)} 
+                    onKeyPress={handleKeyPress} // Add key press event listener
+                  />
                 </div>
                 <div className="flex justify-end">
                   <Link to={"/forgot_password"}>
@@ -66,7 +96,10 @@ export default function Login() {
                 </div>
               </div>
               <div className="flex items-center justify-center">
-                <button className="bg-[#728969] hover:bg-[#728969] text-white font-bold w-full py-4 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                <button 
+                  className="bg-[#728969] hover:bg-[#728969] text-white font-bold w-full py-4 px-4 rounded focus:outline-none focus:shadow-outline" 
+                  type="submit"
+                >
                   Login
                 </button>
               </div>

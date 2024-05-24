@@ -61,7 +61,7 @@ export default function EventSetting() {
               </button>
             ))}
           </div>
-          <div className="flex items-center justify-between mt-5">
+          <div className="flex items-center justify-between mt-5 pl-2">
             <div className="flex space-x-4 items-center">
               <select className="px-4 py-2 border rounded">
                 <option value="">Bulk Action</option>
@@ -82,7 +82,7 @@ export default function EventSetting() {
                 </button>
             </Link>
           </div>
-          <div className="mt-5 space-y-4">
+          <div className="mt-5 space-y-4 pl-2">
             {filteredEvents.map((event, index) => (
               <div
                 key={index}

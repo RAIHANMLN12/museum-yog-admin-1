@@ -15,3 +15,6 @@ export {default as SettingEvent} from "./EventManagement/SettingEvent";
 export {default as ReviewScreen} from "./Review/ReviewScreen";
 export {default as EditEventScreen} from "./EventManagement/EditEventScreen";
 export {default as AddEventScreen} from "./EventManagement/AddEventScreen";
+export { default as ReportEvent } from "./EventManagement/ReportEventScreen";
+export { default as AddReport } from "./EventManagement/AddReportEventScreen";
+export { default as EditReport } from "./EventManagement/EditReportScreen";

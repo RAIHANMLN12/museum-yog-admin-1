@@ -80,7 +80,7 @@ export default function EventOverview() {
               </button>
             ))}
           </div>
-          <div className="flex items-center mt-5 space-x-4">
+          <div className="flex items-center mt-5 space-x-4 pl-2">
             <select className="px-4 py-2 border rounded">
               <option value="">Bulk Action</option>
               <option value="delete">Delete</option>
@@ -94,7 +94,7 @@ export default function EventOverview() {
             <option value="desc">Descending</option>
         </select>
           </div>
-          <div className="mt-5 space-y-4">
+          <div className="mt-5 space-y-4 pl-2">
             {filteredEvents.map((event, index) => (
               <div key={index} className="flex items-start p-4 border rounded-lg shadow-sm space-x-4">
                 <img
