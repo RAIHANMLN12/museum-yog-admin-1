@@ -3,7 +3,7 @@ import Bahasa from "../assets/icons/bahasa.png";
 
 export default function Navbar({ user }) {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-10 flex items-center justify-between p-4 bg-gray-100 border-b border-gray-200">
+    <nav className="fixed top-0 left-0 right-0 z-10 flex items-center justify-between p-4 bg-white border-b border-gray-200">
       <div className="flex items-center pl-5">
         <img src="src/assets/logo.png" alt="Logo" className="h-10" />
       </div>

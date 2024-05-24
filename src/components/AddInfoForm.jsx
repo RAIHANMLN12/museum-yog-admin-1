@@ -49,7 +49,7 @@ const AddInformationForm = () => {
 
     return (
         <>
-            <div className="flex-1 p-4 overflow-y-auto ml-[250px] mt-16 pt-10 overflow-x-hidden">
+            <div className="flex-1 p-4 overflow-y-auto ml-[250px] mt-16 pt-10 overflow-x-hidden bg-[#F8F8F8]">
                 <div className="mx-10 my-11 space-y-5">
                             
                     <h1 className="text-[#728969] text-[32px] font-bold">Add Information</h1>

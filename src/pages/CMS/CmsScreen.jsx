@@ -53,10 +53,9 @@ const CmsScreen = () => {
         <>
             <div className="flex flex-col h-screen">
                 <Navbar user={users[0]} className="h-16 bg-gray-800 text-white flex items-center px-4" />
-                
                 <div className="flex">
                     <Sidebar />
-                    <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden px-10 space-y-5">
+                    <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden px-10 space-y-5 bg-[#F8F8F8]">
                         <div className="grid grid-cols-2 text-center ml-[260px] mt-[120px] border-b-4 border-gray-300">
                             <h1
                                 className={`text-[24px] font-bold cursor-pointer pb-6 relative ${activeTab === 'information' ? 'border-b-4 border-[#728969] text-[#728969] top-[4px]' : ''}`}

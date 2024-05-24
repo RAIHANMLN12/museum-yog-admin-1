@@ -74,14 +74,13 @@ export default function Dashboard() {
     <div className="h-screen flex flex-col">
       <Navbar
         user={currentUser}
-        className="h-16 bg-gray-800 text-white flex items-center px-4"
       />
       <div className="flex flex-1 overflow-hidden">
         <Sidebar />
-        <div className="flex-1 p-4 overflow-y-auto ml-[280px] mt-16 pt-10">
+        <div className="flex-1 p-4 overflow-y-auto ml-[280px] mt-16 pt-10 bg-[#F8F8F8]">
           <h1 className="text-2xl font-bold">Dashboard</h1>
           <div className="grid grid-cols-3 gap-4 mt-4">
-            <div className="bg-white p-4 rounded-lg shadow-md">
+            <div className="bg-white p-4 rounded-lg shadow-custom-shadow">
               <h2 className="text-lg font-semibold mb-2">Total User</h2>
               <div className="flex items-center">
                 <span className="text-3xl font-bold mr-2">23</span>
@@ -90,7 +89,7 @@ export default function Dashboard() {
                 + 32.54% from last month
               </p>
             </div>
-            <div className="bg-white p-4 rounded-lg shadow-md">
+            <div className="bg-white p-4 rounded-lg shadow-custom-shadow">
               <h2 className="text-lg font-semibold mb-2">Total Ticket</h2>
               <div className="flex items-center">
                 <span className="text-3xl font-bold mr-2">23</span>
@@ -99,7 +98,7 @@ export default function Dashboard() {
                 + 32.54% from last month
               </p>
             </div>
-            <div className="bg-white p-4 rounded-lg shadow-md">
+            <div className="bg-white p-4 rounded-lg shadow-custom-shadow">
               <h2 className="text-lg font-semibold mb-2">Total Event</h2>
               <div className="flex items-center">
                 <span className="text-3xl font-bold mr-2">23</span>
@@ -108,7 +107,7 @@ export default function Dashboard() {
                 + 32.54% from last month
               </p>
             </div>
-            <div className="col-span-3 bg-white p-4 rounded-lg shadow-md">
+            <div className="col-span-3 bg-white p-4 rounded-lg shadow-custom-shadow">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-lg font-semibold">Ticket Overview</h2>
               </div>
@@ -118,7 +117,7 @@ export default function Dashboard() {
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4 mt-4">
-            <div className="bg-white p-4 rounded-lg shadow-md">
+            <div className="bg-white p-4 rounded-lg shadow-custom-shadow">
               <h2 className="text-lg font-semibold mb-2">Event Status</h2>
               <div className="flex justify-between mb-4">
                 <select onChange={handleFilterChange} className="border p-2 rounded">

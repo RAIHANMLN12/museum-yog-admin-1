@@ -13,7 +13,7 @@ const MuseumInformation = ({data}) => {
 
     return (
         <>
-            <div className="flex-1 mt-5 ml-[260px]">
+            <div className="flex-1 mt-5 ml-[260px] bg-[#F8F8F8]">
                 <div className="flex flex-col space-y-8 pb-9">
                     <div className="flex flex-row justify-between items-center">
                         <h1 className="text-black font-[700] text-[30px]">Museum Information</h1>

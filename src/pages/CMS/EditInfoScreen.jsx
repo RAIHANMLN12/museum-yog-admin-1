@@ -20,7 +20,7 @@ const EditInfoScreen = () => {
         <>
             <div className="flex flex-col h-screen">
                 <Navbar user={users[0]} className="h-16 bg-gray-800 text-white flex items-center px-4" />
-                <div className="flex flex-1 overflow-hidden">
+                <div className="flex flex-1 overflow-hidden bg-[#F8F8F8]">
                     <Sidebar />
                     <EditInformationForm />
                 </div>

@@ -27,7 +27,7 @@ const MuseumCollectionScreen = () => {
 
     return (
         <>
-            <div className="flex-1 overflow-y-auto ml-[260px]">
+            <div className="flex-1 overflow-y-auto ml-[260px] bg-[#F8F8F8] h-screen">
                 <div className='flex flex-col space-y-8'>
                     <div className='flex flex-row justify-between items-center'>
                         <h1 className='font-bold text-black text-[24px]'>
