@@ -10,7 +10,7 @@ const currentUser = users[1];
 const events = [
   {
     image:
-      "https://www.britishmuseum.org/sites/default/files/styles/uncropped_small/public/2019-10/Great-Court-Corporate-Entertaining-Autumnal.jpg?itok=sYGq6wOU",
+      "https://th.bing.com/th/id/OIP.sMkJCOUl_aqN4ZF67pVtEQHaE9?rs=1&pid=ImgDetMain",
     name: "Event Name",
     deskname: "Workshop Membatik",
     titleDesk: "Event Description",
