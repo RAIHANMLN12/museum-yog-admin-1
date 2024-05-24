@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate, createBrowserRouter, RouterProvider } from "react-router-dom";
-import { EnterCode, ForgotPassword, Login, NewPassword, SignUp, CmsPage, Dashboard, EditInformationScreen, AddInformationScreen, EventOverview, TicketOverview, MuseumCollection, SettingEvent, ReviewScreen } from "./pages";
+import { EnterCode, ForgotPassword, Login, NewPassword, SignUp, CmsPage, Dashboard, EditInformationScreen, AddInformationScreen, EventOverview, MuseumCollection, SettingEvent, ReviewScreen, TicketScreen} from "./pages";
 
 // Define routes with the correct redirection for the root path
 const router = createBrowserRouter([
@@ -15,7 +15,7 @@ const router = createBrowserRouter([
   { path: "edit_information", element: <EditInformationScreen />},
   { path: "add_information", element: <AddInformationScreen />},
   { path: "events", element: <EventOverview />},
-  { path: "ticket", element: <TicketOverview />},
+  { path: "ticket", element: <TicketScreen />},
   { path: "museum_collection", element: <MuseumCollection /> },
   { path: "setting_event", element: <SettingEvent /> },
   { path: "*", element: <Navigate to="/" /> },

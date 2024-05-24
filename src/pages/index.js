@@ -9,7 +9,7 @@ export {default as Dashboard} from "./Dashboard/Dashboard";
 export {default as EditInformationScreen} from "./CMS/EditInfoScreen";
 export {default as AddInformationScreen} from "../pages/CMS/AddInfoScreen";
 export {default as EventOverview} from "./EventManagement/EventOverview";
-export { default as TicketOverview } from "./Ticket/TicketOverview";
+export { default as TicketScreen } from "./Ticket/TicketScreen";
 export {default as MuseumCollection} from "./CMS/MuseumCollection";
 export {default as SettingEvent} from "./EventManagement/SettingEvent";
 export {default as ReviewScreen} from "./Review/ReviewScreen";
