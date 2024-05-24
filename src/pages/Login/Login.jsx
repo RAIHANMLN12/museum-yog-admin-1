@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import BackgroundImage from "/src/assets/background.png";
 import EmailIcon from "/src/assets/icons/email.png";
 import PasswordIcon from "/src/assets/icons/password.png";
@@ -16,20 +16,12 @@ export default function Login() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // Check if the user is already logged in, redirect to dashboard
-    if (localStorage.getItem("isLoggedIn") === "true") {
-      navigate("/dashboard", { replace: true });
-    }
-  }, []);
-
   const handleSubmit = (e) => {
     e.preventDefault();
   
     if (email === dummyUser.email && password === dummyUser.password) {
       setError("");
       console.log("Form submitted successfully!");
-      localStorage.setItem("isLoggedIn", "true");
       navigate("/dashboard", { replace: true }); // Use replace to prevent back navigation
     } else {
       setError("Invalid email or password.");
