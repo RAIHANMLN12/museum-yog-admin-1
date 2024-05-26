@@ -6,23 +6,32 @@ const Tabs = () => {
     <div className="flex border-b border-gray-300">
       <NavLink 
         to="/events" 
-        exact 
-        className="px-4 py-2 text-gray-600"
-        activeClassName="text-green-700 border-b-2 border-green-700"
+        exact
+        className={({ isActive }) => 
+          isActive 
+            ? "px-4 py-2 text-green-700 border-b-2 border-green-700"
+            : "px-4 py-2 text-gray-600"
+        }
       >
         Overview
       </NavLink>
       <NavLink 
         to="/setting_event" 
-        className="px-4 py-2 text-gray-600"
-        activeClassName="text-green-700 border-b-2 border-green-700"
+        className={({ isActive }) => 
+          isActive 
+            ? "px-4 py-2 text-green-700 border-b-2 border-green-700"
+            : "px-4 py-2 text-gray-600"
+        }
       >
         Setting Event
       </NavLink>
       <NavLink 
-        to="/report" 
-        className="px-4 py-2 text-gray-600"
-        activeClassName="text-green-700 border-b-2 border-green-700"
+        to="/report_event" 
+        className={({ isActive }) => 
+          isActive 
+            ? "px-4 py-2 text-green-700 border-b-2 border-green-700"
+            : "px-4 py-2 text-gray-600"
+        }
       >
         Report
       </NavLink>

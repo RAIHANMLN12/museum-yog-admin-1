@@ -13,4 +13,3 @@ export { default as TicketScreen } from "./Ticket/TicketScreen";
 export {default as MuseumCollection} from "./CMS/MuseumCollection";
 export {default as SettingEvent} from "./EventManagement/SettingEvent";
 export {default as ReviewScreen} from "./Review/ReviewScreen";
-export {default as ProfileScreen} from "./Profile/ProfileScreen";

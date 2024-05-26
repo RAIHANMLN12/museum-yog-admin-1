@@ -1,132 +1,146 @@
 import React, { useState } from "react";
-import Tab from '../../components/Tabs';
+import Tab from "../../components/Tabs";
+import Navbar from "../../components/navbar";
+import Sidebar from "../../components/sidebar";
+import users from "../../dataSample/UserAccount";
+import { Link } from 'react-router-dom';
 
-export default function SettingEvent () {
-    const [event, setEvent] = useState({
-        name: "",
-        deskname: "",
-        description: "",
-        date: "",
-        status: "",
-        category: "",
-    });
-    
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setEvent({
-        ...event,
-        [name]: value,
-        });
-    };
-    
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(event);
-    };
-    
-    return (
-        <div className="container mx-auto">
-        <Tab />
-        <div className="mt-8">
-            <form onSubmit={handleSubmit}>
-            <div className="flex flex-wrap -mx-3 mb-6">
-                <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="name">
-                    Event Name
-                </label>
-                <input
-                    className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                    id="name"
-                    type="text"
-                    name="name"
-                    value={event.name}
-                    onChange={handleChange}
-                />
-                </div>
-                <div className="w-full md:w-1/2 px-3">
-                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="deskname">
-                    Deskripsi Event
-                </label>
-                <input
-                    className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-                    id="deskname"
-                    type="text"
-                    name="deskname"
-                    value={event.deskname}
-                    onChange={handleChange}
-                />
-                </div>
+const currentUser = users[1];
+
+const events = [
+  {
+    image:
+      "https://th.bing.com/th/id/OIP.sMkJCOUl_aqN4ZF67pVtEQHaE9?rs=1&pid=ImgDetMain",
+    name: "Event Name",
+    deskname: "Workshop Membatik",
+    titleDesk: "Event Description",
+    description:
+      "Dalam Event ini anda akan diajak untuk belajar teknik-teknik membatik, mulai dari menyiapkan kain hingga menciptakan pola dan warna yang unik.",
+    titleDate: "Event Date",
+    date: "02 Mei 2024 - 28 Mei 2024",
+    category: "Publish",
+  },
+];
+
+export default function EventSetting() {
+  const [activeTab, setActiveTab] = useState("All");
+
+  const counts = {
+    All: events.length,
+    Publish: events.filter((event) => event.category === "Publish").length,
+    Draft: events.filter((event) => event.category === "Draft").length,
+    Trash: events.filter((event) => event.category === "Trash").length,
+  };
+
+  const filteredEvents =
+    activeTab === "All"
+      ? events
+      : events.filter((event) => event.category === activeTab);
+
+  return (
+    <div className="h-screen flex flex-col">
+      <Navbar
+        user={currentUser}
+        className="h-16 bg-gray-800 text-white flex items-center px-4"
+      />
+      <div className="flex flex-1 overflow-hidden">
+        <Sidebar />
+        <div className="flex-1 p-4 overflow-y-auto ml-[280px] mt-16 pt-10">
+          <Tab />
+          <h1 className="text-2xl font-bold pl-3 pt-5">Events</h1>
+          <div className="flex space-x-4 pl-3 pt-3">
+            {["All", "Publish", "Draft", "Trash"].map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`px-4 py-2 rounded focus:outline-none ${
+                  activeTab === tab ? "text-blue-500" : "text-gray-700"
+                }`}
+              >
+                {tab} ({counts[tab]})
+              </button>
+            ))}
+          </div>
+          <div className="flex items-center justify-between mt-5 pl-2">
+            <div className="flex space-x-4 items-center">
+              <select className="px-4 py-2 border rounded">
+                <option value="">Bulk Action</option>
+                <option value="delete">Delete</option>
+                <option value="archive">Archive</option>
+                {/* Add more options as needed */}
+              </select>
+              <button className="px-4 py-2 border rounded">Apply</button>
+              <select className="px-4 py-2 border rounded">
+                <option value="">Filter</option>
+                <option value="asc">Ascending</option>
+                <option value="desc">Descending</option>
+              </select>
             </div>
-            <div className="flex flex-wrap -mx-3 mb-6">
-                <div className="w-full px-3">
-                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="description">
-                    Deskripsi Event
-                </label>
-                <textarea
-                    className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                    id="description"
-                    name="description"
-                    value={event.description}
-                    onChange={handleChange}
-                />
-                </div>
-            </div>
-            <div className="flex flex-wrap -mx-3 mb-6">
-                <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="date">
-                    Date
-                </label>
-                <input
-                    className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                    id="date"
-                    type="date"
-                    name="date"
-                    value={event.date}
-                    onChange={handleChange}
-                />
-                </div>
-                <div className="w-full md:w-1/2 px-3">
-                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="status">
-                    Status
-                </label>
-                <select
-                    className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-                    id="status"
-                    name="status"
-                    value={event.status}
-                    onChange={handleChange}
-                >
-                    <option value="On Going">On Going</option>
-                    <option value="Done">Done</option>
-                    <option value="Draft">Draft</option>
-                </select>
-                </div>
-            </div>
-            <div className="flex flex-wrap -mx-3 mb-6">
-                <div className="w-full px-3">
-                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="category">
-                    Category
-                </label>
-                <input
-                    className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                    id="category"
-                    type="text"
-                    name="category"
-                    value={event.category}
-                    onChange={handleChange}
-                />
-                </div>
-            </div>
-            <div className="flex items-center">
-                <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                type="submit"
-                >
-                Save
+            <Link to="/add_event">
+                <button className="px-4 py-2 border rounded ml-auto">
+                    + Add Event
                 </button>
-            </div>
-            </form>
+            </Link>
+          </div>
+          <div className="mt-5 space-y-4 pl-2">
+            {filteredEvents.map((event, index) => (
+              <div
+                key={index}
+                className="flex items-start p-4 border rounded-lg shadow-sm space-x-4 bg-white"
+              >
+                <img
+                  src={event.image}
+                  alt={event.name}
+                  className="w-36 h-36 object-cover rounded-lg"
+                />
+                <div className="flex-1 flex flex-col space-y-2">
+                  <div className="flex flex-row space-x-4">
+                    <div className="flex-1">
+                      <span className="text-lg font-bold block">
+                        {event.name}
+                      </span>
+                      <p className="text-sm text-gray-600 pt-10">
+                        {event.deskname}
+                      </p>
+                    </div>
+                    <div className="flex-1">
+                      <span className="text-lg font-bold block">
+                        {event.titleDesk}
+                      </span>
+                      <p className="text-sm text-gray-600 break-words pt-5">
+                        {event.description}
+                      </p>
+                    </div>
+                    <div className="flex-1">
+                      <span className="text-lg font-bold block">
+                        {event.titleDate}
+                      </span>
+                      <p className="text-sm text-gray-600 break-words pt-10">
+                        {event.date}
+                      </p>
+                    </div>
+                    <div className="flex-1">
+                      <span className="text-lg font-bold block">Action</span>
+                      <div className="flex space-x-2 mt-2 pt-4">
+                        <Link to="/edit_event">
+                          <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                            Edit
+                          </button>
+                        </Link>
+                      </div>
+                      <div className="flex space-x-2 mt-2 pt-1">
+                        <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-2 rounded focus:outline-none focus:shadow-outline">
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-        </div>
-    );
+      </div>
+    </div>
+  );
 }

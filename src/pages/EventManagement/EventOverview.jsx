@@ -2,25 +2,14 @@ import React, { useState } from "react";
 import Navbar from "../../components/navbar";
 import Sidebar from "../../components/sidebar";
 import Tab from '../../components/Tabs';
+import users from "../../dataSample/UserAccount";
 
-const users = [
-  {
-    name: "John Doe",
-    email: "jhon123@gmail.com",
-    image: "https://th.bing.com/th/id/OIP.w6Cs6qz234c71XloeqKdwgHaHa?rs=1&pid=ImgDetMain",
-  },
-  {
-    name: "Jane Doe",
-    email: "jane123@gmail.com",
-    image: "https://th.bing.com/th/id/OIP.w6Cs6qz234c71XloeqKdwgHaHa?rs=1&pid=ImgDetMain",
-  },
-];
 
 const currentUser = users[1];
 
 const events = [
   {
-    image: "https://via.placeholder.com/150",
+    image: "https://th.bing.com/th/id/OIP.sMkJCOUl_aqN4ZF67pVtEQHaE9?rs=1&pid=ImgDetMain",
     name: "Event Name",
     deskname: "Workshop Membatik",
     titleDesk: "Event Description",
@@ -32,7 +21,7 @@ const events = [
     category: "Publish"
   },
   {
-    image: "https://via.placeholder.com/150",
+    image: "https://www.britishmuseum.org/sites/default/files/styles/uncropped_small/public/2019-10/Great-Court-Corporate-Entertaining-Autumnal.jpg?itok=sYGq6wOU",
     name: "Event Name",
     deskname: "Workshop Membatik",
     titleDesk: "Event Description",
@@ -44,7 +33,7 @@ const events = [
     category: "Draft"
   },
   {
-    image: "https://via.placeholder.com/150",
+    image: "https://th.bing.com/th/id/OIP.4Nb7RV7udINo1zsxbyIU9wHaE8?rs=1&pid=ImgDetMain",
     name: "Event Name",
     deskname: "Workshop Membatik",
     titleDesk: "Event Description",
@@ -91,17 +80,21 @@ export default function EventOverview() {
               </button>
             ))}
           </div>
-          <div className="flex items-center mt-5 space-x-4">
+          <div className="flex items-center mt-5 space-x-4 pl-2">
             <select className="px-4 py-2 border rounded">
               <option value="">Bulk Action</option>
               <option value="delete">Delete</option>
               <option value="archive">Archive</option>
               {/* Add more options as needed */}
             </select>
-            <button className="px-4 py-2 bg-blue-500 text-white rounded">Apply</button>
-            <button className="px-4 py-2 text-gray-700 rounded">Filter</button>
+            <button className="px-4 py-2 border rounded">Apply</button>
+            <select className="px-4 py-2 border rounded">
+            <option value="">Filter</option>
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+        </select>
           </div>
-          <div className="mt-5 space-y-4">
+          <div className="mt-5 space-y-4 pl-2">
             {filteredEvents.map((event, index) => (
               <div key={index} className="flex items-start p-4 border rounded-lg shadow-sm space-x-4">
                 <img
@@ -113,15 +106,15 @@ export default function EventOverview() {
                   <div className="flex flex-row space-x-4">
                     <div className="flex-1">
                       <span className="text-lg font-bold block">{event.name}</span>
-                      <p className="text-sm text-gray-600">{event.deskname}</p>
+                      <p className="text-sm text-gray-600 pt-10">{event.deskname}</p>
                     </div>
                     <div className="flex-1">
                       <span className="text-lg font-bold block">{event.titleDesk}</span>
-                      <p className="text-sm text-gray-600 break-words">{event.description}</p>
+                      <p className="text-sm text-gray-600 break-words pt-5">{event.description}</p>
                     </div>
                     <div className="flex-1">
                       <span className="text-lg font-bold block">{event.titleDate}</span>
-                      <p className="text-sm text-gray-600 break-words">{event.date}</p>
+                      <p className="text-sm text-gray-600 break-words pt-10">{event.date}</p>
                     </div>
                     <div className="flex-1">
                       <span className="text-lg font-bold block">{event.titleStatus}</span>
