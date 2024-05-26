@@ -3,6 +3,7 @@ import Navbar from "../../components/navbar";
 import Sidebar from "../../components/sidebar";
 import UserSampleAccount from "../../dataSample/UserAccount";
 import TicketOverview from "./TicketOverview";
+import SettingTicket from "./TicketSetting";
 
 
 const TicketScreen = () => {
@@ -47,6 +48,7 @@ const TicketScreen = () => {
                         </div>
                         <div className="content">
                             {activeTab === 'overview' && <TicketOverview />}
+                            {activeTab === 'setting' && <SettingTicket />}
                         </div>
                     </div>
                 </div>
