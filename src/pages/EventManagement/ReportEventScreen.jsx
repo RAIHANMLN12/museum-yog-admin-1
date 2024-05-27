@@ -48,6 +48,11 @@ const participantData = [
 
 export default function ReportEvent() {
     const [activeTab, setActiveTab] = useState("All");
+    const [selectedDate, setSelectedDate] = useState('');
+
+    const handleDateChange = (e) => {
+        setSelectedDate(e.target.value);
+    };
 
     const counts = {
         All: events.length,
@@ -106,6 +111,15 @@ export default function ReportEvent() {
                                 <option value="desc">Descending</option>
                             </select>
                             {/* button kalender */}
+                            <div className="flex space-x-4 items-center ml-auto">
+                                <div className="px-4 py-2 border rounded">
+                                    <input
+                                        type="date"
+                                        value={selectedDate}
+                                        onChange={handleDateChange}
+                                        className="w-full text-gray-700 focus:outline-none placeholder:text-gray-700" />
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div className="mt-5 space-y-4 pl-2">
@@ -168,22 +182,22 @@ export default function ReportEvent() {
                         <div className="mt-4 pt-5 pl-2">
                             <h2 className="text-lg font-bold">Event Participant Data</h2>
                             <div className="overflow-x-auto mt-2 pt-3">
-                                <table className="min-w-full divide-y divide-gray-200">
-                                    <thead className="bg-gray-50">
-                                        <tr>
-                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <table className="min-w-full divide-y divide-gray-200 border-collapse border border-slate-700">
+                                    <thead className="bg-[#C57557]">
+                                        <tr className="text-white text-center">
+                                            <th className="border border-slate-700 px-6 py-3 text-left text-xs font-medium text-white-500 uppercase tracking-wider">
                                                 Name
                                             </th>
-                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            <th className="border border-slate-700 px-6 py-3 text-left text-xs font-medium text-white-500 uppercase tracking-wider">
                                                 Events
                                             </th>
-                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            <th className="border border-slate-700 px-6 py-3 text-left text-xs font-medium text-white-500 uppercase tracking-wider">
                                                 Amount
                                             </th>
-                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            <th className="border border-slate-700 px-6 py-3 text-left text-xs font-medium text-white-500 uppercase tracking-wider">
                                                 Visit Schedule
                                             </th>
-                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            <th className="border border-slate-700 px-6 py-3 text-left text-xs font-medium text-white-500 uppercase tracking-wider">
                                                 Status
                                             </th>
                                         </tr>
@@ -191,19 +205,27 @@ export default function ReportEvent() {
                                     <tbody className="bg-white divide-y divide-gray-200">
                                         {participantData.map((participant, index) => (
                                             <tr key={index}>
-                                                <td className="px-6 py-4 whitespace-nowrap">
-                                                    <div className="text-sm text-gray-900">{participant.name}</div>
+                                                <td className="border border-slate-700 px-6 py-4 whitespace-nowrap">
+                                                    <div className="text-sm text-gray-900">
+                                                        {participant.name}
+                                                    </div>
                                                 </td>
-                                                <td className="px-6 py-4 whitespace-nowrap">
-                                                    <div className="text-sm text-gray-900">{participant.events}</div>
+                                                <td className="border border-slate-700 px-6 py-4 whitespace-nowrap">
+                                                    <div className="text-sm text-gray-900">
+                                                        {participant.events}
+                                                    </div>
                                                 </td>
-                                                <td className="px-6 py-4 whitespace-nowrap">
-                                                    <div className="text-sm text-gray-900">{participant.amount}</div>
+                                                <td className="border border-slate-700 px-6 py-4 whitespace-nowrap">
+                                                    <div className="text-sm text-gray-900">
+                                                        {participant.amount}
+                                                    </div>
                                                 </td>
-                                                <td className="px-6 py-4 whitespace-nowrap">
-                                                    <div className="text-sm text-gray-900">{participant.visitSchedule}</div>
+                                                <td className="border border-slate-700 px-6 py-4 whitespace-nowrap">
+                                                    <div className="text-sm text-gray-900">
+                                                        {participant.visitSchedule}
+                                                    </div>
                                                 </td>
-                                                <td className="px-6 py-4 whitespace-nowrap">
+                                                <td className="border border-slate-700 px-6 py-4 whitespace-nowrap">
                                                     <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                                         {participant.status}
                                                     </span>
@@ -214,7 +236,6 @@ export default function ReportEvent() {
                                 </table>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>

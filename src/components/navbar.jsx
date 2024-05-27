@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import Bahasa from "../assets/icons/bahasa.png";
 
 export default function Navbar({ user }) {
@@ -17,9 +18,15 @@ export default function Navbar({ user }) {
           </select>
         </div>
         <div className="flex items-center pr-5">
-          <img src={user.image} alt="User" className="h-10 w-10 rounded-full mr-2" />
+          {/* Add Link to profile */}
+          <Link to="/profile">
+            <img src={user.image} alt="User" className="h-10 w-10 rounded-full mr-2" />
+          </Link>
           <div className="flex flex-col">
-            <span className="font-bold">{user.name}</span>
+            {/* Add Link to profile */}
+            <Link to="/profile">
+              <span className="font-bold">{user.name}</span>
+            </Link>
             <span className="text-sm text-gray-600">{user.email}</span>
           </div>
         </div>
