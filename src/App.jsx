@@ -26,6 +26,7 @@ const router = createBrowserRouter([
   { path: "add_report", element: <AddReport />},
   { path: "edit_report", element: <EditReport />},
   { path: "profile", element: <ProfileScreen />}
+  // { path: "edit_profile", element: <EditProfileScreen />}
 ]);
 
 export default function App() {
