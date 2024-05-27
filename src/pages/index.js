@@ -19,3 +19,4 @@ export { default as ReportEvent } from "./EventManagement/ReportEventScreen";
 export { default as AddReport } from "./EventManagement/AddReportEventScreen";
 export { default as EditReport } from "./EventManagement/EditReportScreen";
 export { default as ProfileScreen } from "./Profile/ProfileScreen";
+export { default as EditProfileScreen} from "./Profile/EditProfileScreen";

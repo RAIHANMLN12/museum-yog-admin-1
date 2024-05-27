@@ -3,6 +3,7 @@ import Navbar from "../../components/navbar";
 import Sidebar from "../../components/sidebar";
 import UserSampleAccount from "../../dataSample/UserAccount";
 import EditIcon from "/src/assets/icons/edit-icon.png";
+import { Link } from "react-router-dom";
 
 const ProfileScreen = () => {
     const user = UserSampleAccount[0];
@@ -14,17 +15,21 @@ const ProfileScreen = () => {
                 <Navbar user={user} className="h-16 bg-gray-800 text-white flex items-center px-4" />
                 <div className="flex flex-1">
                     <Sidebar />
-                    <div className="flex flex-col flex-1 px-10 space-y-5 bg-[#F8F8F8] h-screen ml-[260px]">
-                        <div className="flex flex-row items-center space-x-5 text-start mt-[120px] mb-6">
+                    <div className="flex flex-col flex-1 px-10 space-y-5 bg-[#F8F8F8] h-screen ml-[260px] pb-10">
+                        <div className="flex flex-row items-center space-x-5 text-start mt-[120px] mb-5">
                             <img src={user.image} alt={user.name} className="w-40 h-40 rounded-full" />
                         </div>
-                        <div className="rounded-[8px] border border-[#728969] bg-white h-[450px] px-8 py-3 mt-4">
-                            <div className="flex justify-between items-center">
+                        <div className="rounded-[8px] border border-[#728969] bg-white h-[450px] px-8 py-3">
+                            <div className="flex flex-row justify-between items-center">
                                 <h1 className="text-[#728969] text-[24px] font-bold mt-3">Personal Information</h1>
-                                <img src={EditIcon} alt="Edit Icon" />
-                                {/* <Link to={'/edit_profile'}>
-                                    <button className="text-[#728969]">Edit</button>
-                                </Link> */}
+                                <Link to={'/edit_profile'}>
+                                    <div className="flex flex-row items-center space-x-3 border border-[#728969] rounded-[8px] px-3 py-2">
+                                        <img src={EditIcon} alt="Edit Icon" />
+                                        <h1 className="text-[#728969]">
+                                            Edit
+                                        </h1>
+                                    </div>
+                                </Link>
                             </div>
                             <div className="flex justify-between mt-6">
                                 <div>

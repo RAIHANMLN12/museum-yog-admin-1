@@ -1,4 +1,5 @@
-import React from 'react';
+import React  from 'react';
+import { useState } from 'react';
 import BackIcon from "/src/assets/icons/back-icon.png";
 import { Link } from "react-router-dom";
 
@@ -18,9 +19,8 @@ const EditProfile = () => {
                         <h1 className="mx-[5px] text-[#AFAFAF] ">/</h1>
                         <h1 className="text-[#CF8E72]">Edit Information</h1>
                     </div>
-                    </Link>
-                            
-                    <h1 className="text-[#728969] text-[32px] font-bold">Edit Information</h1>
+                </Link>
+                <h1 className="text-[#728969] text-[32px] font-bold">Edit Information</h1>
             </div>
         </div>
     );
