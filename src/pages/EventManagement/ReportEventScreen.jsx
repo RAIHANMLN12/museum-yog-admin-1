@@ -74,12 +74,12 @@ export default function ReportEvent() {
             />
             <div className="flex flex-1 overflow-hidden">
                 <Sidebar />
-                <div className="flex-1 p-4 overflow-y-auto ml-[280px] mt-16 pt-10">
+                <div className="flex-1 p-4 overflow-y-auto ml-[280px] mt-16 pt-10 bg-[#F8F8F8]">
                     <Tab />
                     <h1 className="text-2xl font-bold pl-3 pt-5">Events</h1>
                     <div className="pt-5 pl-2">
                         <Link to="/add_report">
-                            <button className="px-4 py-2 border rounded ml-auto">
+                            <button className="px-4 py-2 rounded ml-auto bg-white shadow-custom-shadow">
                                 + Add Event
                             </button>
                         </Link>
@@ -98,21 +98,21 @@ export default function ReportEvent() {
                     </div>
                     <div className="flex items-center justify-between mt-5 pl-2">
                         <div className="flex space-x-4 items-center">
-                            <select className="px-4 py-2 border rounded">
+                            <select className="px-4 py-2 rounded bg-white shadow-custom-shadow">
                                 <option value="">Bulk Action</option>
                                 <option value="delete">Delete</option>
                                 <option value="archive">Archive</option>
                                 {/* Add more options as needed */}
                             </select>
-                            <button className="px-4 py-2 border rounded">Apply</button>
-                            <select className="px-4 py-2 border rounded">
+                            <button className="px-4 py-2 rounded bg-white shadow-custom-shadow">Apply</button>
+                            <select className="px-4 py-2 rounded bg-white shadow-custom-shadow">
                                 <option value="">Filter</option>
                                 <option value="asc">Ascending</option>
                                 <option value="desc">Descending</option>
                             </select>
                             {/* button kalender */}
-                            <div className="flex space-x-4 items-center ml-auto">
-                                <div className="px-4 py-2 border rounded">
+                            <div className="flex space-x-4 items-center ml-auto bg-white shadow-custom-shadow">
+                                <div className="px-4 py-2 rounded">
                                     <input
                                         type="date"
                                         value={selectedDate}
@@ -126,7 +126,7 @@ export default function ReportEvent() {
                         {filteredEvents.map((event, index) => (
                             <div
                                 key={index}
-                                className="flex items-start p-4 border rounded-lg shadow-sm space-x-4 bg-white"
+                                className="flex items-start p-4 border rounded-lg shadow-sm space-x-4 bg-white shadow-custom-shadow"
                             >
                                 <img
                                     src={event.image}
@@ -179,7 +179,7 @@ export default function ReportEvent() {
                             </div>
                         ))}
                         {/* Event Participation Data */}
-                        <div className="mt-4 pt-5 pl-2">
+                        <div className="mt-4 px-5 py-5 bg-white shadow-custom-shadow rounded-[8px]">
                             <h2 className="text-lg font-bold">Event Participant Data</h2>
                             <div className="overflow-x-auto mt-2 pt-3">
                                 <table className="min-w-full divide-y divide-gray-200 border-collapse border border-slate-700">

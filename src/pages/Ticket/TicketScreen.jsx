@@ -4,6 +4,7 @@ import Sidebar from "../../components/sidebar";
 import UserSampleAccount from "../../dataSample/UserAccount";
 import TicketOverview from "./TicketOverview";
 import SettingTicket from "./TicketSetting";
+import TicketReport from "./ReportTicket";
 
 
 const TicketScreen = () => {
@@ -26,7 +27,7 @@ const TicketScreen = () => {
                 <div className="flex">
                     <Sidebar />
                     <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden px-10 space-y-5 bg-[#F8F8F8] h-screen">
-                        <div className="flex flex-row items-center space-x-5 text-start ml-[260px] mt-[120px] flex border-b border-gray-300">
+                        <div className="flex flex-row items-center space-x-5 text-start ml-[260px] mt-[120px] border-b border-gray-300">
                             <h1
                                 className={`cursor-pointer ${activeTab === 'overview' ? 'px-4 py-2 text-green-700 border-b-2 border-green-700' : 'px-4 py-2 text-gray-600'}`}
                                 onClick={() => handleTabChange('overview')}
@@ -49,6 +50,7 @@ const TicketScreen = () => {
                         <div className="content">
                             {activeTab === 'overview' && <TicketOverview />}
                             {activeTab === 'setting' && <SettingTicket />}
+                            {activeTab == 'report' && <TicketReport />}
                         </div>
                     </div>
                 </div>
