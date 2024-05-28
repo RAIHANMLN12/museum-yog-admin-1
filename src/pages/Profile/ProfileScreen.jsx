@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 
 const ProfileScreen = () => {
     const user = UserSampleAccount[0];
-    const [password, setPassword] = useState("");
 
     return (
         <>
