@@ -65,6 +65,9 @@ const ProfileScreen = () => {
                                 </div>
                             </div>
                         </div>
+                        <Link to={'/login'} className="ml-auto">
+                        <button className="px-4 py-2 rounded bg-[#728969] hover:bg-[#728969] text-white font-bold">Log Out </button>
+                        </Link>
                     </div>
                 </div>
             </div>
