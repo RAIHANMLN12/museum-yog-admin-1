@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
-import Bahasa from "../assets/icons/bahasa.png";
+import Translate from '../assets/icons/translate.png'
 
 export default function Navbar({ user }) {
   return (
@@ -9,9 +9,10 @@ export default function Navbar({ user }) {
         <img src="src/assets/logo.png" alt="Logo" className="h-10" />
       </div>
       <div className="flex items-center">
-        <div className="mr-4 flex items-center">
-          <select className="p-2 bg-white border border-gray-300 rounded font-bold">
-            <img src={Bahasa} alt="bahasa" className="w-14 h-14 mx-auto"/>
+        <div className="mr-4 flex items-center pr-10">
+          {/* image translate */}
+          <img src={Translate} alt="Translate" className="h-6 w-6 mx-auto" />
+          <select className="p-2 bg-white rounded font-bold">
             <option value="en">ENG</option>
             <option value="id">IND</option>
             {/* Add more languages as needed */}
