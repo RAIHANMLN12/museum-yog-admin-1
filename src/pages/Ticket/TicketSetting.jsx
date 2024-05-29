@@ -70,10 +70,10 @@ const SettingTicket = () => {
                         {IndividualTicket.map((ticket, index) => 
                             <div key={index} className="flex flex-row justify-between items-center rounded-[8px] border border-[#728969] bg-white h-[150px] px-8">
                                 <div className="flex flex-col space-y-4">
-                                    <h1>
+                                    <h1 className="font-bold text-[20px] text-black">
                                         {ticket.ticketName}
                                     </h1>
-                                    <p>
+                                    <p className="font-light text-black text-[16px]">
                                         {ticket.ticketDescription}
                                     </p>
                                     <p>
