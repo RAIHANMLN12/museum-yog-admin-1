@@ -6,16 +6,16 @@ import DiagramLingkaran from '../../components/Circlechart';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
-
 const events = [
   {
     name: "Workshop Membatik",
     status: "Finished",
     image: "https://www.metmuseum.org/-/media/images/join-and-give/host-an-event/corporate-receptions/teaser.jpg",
   },
+  
   {
     name: "Workshop Membatik",
-    status: "Finished",
+    status: "On Progress",
     image: "https://www.metmuseum.org/-/media/images/join-and-give/host-an-event/corporate-receptions/teaser.jpg",
   },
   {
@@ -37,37 +37,36 @@ export default function Dashboard() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(localStorage.getItem('token'))
-    axios.get('http://localhost:3000/currentUser', {
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
+    const fetchUser = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get('http://localhost:3000/auth/currentUser', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        setCurrentUser(response.data);
+      } catch (error) {
+        console.error(error);
+        navigate("/login");
       }
-    }).then(response => {
-      setCurrentUser(response.data);
-      
-    }
-    ).catch(error => {
-      console.error(error);
-      navigate("/login");
-    }
-    );
-
-  }, []);
-  
-  useEffect(() => {
-    window.history.pushState(null, document.title, window.location.href);
-    window.addEventListener('popstate', (e) => {
-      window.history.pushState(null, document.title, window.location.href);
-      navigate("/dashboard", { replace: true });
-    });
-    return () => {
-      window.removeEventListener('popstate', (e) => {
-        window.history.pushState(null, document.title, window.location.href);
-      });
     };
+
+    fetchUser();
   }, [navigate]);
 
+  useEffect(() => {
+    const handlePopState = (e) => {
+      window.history.pushState(null, document.title, window.location.href);
+      navigate("/dashboard", { replace: true });
+    };
+    window.history.pushState(null, document.title, window.location.href);
+    window.addEventListener('popstate', handlePopState);
 
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, [navigate]);
 
   const handleFilterChange = (e) => {
     setFilter(e.target.value);
@@ -89,7 +88,7 @@ export default function Dashboard() {
 
   return (
     <div className="h-screen flex flex-col">
-      <Navbar user={currentUser}/>
+      <Navbar user={currentUser} />
       <div className="flex flex-1 overflow-hidden">
         <Sidebar />
         <div className="flex-1 p-4 overflow-y-auto ml-[280px] mt-16 pt-10 bg-[#F8F8F8]">

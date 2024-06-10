@@ -4,28 +4,33 @@ import Tab from "../../components/Tabs";
 import Navbar from "../../components/navbar";
 import Sidebar from "../../components/sidebar";
 import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 export default function EventSetting() {
   const [activeTab, setActiveTab] = useState("All");
   const [currentUser, setCurrentUser] = useState({});
   const [events, setEvents] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('http://localhost:3000/currentUser', {
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
+    const fetchUser = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get('http://localhost:3000/auth/currentUser', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        setCurrentUser(response.data);
+      } catch (error) {
+        console.error(error);
       }
-    }).then(response => {
-      setCurrentUser(response.data);
-    }).catch(error => {
-      console.error(error);
-    });
+    };
 
-    fetchEvents();
-  }, []);
-
+    fetchUser();
+  }, [navigate]);
   const fetchEvents = () => {
-    axios.get('http://localhost:3000/event', {
+    axios.get('http://localhost:3000/events', {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       }
@@ -38,7 +43,7 @@ export default function EventSetting() {
 
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this event?")) {
-      axios.delete(`http://localhost:3000/event/${id}`, {
+      axios.delete(`http://localhost:3000/events/${id}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }

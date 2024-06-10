@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Translate from '../assets/icons/translate.png';
 import Logo from '../assets/logo.png';
-import axios from 'axios';
 
 export default function Navbar({ user }) {
   return (
@@ -20,7 +19,7 @@ export default function Navbar({ user }) {
         </div>
         <div className="flex items-center pr-5">
           <Link to="/profile">
-            <img src={user.image} alt="User" className="h-10 w-10 rounded-full mr-2" />
+            <img src={user.image || 'default-profile.png'} alt="User" className="h-10 w-10 rounded-full mr-2" />
           </Link>
           <div className="flex flex-col">
             <Link to="/profile">

@@ -4,6 +4,7 @@ import Tab from "../../components/Tabs";
 import Navbar from "../../components/navbar";
 import Sidebar from "../../components/sidebar";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -50,6 +51,7 @@ export default function ReportEvent() {
     const [activeTab, setActiveTab] = useState("All");
     const [selectedDate, setSelectedDate] = useState('');
     const [currentUser, setCurrentUser] = useState({});
+    const navigate = useNavigate();
 
     const handleDateChange = (e) => {
         setSelectedDate(e.target.value);
@@ -68,21 +70,22 @@ export default function ReportEvent() {
             : events.filter((event) => event.category === activeTab);
 
             useEffect(() => {
-                console.log(localStorage.getItem('token'))
-                axios.get('http://localhost:3000/currentUser', {
-                  headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                const fetchUser = async () => {
+                  try {
+                    const token = localStorage.getItem('token');
+                    const response = await axios.get('http://localhost:3000/auth/currentUser', {
+                      headers: {
+                        Authorization: `Bearer ${token}`
+                      }
+                    });
+                    setCurrentUser(response.data);
+                  } catch (error) {
+                    console.error(error);
                   }
-                }).then(response => {
-                  setCurrentUser(response.data);
-                  
-                }
-                ).catch(error => {
-                  console.error(error);
-                }
-                );
+                };
             
-              }, []);
+                fetchUser();
+              }, [navigate]);
         
 
     return (

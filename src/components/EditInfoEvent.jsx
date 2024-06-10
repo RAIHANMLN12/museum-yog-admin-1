@@ -48,11 +48,8 @@ const EditInfoEvent = () => {
         setEventPrice(e.target.value);
     };
 
-
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Logic to save the event details
         console.log({
             EventName,
             EventDesc,
@@ -60,9 +57,7 @@ const EditInfoEvent = () => {
             EventEndDate,
             EventPrice,
             EventPicture,
-           
         });
-        // You can add logic to save this data to a database or backend server here
     };
 
     return (
@@ -134,6 +129,7 @@ const EditInfoEvent = () => {
                                 )}
                             </div>
                         </div>
+
 
                         {/* Event description input field */}
                         <div className="flex flex-col justify-start space-y-4 relative pt-5">

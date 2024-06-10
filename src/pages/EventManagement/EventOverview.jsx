@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../../components/navbar";
 import Sidebar from "../../components/sidebar";
 import Tab from '../../components/Tabs';
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 
@@ -48,23 +49,25 @@ const events = [
 export default function EventOverview() {
   const [activeTab, setActiveTab] = useState('All');
   const [currentUser, setCurrentUser] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(localStorage.getItem('token'))
-    axios.get('http://localhost:3000/currentUser', {
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
+    const fetchUser = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get('http://localhost:3000/auth/currentUser', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        setCurrentUser(response.data);
+      } catch (error) {
+        console.error(error);
       }
-    }).then(response => {
-      setCurrentUser(response.data);
-      
-    }
-    ).catch(error => {
-      console.error(error);
-    }
-    );
+    };
 
-  }, []);
+    fetchUser();
+  }, [navigate]);
 
   const counts = {
     All: events.length,

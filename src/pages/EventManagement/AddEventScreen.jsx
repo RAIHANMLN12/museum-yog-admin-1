@@ -3,26 +3,30 @@ import Sidebar from "../../components/sidebar"
 import AddInfoEvent from "../../components/AddInfoEvent"
 import axios from 'axios';
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AddEventScreen = () => {
     const [currentUser, setCurrentUser] = useState({});
+    const navigate = useNavigate();
 
     useEffect(() => {
-        console.log(localStorage.getItem('token'))
-        axios.get('http://localhost:3000/currentUser', {
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-          }
-        }).then(response => {
+      const fetchUser = async () => {
+        try {
+          const token = localStorage.getItem('token');
+          const response = await axios.get('http://localhost:3000/auth/currentUser', {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          });
           setCurrentUser(response.data);
-          
-        }
-        ).catch(error => {
+        } catch (error) {
           console.error(error);
         }
-        );
-    
-      }, []);
+      };
+  
+      fetchUser();
+    }, [navigate]);
+
     return (
         <>
             <div className="flex flex-col h-screen">

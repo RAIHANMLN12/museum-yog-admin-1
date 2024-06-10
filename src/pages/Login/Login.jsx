@@ -5,8 +5,6 @@ import PasswordIcon from "/src/assets/icons/password.png";
 import { useNavigate, Link } from "react-router-dom";
 import Logo from "/src/assets/logo.png";
 import axios from 'axios';
-import {jwtDecode} from "jwt-decode"
-
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -19,17 +17,10 @@ export default function Login() {
     setError("");
 
     try {
-      const response = await axios.post('http://localhost:3000/login', { email, password });
+      const response = await axios.post('http://localhost:3000/auth/login', { email, password });
       localStorage.setItem('token', response.data.token);
       console.log(response.data.token);
-      console.log(jwtDecode(response.data.token));
-
-      // const userResponse = await axios.get('http://localhost:3000/currentUser', {
-      //   headers: { 'Authorization': `Bearer ${response.data.token}` }
-      // });
-
-      // localStorage.setItem('user', JSON.stringify(userResponse.data));
-      navigate("/dashboard", );
+      navigate("/dashboard");
     } catch (error) {
       setError(error.response?.data?.error || "An error occurred during login.");
     }

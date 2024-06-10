@@ -20,7 +20,7 @@ const router = createBrowserRouter([
   { path: "setting_event", element: <SettingEvent /> },
   { path: "*", element: <Navigate to="/" /> },
   { path: "review", element: <ReviewScreen />},
-  { path: "edit_event", element: <EditEventScreen />},
+  { path: "/edit_event/:id", element: <EditEventScreen />},
   { path: "add_event", element: <AddEventScreen />},
   { path: "report_event", element: <ReportEvent />},
   { path: "add_report", element: <AddReport />},
