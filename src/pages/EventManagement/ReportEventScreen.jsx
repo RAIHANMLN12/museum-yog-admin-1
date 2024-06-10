@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import axios from 'axios';
+import React, { useState, useEffect } from "react";
 import Tab from "../../components/Tabs";
 import Navbar from "../../components/navbar";
 import Sidebar from "../../components/sidebar";
-import users from "../../dataSample/UserAccount";
 import { Link } from "react-router-dom";
 
-const currentUser = users[1];
+
 
 const events = [
     {
@@ -49,6 +49,7 @@ const participantData = [
 export default function ReportEvent() {
     const [activeTab, setActiveTab] = useState("All");
     const [selectedDate, setSelectedDate] = useState('');
+    const [currentUser, setCurrentUser] = useState({});
 
     const handleDateChange = (e) => {
         setSelectedDate(e.target.value);
@@ -65,6 +66,24 @@ export default function ReportEvent() {
         activeTab === "All"
             ? events
             : events.filter((event) => event.category === activeTab);
+
+            useEffect(() => {
+                console.log(localStorage.getItem('token'))
+                axios.get('http://localhost:3000/currentUser', {
+                  headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                  }
+                }).then(response => {
+                  setCurrentUser(response.data);
+                  
+                }
+                ).catch(error => {
+                  console.error(error);
+                }
+                );
+            
+              }, []);
+        
 
     return (
         <div className="h-screen flex flex-col">

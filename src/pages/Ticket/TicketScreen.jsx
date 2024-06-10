@@ -38,7 +38,7 @@ const TicketScreen = () => {
                                 className={`cursor-pointer ${activeTab === 'setting' ? 'px-4 py-2 text-green-700 border-b-2 border-green-700' : 'px-4 py-2 text-gray-600'}`}
                                 onClick={() => handleTabChange('setting')}
                             >
-                                Setting Event
+                                Setting Ticket
                             </h1>
                             <h1
                                 className={`cursor-pointer ${activeTab === 'report' ? 'px-4 py-2 text-green-700 border-b-2 border-green-700' : 'px-4 py-2 text-gray-600'}`}

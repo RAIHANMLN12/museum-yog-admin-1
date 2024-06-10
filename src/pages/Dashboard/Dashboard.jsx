@@ -1,42 +1,73 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../../components/navbar';
 import Sidebar from '../../components/sidebar';
 import DiagramBatang from '../../components/Barchart';
 import DiagramLingkaran from '../../components/Circlechart';
-import users from '../../dataSample/UserAccount';
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
-const currentUser = users[1];
 
 const events = [
   {
     name: "Workshop Membatik",
     status: "Finished",
-    image:
-      "https://www.metmuseum.org/-/media/images/join-and-give/host-an-event/corporate-receptions/teaser.jpg",
+    image: "https://www.metmuseum.org/-/media/images/join-and-give/host-an-event/corporate-receptions/teaser.jpg",
   },
   {
     name: "Workshop Membatik",
     status: "Finished",
-    image:
-      "https://www.metmuseum.org/-/media/images/join-and-give/host-an-event/corporate-receptions/teaser.jpg",
+    image: "https://www.metmuseum.org/-/media/images/join-and-give/host-an-event/corporate-receptions/teaser.jpg",
   },
   {
     name: "Workshop Membatik",
     status: "Finished",
-    image:
-      "https://www.metmuseum.org/-/media/images/join-and-give/host-an-event/corporate-receptions/teaser.jpg",
+    image: "https://www.metmuseum.org/-/media/images/join-and-give/host-an-event/corporate-receptions/teaser.jpg",
   },
   {
     name: "Workshop Membatik",
     status: "On Progress",
-    image:
-      "https://www.metmuseum.org/-/media/images/join-and-give/host-an-event/corporate-receptions/teaser.jpg",
+    image: "https://www.metmuseum.org/-/media/images/join-and-give/host-an-event/corporate-receptions/teaser.jpg",
   },
 ];
 
 export default function Dashboard() {
   const [filter, setFilter] = useState('All');
   const [sortOrder, setSortOrder] = useState('asc');
+  const [currentUser, setCurrentUser] = useState({});
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log(localStorage.getItem('token'))
+    axios.get('http://localhost:3000/currentUser', {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    }).then(response => {
+      setCurrentUser(response.data);
+      
+    }
+    ).catch(error => {
+      console.error(error);
+      navigate("/login");
+    }
+    );
+
+  }, []);
+  
+  useEffect(() => {
+    window.history.pushState(null, document.title, window.location.href);
+    window.addEventListener('popstate', (e) => {
+      window.history.pushState(null, document.title, window.location.href);
+      navigate("/dashboard", { replace: true });
+    });
+    return () => {
+      window.removeEventListener('popstate', (e) => {
+        window.history.pushState(null, document.title, window.location.href);
+      });
+    };
+  }, [navigate]);
+
+
 
   const handleFilterChange = (e) => {
     setFilter(e.target.value);
@@ -58,9 +89,7 @@ export default function Dashboard() {
 
   return (
     <div className="h-screen flex flex-col">
-      <Navbar
-        user={currentUser}
-      />
+      <Navbar user={currentUser}/>
       <div className="flex flex-1 overflow-hidden">
         <Sidebar />
         <div className="flex-1 p-4 overflow-y-auto ml-[280px] mt-16 pt-10 bg-[#F8F8F8]">

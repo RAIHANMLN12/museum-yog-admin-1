@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import BackIcon from "/src/assets/icons/back-icon.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AddIcon from "/src/assets/icons/add-icon.png";
 import ImageIcon from "/src/assets/icons/image-icon.png";
 import Ticket from "../../src/assets/icons/tickket.png";
 import Calender from "../../src/assets/icons/Calendar.png";
+import axios from "axios";
 
 const AddInfoEvent = () => {
     const [EventName, setEventName] = useState("");
@@ -14,6 +15,7 @@ const AddInfoEvent = () => {
     const [EventPrice, setEventPrice] = useState("");
     const [wordCount, setWordCount] = useState(0);
     const [EventPicture, setEventPicture] = useState(null);
+    const navigate = useNavigate();
 
     const handleEventName = (e) => {
         setEventName(e.target.value);
@@ -48,19 +50,26 @@ const AddInfoEvent = () => {
         setEventPrice(e.target.value);
     };
 
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Logic to save the event details
-        console.log({
-            EventName,
-            EventDesc,
-            EventStartDate,
-            EventEndDate,
-            EventPrice,
-            EventPicture,
-        });
-        // You can add logic to save this data to a database or backend server here
+        const event = {
+            name: EventName,
+            description: EventDesc,
+            startDate: EventStartDate,
+            endDate: EventEndDate,
+            price: EventPrice,
+            picture: EventPicture,
+        };
+        try {
+            await axios.post('http://localhost:3000/event', event, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+            navigate('/setting_event');
+        } catch (error) {
+            console.error('An error occurred while adding the event:', error);
+        }
     };
 
     return (
@@ -98,117 +107,99 @@ const AddInfoEvent = () => {
                             <h1 className="text-[#505050] font-bold text-[24px]">
                                 Add Event Picture
                             </h1>
-                            <div className="flex flex-col items-center justify-center py-[40px] w-full max-h-[400px] border border-[#728969] rounded-md">
-                                <input 
-                                    type="file" 
-                                    id="file-input" 
-                                    className="hidden" 
-                                    accept="image/*" 
-                                    onChange={handlePictureChange}
-                                />
+                            <input
+                                type="file"
+                                className="hidden"
+                                id="fileInput"
+                                accept="image/*"
+                                onChange={handlePictureChange}
+                            />
+                            <label
+                                htmlFor="fileInput"
+                                className="w-full h-[160px] border-dashed border-2 border-[#728969] rounded-md flex flex-col justify-center items-center cursor-pointer"
+                            >
                                 {EventPicture ? (
-                                        <div className="flex flex-col items-center space-y-4">
-                                            <img src={EventPicture} alt="Preview" className="w-full max-w-xs h-[300px] rounded-md" />
-                                        <button 
-                                            onClick={() => {
-                                                setEventPicture(null)
-                                            }}
-                                            className="bg-[#728969] text-white py-2 px-4 rounded-md transition duration-300"
-                                        >
-                                            Remove
-                                        </button>
-                                    </div>
+                                    <img
+                                        src={EventPicture}
+                                        alt="Event"
+                                        className="w-full h-full object-cover"
+                                    />
                                 ) : (
-                                        <label 
-                                            htmlFor="file-input" 
-                                            className="flex flex-col justify-center items-center space-y-4 cursor-pointer"
-                                        >
-                                        <img src={AddIcon} alt="Add Icon" />
-                                        <div className="flex flex-row justify-center items-center space-x-2">
-                                            <img src={ImageIcon} alt="Image Icon" />
-                                            <p className="text-[#728969]">browse jpeg/png</p>
-                                        </div>
-                                    </label>
+                                    <>
+                                        <img src={ImageIcon} alt="icon" />
+                                        <p className="text-[#728969]">Add Picture</p>
+                                    </>
                                 )}
-                            </div>
+                            </label>
                         </div>
 
-                        
-
-                        {/* Event description input field */}
-                        <div className="flex flex-col justify-start space-y-4 relative pt-5">
+                        {/* Event Description input field */}
+                        <div className="flex flex-col justify-start space-y-4 pt-5">
                             <h1 className="text-[#505050] font-bold text-[24px]">
-                                Description of Event
+                                Event Description
                             </h1>
                             <textarea
-                                placeholder="exp. museum asri azhari"
-                                className="w-full h-[200px] border border-[#728969] focus:outline-none rounded-md p-5"
+                                rows={10}
+                                className="w-full border border-[#728969] focus:outline-none rounded-md p-5 resize-none"
+                                placeholder="exp. Event Description"
                                 value={EventDesc}
                                 onChange={handleEventDesc}
                             />
-                            <div className="absolute bottom-2 right-4 text-[#505050]">
-                                {wordCount}/150 words
-                            </div>
+                            <p className="text-[#728969]">{wordCount}/150 words</p>
                         </div>
 
-                        {/* Event timeline input fields */}
+                        {/* Event Start Date input field */}
                         <div className="flex flex-col justify-start space-y-4 pt-5">
                             <h1 className="text-[#505050] font-bold text-[24px]">
-                                Event Timeline
+                                Event Start Date
                             </h1>
-                            <div className="flex space-x-4">
-                                <div className="relative w-1/1">
-                                    <img src={Calender} alt="" className="absolute left-3 top-1/2 transform -translate-y-1/2 w-[24px] h-[24px]"/>
-                                    <input
-                                        type="date"
-                                        placeholder="Start Date"
-                                        className="w-full h-[60px] border border-[#728969] focus:outline-none rounded-md p-5 pl-12"
-                                        value={EventStartDate}
-                                        onChange={handleEventStartDate}
-                                    />
-                                </div>
-                                <div className="relative w-1/1">
-                                    <img src={Calender} alt="" className="absolute left-3 top-1/2 transform -translate-y-1/2 w-[24px] h-[24px]"/>
-                                    <input
-                                        type="date"
-                                        placeholder="End Date"
-                                        className="w-full h-[60px] border border-[#728969] focus:outline-none rounded-md p-5 pl-12"
-                                        value={EventEndDate}
-                                        onChange={handleEventEndDate}
-                                    />
-                                </div>
-                            </div>
+                            <input
+                                type="date"
+                                className="w-full h-[60px] border border-[#728969] focus:outline-none rounded-md p-5"
+                                value={EventStartDate}
+                                onChange={handleEventStartDate}
+                            />
                         </div>
-                        
-                        {/* Event price input field */}
+
+                        {/* Event End Date input field */}
+                        <div className="flex flex-col justify-start space-y-4 pt-5">
+                            <h1 className="text-[#505050] font-bold text-[24px]">
+                                Event End Date
+                            </h1>
+                            <input
+                                type="date"
+                                className="w-full h-[60px] border border-[#728969] focus:outline-none rounded-md p-5"
+                                value={EventEndDate}
+                                onChange={handleEventEndDate}
+                            />
+                        </div>
+
+                        {/* Event Price input field */}
                         <div className="flex flex-col justify-start space-y-4 pt-5">
                             <h1 className="text-[#505050] font-bold text-[24px]">
                                 Event Price
                             </h1>
-                            <div className="relative w-full">
-                                <img src={Ticket} alt="" className="absolute left-3 top-1/2 transform -translate-y-1/2 w-[24px] h-[24px]"/>
-                                <input
-                                    type="text"
-                                    placeholder="Rp.100000"
-                                    className="w-full h-[60px] border border-[#728969] focus:outline-none rounded-md p-5 pl-12"
-                                    value={EventPrice}
-                                    onChange={handleEventPrice}
-                                />
-                            </div>
+                            <input
+                                type="number"
+                                placeholder="exp. 200000"
+                                className="w-full h-[60px] border border-[#728969] focus:outline-none rounded-md p-5"
+                                value={EventPrice}
+                                onChange={handleEventPrice}
+                            />
                         </div>
 
-                        {/* Save Changes button */}
-                        <div className="flex justify-end mt-10">
+                        {/* Submit button */}
+                        <div className="flex justify-end pt-5">
                             <button
                                 type="submit"
-                                className="w-full px-5 py-3 text-center text-white bg-[#728969] border border-[#CBCBCB] rounded-md"
+                                className="px-10 py-3 bg-[#728969] text-white font-bold rounded-md"
                             >
-                                Save Changes
+                                Save
                             </button>
                         </div>
                     </form>
                 </div>
-            </div>  
+            </div>
        </>
     );
 }

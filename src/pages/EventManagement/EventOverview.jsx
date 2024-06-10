@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../../components/navbar";
 import Sidebar from "../../components/sidebar";
 import Tab from '../../components/Tabs';
-import users from "../../dataSample/UserAccount";
+import axios from 'axios';
 
 
-const currentUser = users[1];
 
 const events = [
   {
@@ -48,6 +47,24 @@ const events = [
 
 export default function EventOverview() {
   const [activeTab, setActiveTab] = useState('All');
+  const [currentUser, setCurrentUser] = useState({});
+
+  useEffect(() => {
+    console.log(localStorage.getItem('token'))
+    axios.get('http://localhost:3000/currentUser', {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    }).then(response => {
+      setCurrentUser(response.data);
+      
+    }
+    ).catch(error => {
+      console.error(error);
+    }
+    );
+
+  }, []);
 
   const counts = {
     All: events.length,

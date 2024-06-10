@@ -7,11 +7,7 @@ import AlertIcon from "/src/assets/icons/danger.png";
 import PhoneIcon from "/src/assets/icons/phone.png";
 import Logo from "/src/assets/logo.png";
 import { Link, useNavigate } from "react-router-dom";
-
-
-const dummyUsers = [
-  { email: "existinguser@example.com", password: "password", name: "John Doe", museum: "Art Museum", phone: "1234567890" }
-];
+import axios from 'axios';
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
@@ -22,27 +18,27 @@ export default function SignUp() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-   
-    if (dummyUsers.some(user => user.email === email)) {
-      setError("Email is already in use.");
-      return;
-    }
-
-    if (password.length !== 8) {
-      setError("Password must be exactly 8 characters long.");
-      return;
-    }
-
-
-    dummyUsers.push({ email, password, name, museum, phone });
     setError("");
-    console.log("Form submitted successfully!", dummyUsers);
 
-
-    navigate("/login");
+    try {
+      const response = await axios.post('http://localhost:3000/register', {
+        email: email,
+        username: name,
+        password: password,
+        museum:museum,
+        phone:phone
+      });
+      console.log("Form submitted successfully!", response.data);
+      navigate("/login");
+    } catch (error) {
+      if (error.response && error.response.data && error.response.data.error) {
+        setError(error.response.data.error);
+      } else {
+        setError("An error occurred during registration.");
+      }
+    }
   };
 
   return (
