@@ -3,8 +3,7 @@ import React, { useState, useEffect } from "react";
 import Tab from "../../components/Tabs";
 import Navbar from "../../components/navbar";
 import Sidebar from "../../components/sidebar";
-import { Link } from 'react-router-dom';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function EventSetting() {
   const [activeTab, setActiveTab] = useState("All");
@@ -16,6 +15,9 @@ export default function EventSetting() {
     const fetchUser = async () => {
       try {
         const token = localStorage.getItem('token');
+        if (!token) {
+          navigate('/login'); // Redirect to login if no token is found
+        }
         const response = await axios.get('http://localhost:3000/auth/currentUser', {
           headers: {
             Authorization: `Bearer ${token}`
@@ -29,6 +31,11 @@ export default function EventSetting() {
 
     fetchUser();
   }, [navigate]);
+
+  useEffect(() => {
+    fetchEvents();
+  }, []);
+
   const fetchEvents = () => {
     axios.get('http://localhost:3000/events', {
       headers: {
@@ -97,7 +104,6 @@ export default function EventSetting() {
                 <option value="">Bulk Action</option>
                 <option value="delete">Delete</option>
                 <option value="archive">Archive</option>
-                {/* Add more options as needed */}
               </select>
               <button className="px-4 py-2 rounded shadow-custom-shadow bg-white">Apply</button>
               <select className="px-4 py-2 rounded shadow-custom-shadow bg-white">
@@ -119,24 +125,25 @@ export default function EventSetting() {
                 className="flex items-start p-4 rounded-lg shadow-custom-shadow space-x-4 bg-white"
               >
                 <img
-                  src={event.picture}
-                  alt={event.name}
+                  src={`http://localhost:3000/uploads/${event.event_picture}`} // Ensure correct path for image
+                  alt={event.event_name}
                   className="w-36 h-36 object-cover rounded-lg"
+                  onError={(e) => { e.target.onerror = null; e.target.src = 'https://via.placeholder.com/150'; }} // Fallback image
                 />
-               <div className="flex-1 flex flex-col space-y-2">
+                <div className="flex-1 flex flex-col space-y-2">
                   <div className="flex flex-row space-x-4">
                     <div className="flex-1">
                       <span className="text-lg font-bold block">Event Name</span>
-                      <p className="text-sm text-gray-600 pt-5">{event.name}</p>
+                      <p className="text-sm text-gray-600 pt-5">{event.event_name}</p>
                     </div>
                     <div className="flex-1">
                       <span className="text-lg font-bold block">Event Description</span>
-                      <p className="text-sm text-gray-600 break-words pt-5">{event.description}</p>
+                      <p className="text-sm text-gray-600 break-words pt-5">{event.event_description}</p>
                     </div>
                     <div className="flex-1">
                       <span className="text-lg font-bold block">Event Date</span>
                       <p className="text-sm text-gray-600 break-words pt-5">
-                        {new Date(event.startDate).toLocaleDateString()} - {new Date(event.endDate).toLocaleDateString()}
+                        {new Date(event.event_date_start).toLocaleDateString()} - {new Date(event.event_date_end).toLocaleDateString()}
                       </p>
                     </div>
                     <div className="flex-1">

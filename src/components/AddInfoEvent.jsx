@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import BackIcon from "/src/assets/icons/back-icon.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AddIcon from "/src/assets/icons/add-icon.png";
 import ImageIcon from "/src/assets/icons/image-icon.png";
 import Ticket from "../../src/assets/icons/tickket.png";
@@ -14,6 +14,7 @@ const AddInfoEvent = () => {
     const [EventEndDate, setEventEndDate] = useState("");
     const [EventPrice, setEventPrice] = useState("");
     const [wordCount, setWordCount] = useState(0);
+    const navigate = useNavigate();
 
     const handleEventName = (e) => {
         setEventName(e.target.value);
@@ -22,7 +23,7 @@ const AddInfoEvent = () => {
     const handlePictureChange = (e) => {
         if (e.target.files.length > 0) {
             const file = e.target.files[0];
-            setEventPicture(URL.createObjectURL(file));
+            setEventPicture(file);
         } else {
             setEventPicture(null);
         }
@@ -48,19 +49,34 @@ const AddInfoEvent = () => {
         setEventPrice(e.target.value);
     };
 
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Logic to save the event details
-        console.log({
-            EventName,
-            EventDesc,
-            EventStartDate,
-            EventEndDate,
-            EventPrice,
-            EventPicture,
+
+        const formData = new FormData();
+        formData.append('event_name', EventName);
+        formData.append('event_picture', EventPicture);
+        formData.append('event_description', EventDesc);
+        formData.append('event_date_start', EventStartDate);
+        formData.append('event_date_end', EventEndDate);
+        formData.append('event_price', EventPrice);
+
+        fetch('http://localhost:3000/events', {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('token') // Menambahkan token jika ada
+            },
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            // Navigasi ke halaman Event Setting setelah berhasil menambahkan event
+            navigate('/setting_event');
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            // Tambahkan logika untuk menampilkan pesan kesalahan
         });
-        // You can add logic to save this data to a database or backend server here
     };
 
     return (
@@ -108,8 +124,9 @@ const AddInfoEvent = () => {
                                 />
                                 {EventPicture ? (
                                         <div className="flex flex-col items-center space-y-4">
-                                            <img src={EventPicture} alt="Preview" className="w-full max-w-xs h-[300px] rounded-md" />
+                                            <img src={URL.createObjectURL(EventPicture)} alt="Preview" className="w-full max-w-xs h-[300px] rounded-md" />
                                         <button 
+                                            type="button"
                                             onClick={() => {
                                                 setEventPicture(null)
                                             }}
