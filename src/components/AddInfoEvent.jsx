@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import AddIcon from "/src/assets/icons/add-icon.png";
 import ImageIcon from "/src/assets/icons/image-icon.png";
 import Ticket from "../../src/assets/icons/tickket.png";
-import Calender from "../../src/assets/icons/Calendar.png";
+
 
 const AddInfoEvent = () => {
     const [EventName, setEventName] = useState("");
@@ -173,7 +173,7 @@ const AddInfoEvent = () => {
                             </h1>
                             <div className="flex space-x-4">
                                 <div className="relative w-1/1">
-                                    <img src={Calender} alt="" className="absolute left-3 top-1/2 transform -translate-y-1/2 w-[24px] h-[24px]"/>
+                                   
                                     <input
                                         type="date"
                                         placeholder="Start Date"
@@ -183,7 +183,7 @@ const AddInfoEvent = () => {
                                     />
                                 </div>
                                 <div className="relative w-1/1">
-                                    <img src={Calender} alt="" className="absolute left-3 top-1/2 transform -translate-y-1/2 w-[24px] h-[24px]"/>
+                                
                                     <input
                                         type="date"
                                         placeholder="End Date"
@@ -203,7 +203,7 @@ const AddInfoEvent = () => {
                             <div className="relative w-full">
                                 <img src={Ticket} alt="" className="absolute left-3 top-1/2 transform -translate-y-1/2 w-[24px] h-[24px]"/>
                                 <input
-                                    type="text"
+                                    type="number"
                                     placeholder="Rp.100000"
                                     className="w-full h-[60px] border border-[#728969] focus:outline-none rounded-md p-5 pl-12"
                                     value={EventPrice}
@@ -218,7 +218,7 @@ const AddInfoEvent = () => {
                                 type="submit"
                                 className="w-full px-5 py-3 text-center text-white bg-[#728969] border border-[#CBCBCB] rounded-md"
                             >
-                                Save Changes
+                                Add Event
                             </button>
                         </div>
                     </form>
