@@ -16,7 +16,7 @@ export default function EventSetting() {
       try {
         const token = localStorage.getItem('token');
         if (!token) {
-          navigate('/login'); // Redirect to login if no token is found
+          navigate('/login'); 
         }
         const response = await axios.get('http://localhost:3000/auth/currentUser', {
           headers: {
@@ -125,7 +125,7 @@ export default function EventSetting() {
                 className="flex items-start p-4 rounded-lg shadow-custom-shadow space-x-4 bg-white"
               >
                 <img
-                  src={`http://localhost:3000/uploads/${event.event_picture}`} // Ensure correct path for image
+                  src={`http://localhost:3000/uploads/${event.event_picture}`} 
                   alt={event.event_name}
                   className="w-36 h-36 object-cover rounded-lg"
                   onError={(e) => { e.target.onerror = null; e.target.src = 'https://via.placeholder.com/150'; }} // Fallback image

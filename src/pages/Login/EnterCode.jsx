@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import BackgroundImage from "/src/assets/background.png";
 import Logo from "/src/assets/logo.png";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import axios from 'axios';
 
 export default function EnterCode({ userEmail }) {
   const [code, setCode] = useState(["", "", "", ""]);
@@ -14,7 +14,6 @@ export default function EnterCode({ userEmail }) {
 
   const handleChange = (e, index) => {
     const value = e.target.value;
-    // Validate only numbers
     if (!/^\d*$/.test(value)) {
       setError("Code must contain only numbers.");
       return;
@@ -32,7 +31,7 @@ export default function EnterCode({ userEmail }) {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     setMessage("");
@@ -41,13 +40,24 @@ export default function EnterCode({ userEmail }) {
       setError("Code must be exactly 4 characters long.");
       return;
     }
-    setMessage("Code submitted successfully!");
-    navigate("/new_password");
+
+    try {
+      const response = await axios.post('/api/verifyResetCode', { email: userEmail, resetCode: enteredCode });
+      setMessage(response.data.message);
+      navigate("/new_password", { state: { email: userEmail, resetCode: enteredCode } });
+    } catch (err) {
+      setError(err.response.data.error);
+    }
   };
 
-  const handleResendCode = () => {
-    setResendMessage("Code resent successfully!");
-    setTimeout(() => setResendMessage(""), 3000);
+  const handleResendCode = async () => {
+    try {
+      const response = await axios.post('/api/sendResetCode', { email: userEmail });
+      setResendMessage(response.data.message);
+      setTimeout(() => setResendMessage(""), 3000);
+    } catch (err) {
+      setError(err.response.data.error);
+    }
   };
 
   return (
@@ -93,14 +103,12 @@ export default function EnterCode({ userEmail }) {
               </button>
             </div>
             <div className="flex items-center justify-center">
-              <Link to={'/new_password'}>
-                <button
-                  className="bg-[#728969] hover:bg-[#728969] text-white font-bold w-full py-4 px-4 rounded focus:outline-none focus:shadow-outline"
-                  type="submit"
-                >
-                  Continue
-                </button>
-              </Link>
+              <button
+                className="bg-[#728969] hover:bg-[#728969] text-white font-bold w-full py-4 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="submit"
+              >
+                Continue
+              </button>
             </div>
           </form>
         </div>
