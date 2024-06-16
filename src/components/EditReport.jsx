@@ -92,7 +92,7 @@ const EditReport = () => {
         .then(response => response.json())
         .then(data => {
             console.log('Success:', data);
-            navigate('/setting_event');
+            navigate('/report_event');
         })
         .catch((error) => {
             console.error('Error:', error);

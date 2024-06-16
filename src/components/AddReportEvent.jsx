@@ -71,7 +71,7 @@ const AddReportEvent = () => {
         .then(data => {
             console.log('Success:', data);
             // Navigasi ke halaman Event Setting setelah berhasil menambahkan event
-            navigate('/setting_event');
+            navigate('/report_event');
         })
         .catch((error) => {
             console.error('Error:', error);

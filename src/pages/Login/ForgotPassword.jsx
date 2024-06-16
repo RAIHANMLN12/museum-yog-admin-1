@@ -16,7 +16,7 @@ const ForgotPassword = () => {
         setError("");
         setMessage("");
         try {
-            const response = await axios.post('/api/sendResetCode', { email });
+            const response = await axios.post('http://localhost:3000/auth/sendResetCode', { email });
             setMessage(response.data.message);
             setTimeout(() => {
                 navigate("/code_verification", { state: { email } });

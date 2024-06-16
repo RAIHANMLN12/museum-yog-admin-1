@@ -52,7 +52,7 @@ export default function EnterCode({ userEmail }) {
 
   const handleResendCode = async () => {
     try {
-      const response = await axios.post('/api/sendResetCode', { email: userEmail });
+      const response = await axios.post('http://localhost:3000/auth/sendResetCode', { email: userEmail });
       setResendMessage(response.data.message);
       setTimeout(() => setResendMessage(""), 3000);
     } catch (err) {

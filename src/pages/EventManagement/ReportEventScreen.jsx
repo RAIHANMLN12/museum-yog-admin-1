@@ -191,7 +191,7 @@ export default function ReportEvent() {
                                         <div className="flex-1">
                                             <span className="text-lg font-bold block">Action</span>
                                             <div className="flex space-x-2 mt-2 pt-2">
-                                                <Link to="/edit_report">
+                                                <Link to={`/edit_report/${event.id}`}>
                                                     <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                                                         Edit
                                                     </button>

@@ -24,7 +24,7 @@ const router = createBrowserRouter([
   { path: "add_event", element: <AddEventScreen />},
   { path: "report_event", element: <ReportEvent />},
   { path: "add_report", element: <AddReport />},
-  { path: "edit_report", element: <EditReport />},
+  { path: "edit_report/:id", element: <EditReport />},
   { path: "profile", element: <ProfileScreen />},
   { path: "edit_profile", element: <EditProfileScreen />}
 ]);

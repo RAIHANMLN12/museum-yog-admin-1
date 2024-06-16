@@ -26,7 +26,7 @@ export default function NewPassword() {
     setError("");
 
     try {
-      const response = await axios.post('/api/resetPassword', { email, resetCode, newPassword: password });
+      const response = await axios.post('http://localhost:3000/auth/resetPassword', { email, resetCode, newPassword: password });
       navigate("/login");
       console.log("Password set successfully!");
     } catch (err) {
