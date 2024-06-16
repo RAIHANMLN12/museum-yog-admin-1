@@ -6,9 +6,13 @@ import EditIcon from "/src/assets/icons/edit-icon.png";
 import PasswordIcon from "../../assets/icons/password.png";
 import HideIcon from "../../assets/icons/hide.png"
 import { Link } from "react-router-dom";
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 
 const ProfileScreen = () => {
     const user = UserSampleAccount[0];
+    const [showPassword, setShowPassword] = useState(false);
+    const [Password, setPassword] = useState('current_password');
+
 
     return (
         <>
@@ -54,19 +58,24 @@ const ProfileScreen = () => {
                             </div>
                             <div className="flex flex-col space-y-3 justify-center">
                                 <h1 className="text-[#728969] text-[24px] font-bold mt-12">Password</h1>
-                                <div className="flex flex-row justify-between items-center border border-[#728969] rounded-[8px] px-5 py-3 w-[400px]">
+                                <div className='flex border border-[#728969] rounded-[8px] w-[957px] px-5 py-3 mt-2 justify-between items-center'>
                                     <div className="flex flex-row space-x-3 items-center">
                                         <img src={PasswordIcon} alt="" />
-                                        <h1>********</h1>
+                                        <input
+                                            type={showPassword ? "text" : "password"}
+                                            value={Password}
+                                            onChange={(e) => setCurrentPassword(e.target.value)}
+                                            className='border-none outline-none'
+                                        />
                                     </div>
-                                    <div>
-                                        <img src={HideIcon} alt="" />
+                                    <div onClick={() => setShowPassword(!showPassword)}>
+                                        {showPassword ? <AiOutlineEye className="cursor-pointer" /> : <AiOutlineEyeInvisible className="cursor-pointer" />}
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <Link to={'/login'} className="ml-auto">
-                        <button className="px-4 py-2 rounded bg-[#728969] hover:bg-[#728969] text-white font-bold">Log Out </button>
+                            <button className="px-4 py-2 rounded bg-[#728969] hover:bg-[#728969] text-white font-bold">Log Out </button>
                         </Link>
                     </div>
                 </div>

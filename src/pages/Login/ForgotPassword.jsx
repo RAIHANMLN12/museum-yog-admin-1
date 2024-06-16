@@ -22,16 +22,14 @@ const ForgotPassword = () => {
                 navigate("/code_verification", { state: { email } });
             }, 2000);
         } catch (err) {
-            setError(err.response.data.error);
+            setError(err.response?.data?.error || "An error occurred.");
         }
     };
 
     return (
         <div 
             className="min-h-screen flex flex-col items-center justify-center bg-fixed bg-center bg-cover" 
-            style={{
-                backgroundImage: `url(${BackgroundImage})`
-            }} 
+            style={{ backgroundImage: `url(${BackgroundImage})` }} 
         >
             <img src={Logo} alt="logo" className="m-10 self-start"/>
 
@@ -54,6 +52,7 @@ const ForgotPassword = () => {
                                     placeholder="Enter your email" 
                                     value={email} 
                                     onChange={(e) => setEmail(e.target.value)}
+                                    required
                                 />
                             </div>
                         </div>
