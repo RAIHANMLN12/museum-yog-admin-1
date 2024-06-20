@@ -101,27 +101,11 @@ const CmsScreen = () => {
                                     </Link>
                                 </div>
                             ) : (
-                                 <MuseumInformation data={SampleData} />
+                                <MuseumInformation data={SampleData} />
                             )
                         )}
                         {activeTab === 'collection' && (
-                            !isHaveData.collection ? (
-                                <div className="bg-white mb-[50px] ml-[260px] p-10 rounded-[8px] shadow-[0px_8px_28px_0px_rgba(0,0,0,0.10)] flex flex-col justify-center items-center space-y-10">
-                                    <h1 className="text-black font-bold text-[20px]">
-                                        You don’t have any information about the museum collection
-                                    </h1>
-                                    <Link to="/add_information" onClick={handleAddData}>
-                                    <div className="flex flex-row justify-center items-center space-x-5">
-                                        <img src={PlusIcon} alt="" className="w-[24px] h-[24px]" />
-                                        <button>
-                                            Add Museum Information
-                                        </button>
-                                    </div>
-                                    </Link>
-                                </div>
-                            ) : (
-                                <MuseumCollectionScreen />
-                            )
+                            <MuseumCollectionScreen />
                         )}
                      </>
                     </div>
