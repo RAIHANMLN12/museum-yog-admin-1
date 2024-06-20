@@ -5,11 +5,20 @@ import CloseIcon from "../assets/icons/close-icon.png";
 const AddIndividualTicket = ({onSave}) => {
     const [ticketName, setTicketName] = useState("");
     const [ticketDescription, setTicketDescription] = useState("");
-    const [ticketPrice, setTicketPrice] = useState(0);
+    const [ticketPriceWeekdays, setTicketPriceWeekdays] = useState(0);
+    const [ticketPriceWeekend, setTicketPriceWeekend] = useState(0);
+    const [samePrice, setSamePrice] = useState(false);
 
     const handleSubmit = () => {
         onSave();
     }
+
+    const handleSamePriceChange = () => {
+        setSamePrice(!samePrice);
+        if (!samePrice) {
+            setTicketPriceWeekend(ticketPriceWeekdays);
+        }
+    };
 
     return (
         <>
@@ -19,9 +28,9 @@ const AddIndividualTicket = ({onSave}) => {
                 </div>
                 <div className="space-y-3">
                     <h1 className="font-bold text-black text-[16px]">Ticket Name</h1>
-                    <input 
-                        type="text" 
-                        value={ticketName} 
+                    <input
+                        type="text"
+                        value={ticketName}
                         onChange={(e) => setTicketName(e.target.value)}
                         placeholder="add ticket name"
                         className="w-full h-[60px] border border-[#728969] focus:outline-none rounded-md p-5"
@@ -29,25 +38,57 @@ const AddIndividualTicket = ({onSave}) => {
                 </div>
                 <div className="space-y-3">
                     <h1 className="font-bold text-black text-[16px]">Ticket Desription</h1>
-                    <input 
-                        type="text" 
-                        value={ticketDescription} 
+                    <input
+                        type="text"
+                        value={ticketDescription}
                         onChange={(e) => setTicketDescription(e.target.value)}
                         placeholder="add ticket description"
                         className="w-full h-[60px] border border-[#728969] focus:outline-none rounded-md p-5"
                     />
                 </div>
                 <div className="space-y-3">
-                    <h1 className="font-bold text-black text-[16px]">
-                        Ticket Price
-                    </h1>
-                    <input 
-                        type="number" 
-                        value={ticketPrice} 
+                    <div className="flex flex-row items-center space-x-3 ">
+                        <h1 className="bg-[#728969] px-5 py-2 rounded-[100px] font-bold text-white text-[16px]">
+                            Weekdays
+                        </h1>
+                        <h1 className="font-bold text-black text-[16px]">
+                            Ticket Price
+                        </h1>
+                    </div>
+                    <input
+                        type="number"
+                        value={setTicketPriceWeekend}
                         onChange={(e) => setTicketPrice(e.target.value)}
                         placeholder="add ticket price"
                         className="w-full h-[60px] border border-[#728969] focus:outline-none rounded-md p-5"
                     />
+                </div>
+                <div className="space-y-3">
+                    <div className="flex flex-row items-center space-x-3 ">
+                        <h1 className="bg-[#C57557] px-5 py-2 rounded-[100px] font-bold text-white text-[16px]">
+                            Weekend
+                        </h1>
+                        <h1 className="font-bold text-black text-[16px]">
+                            Ticket Price
+                        </h1>
+                    </div>
+                    <div className="flex flex-row items-center space-x-3">
+                        <input
+                            type="number"
+                            value={samePrice ? ticketPriceWeekdays : ticketPriceWeekend}
+                            onChange={(e) => setTicketPriceWeekend(e.target.value)}
+                            placeholder="add ticket price"
+                            className="w-full h-[60px] border border-[#728969] focus:outline-none rounded-md p-5"
+                            disabled={samePrice}
+                        />
+                        <input
+                            type="checkbox"
+                            className="w-[24px] h-[24px]"
+                            checked={samePrice}
+                            onChange={handleSamePriceChange}
+                        />
+                        <span className="text-black text-[16px]">Set as the same price as weekdays</span>
+                    </div>
                 </div>
                 <div className="flex flex-row justify-end items-center">
                     <button className="bg-[#7F9275] text-white rounded-[8px] px-4 py-3" onClick={handleSubmit}>
