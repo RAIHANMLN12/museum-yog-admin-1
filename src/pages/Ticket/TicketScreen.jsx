@@ -17,14 +17,14 @@ const TicketScreen = () => {
         // Logika untuk menambah data bisa ditambahkan di sini
         setIsHaveData(true);
     };
-     
+
     const handleTabChange = (tab) => {
         setActiveTab(tab);
     }
 
     const [currentUser, setCurrentUser] = useState({});
-    
-  
+
+
     useEffect(() => {
       const fetchUser = async () => {
         try {
@@ -39,7 +39,7 @@ const TicketScreen = () => {
           console.error(error);
         }
       };
-  
+
       fetchUser();
     }, [navigate]);
 

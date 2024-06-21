@@ -1,26 +1,47 @@
 import React, { useState } from "react";
+import axios from "axios";
 import CloseIcon from "../assets/icons/close-icon.png";
 
-const AddPacketTicket = ({onSave}) => {
+const AddPacketTicket = ({onSave, onClose}) => {
     const [ticketName, setTicketName] = useState("");
     const [ticketDescription, setTicketDescription] = useState("");
     const [ticketPrice, setTicketPrice] = useState(0);
 
-    const handleSubmit = () => {
-        onSave();
+    const handleClose = () => {
+        onClose();
     }
+
+    const handleSubmit = async () => {
+        try {
+            const response = await axios.post('http://localhost:4000/addNewPacketTicket', {
+                nama_tiket: ticketName,
+                deskripsi_tiket: ticketDescription,
+                harga_tiket: ticketPrice
+            });
+            resetForm();
+            onSave();
+        } catch (error) {
+            console.error("There was an error adding the ticket:", error);
+        }
+    }
+
+    const resetForm = () => {
+        setTicketName("");
+        setTicketDescription("");
+        setTicketPrice(0);
+    };
 
     return (
         <>
             <div className='flex flex-col w-[800px] bg-white mb-[50px] px-7 py-8 space-y-5 rounded-[8px] shadow-sm'>
-                <div className="flex flex-row justify-end items-center hover:cursor-pointer" onClick={handleSubmit}>
+                <div className="flex flex-row justify-end items-center hover:cursor-pointer" onClick={handleClose}>
                     <img src={CloseIcon} alt="" />
                 </div>
                 <div className="space-y-3">
                     <h1 className="font-bold text-black text-[16px]">Ticket Name</h1>
-                    <input 
-                        type="text" 
-                        value={ticketName} 
+                    <input
+                        type="text"
+                        value={ticketName}
                         onChange={(e) => setTicketName(e.target.value)}
                         placeholder="add ticket name"
                         className="w-full h-[60px] border border-[#728969] focus:outline-none rounded-md p-5"
@@ -28,9 +49,9 @@ const AddPacketTicket = ({onSave}) => {
                 </div>
                 <div className="space-y-3">
                     <h1 className="font-bold text-black text-[16px]">Ticket Desription</h1>
-                    <textarea 
-                        type="text" 
-                        value={ticketDescription} 
+                    <textarea
+                        type="text"
+                        value={ticketDescription}
                         onChange={(e) => setTicketDescription(e.target.value)}
                         placeholder="add ticket description"
                         className="w-full h-[150px] border border-[#728969] focus:outline-none rounded-md p-5 resize-none"
@@ -40,9 +61,9 @@ const AddPacketTicket = ({onSave}) => {
                     <h1 className="font-bold text-black text-[16px]">
                         Ticket Price
                     </h1>
-                    <input 
-                        type="number" 
-                        value={ticketPrice} 
+                    <input
+                        type="number"
+                        value={ticketPrice}
                         onChange={(e) => setTicketPrice(e.target.value)}
                         placeholder="add ticket price"
                         className="w-full h-[60px] border border-[#728969] focus:outline-none rounded-md p-5"

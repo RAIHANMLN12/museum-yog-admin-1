@@ -1,17 +1,34 @@
 import React, { useState } from "react";
 import CloseIcon from "../assets/icons/close-icon.png";
+import axios from "axios";
 
 
-const AddIndividualTicket = ({onSave}) => {
+const AddIndividualTicket = ({onSave, onClose}) => {
     const [ticketName, setTicketName] = useState("");
     const [ticketDescription, setTicketDescription] = useState("");
     const [ticketPriceWeekdays, setTicketPriceWeekdays] = useState(0);
     const [ticketPriceWeekend, setTicketPriceWeekend] = useState(0);
     const [samePrice, setSamePrice] = useState(false);
 
-    const handleSubmit = () => {
-        onSave();
+    const handleClose = () => {
+        onClose();
     }
+
+    const handleSubmit = async () => {
+        try {
+            const response = await axios.post('http://localhost:4000/addNewIndividualTicket', {
+                nama_tiket: ticketName,
+                deskripsi_tiket: ticketDescription,
+                harga_weekdays: ticketPriceWeekdays,
+                harga_weekend: samePrice ? ticketPriceWeekdays : ticketPriceWeekend,
+            });
+            resetForm();
+            onSave();
+        } catch (error) {
+            setError("Error adding the ticket. Please try again later.");
+            console.error("There was an error adding the ticket:", error);
+        }
+    };
 
     const handleSamePriceChange = () => {
         setSamePrice(!samePrice);
@@ -20,10 +37,19 @@ const AddIndividualTicket = ({onSave}) => {
         }
     };
 
+    const resetForm = () => {
+        setTicketName("");
+        setTicketDescription("");
+        setTicketPriceWeekdays(0);
+        setTicketPriceWeekend(0);
+        setSamePrice(false);
+        setError("");
+    };
+
     return (
         <>
             <div className='flex flex-col w-[600px] bg-white mb-[50px] px-7 py-8 space-y-5 rounded-[8px] shadow-sm'>
-                <div className="flex flex-row justify-end items-center hover:cursor-pointer" onClick={handleSubmit}>
+                <div className="flex flex-row justify-end items-center hover:cursor-pointer" onClick={handleClose}>
                     <img src={CloseIcon} alt="" />
                 </div>
                 <div className="space-y-3">
@@ -57,8 +83,8 @@ const AddIndividualTicket = ({onSave}) => {
                     </div>
                     <input
                         type="number"
-                        value={setTicketPriceWeekend}
-                        onChange={(e) => setTicketPrice(e.target.value)}
+                        value={ticketPriceWeekdays}
+                        onChange={(e) => setTicketPriceWeekdays(e.target.value)}
                         placeholder="add ticket price"
                         className="w-full h-[60px] border border-[#728969] focus:outline-none rounded-md p-5"
                     />
