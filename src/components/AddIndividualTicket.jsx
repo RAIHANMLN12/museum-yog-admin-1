@@ -16,7 +16,7 @@ const AddIndividualTicket = ({onSave, onClose}) => {
 
     const handleSubmit = async () => {
         try {
-            const response = await axios.post('http://localhost:4000/addNewIndividualTicket', {
+            const response = await axios.post('http://localhost:4000/tiket/addNewIndividualTicket', {
                 nama_tiket: ticketName,
                 deskripsi_tiket: ticketDescription,
                 harga_weekdays: ticketPriceWeekdays,
@@ -25,7 +25,6 @@ const AddIndividualTicket = ({onSave, onClose}) => {
             resetForm();
             onSave();
         } catch (error) {
-            setError("Error adding the ticket. Please try again later.");
             console.error("There was an error adding the ticket:", error);
         }
     };
@@ -43,7 +42,6 @@ const AddIndividualTicket = ({onSave, onClose}) => {
         setTicketPriceWeekdays(0);
         setTicketPriceWeekend(0);
         setSamePrice(false);
-        setError("");
     };
 
     return (

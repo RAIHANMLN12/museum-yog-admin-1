@@ -23,12 +23,12 @@ export default function SignUp() {
     setError("");
 
     try {
-      const response = await axios.post('http://localhost:3000/auth/register', {
+      const response = await axios.post('http://localhost:4000/adminAuth/adminSignUP', {
         email: email,
-        username: name,
-        password: password,
-        museum: museum,
-        phone: phone
+        fullname: name,
+        nomor_telepon:phone,
+        nama_museum: museum,
+        password: password
       });
       console.log("Form submitted successfully!", response.data);
       navigate("/login");
@@ -42,11 +42,11 @@ export default function SignUp() {
   };
 
   return (
-    <div 
-      className="min-h-screen flex flex-col items-center justify-center bg-fixed bg-center bg-cover" 
+    <div
+      className="min-h-screen flex flex-col items-center justify-center bg-fixed bg-center bg-cover"
       style={{
         backgroundImage: `url(${BackgroundImage})`
-      }} 
+      }}
     >
       <img src={Logo} alt="logo" className="m-10 self-start"/>
 

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import CloseIcon from "../assets/icons/close-icon.png";
+import axios from "axios";
 
 const EditPacketTicket = ({data, onSave, onClose}) => {
     const [ticketName, setTicketName] = useState(data?.nama_tiket || "");
@@ -17,7 +18,7 @@ const EditPacketTicket = ({data, onSave, onClose}) => {
                 deskripsi_tiket: ticketDescription,
                 harga_tiket: ticketPrice
             };
-            const response = await axios.put(`http://localhost:4000/updatePacketTiket/${data.id}`, updatedTicket);
+            const response = await axios.put(`http://localhost:4000/tiket/updatePacketTiket/${data.id}`, updatedTicket);
             onSave();
         } catch (error) {
             console.error("Error updating ticket:", error);

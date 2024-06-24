@@ -25,7 +25,7 @@ const SettingTicket = () => {
 
     const fetchIndividualTickets = async () => {
         try {
-            const response = await axios.get('http://localhost:4000/getTiketIndividual');
+            const response = await axios.get('http://localhost:4000/tiket/getTiketIndividual');
             setIndividualTickets(response.data.data);
         } catch (error) {
             console.error("Error fetching individual tickets:", error);
@@ -34,7 +34,7 @@ const SettingTicket = () => {
 
     const fetchPacketTickets = async () => {
         try {
-            const response = await axios.get('http://localhost:4000/getTiketPaket');
+            const response = await axios.get('http://localhost:4000/tiket/getTiketPaket');
             setPacketTickets(response.data.data);
         } catch (error) {
             console.error("Error fetching individual tickets:", error);
@@ -71,7 +71,7 @@ const SettingTicket = () => {
     }
 
     const handleEditPacket = (ticket) => {
-        selectedPacketTicket(ticket);
+        setSelectedPacketTicket(ticket);
         setIsEditPacket(true);
     }
 
@@ -82,7 +82,7 @@ const SettingTicket = () => {
 
     const handleDeleteIndividual = async (id) => {
         try {
-            await axios.delete(`http://localhost:4000/deleteIndividualTicket/${id}`)
+            await axios.delete(`http://localhost:4000/tiket/deleteIndividualTicket/${id}`)
         }catch (error) {
             console.error("Error deleting ticket:", error);
         }
@@ -91,7 +91,7 @@ const SettingTicket = () => {
 
     const handleDeletePacket = async (id) => {
         try {
-            await axios.delete(`http://localhost:4000/deletePacketTicket/${id}`)
+            await axios.delete(`http://localhost:4000/tiket/deletePacketTicket/${id}`)
         }catch (error) {
             console.error("Error deleting ticket:", error);
         }

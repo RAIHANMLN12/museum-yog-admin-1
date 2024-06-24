@@ -19,7 +19,7 @@ const EditIndividualTicket = ({data, onSave, onClose}) => {
                 harga_weekdays: ticketPriceWeekdays,
                 harga_weekend: ticketPriceWeekend
             };
-            const response = await axios.put(`http://localhost:4000/updateIndividualTiket/${data.id}`, updatedTicket);
+            const response = await axios.put(`http://localhost:4000/tiket/updateIndividualTiket/${data.id}`, updatedTicket);
             onSave();
         } catch (error) {
             console.error("Error updating ticket:", error);

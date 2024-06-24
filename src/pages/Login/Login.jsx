@@ -17,7 +17,7 @@ export default function Login() {
     setError("");
 
     try {
-      const response = await axios.post('http://localhost:3000/auth/login', { email, password });
+      const response = await axios.post('http://localhost:4000/adminAuth/adminLogin', { email, password });
       localStorage.setItem('token', response.data.token);
       console.log(response.data.token);
       navigate("/dashboard");
@@ -33,9 +33,9 @@ export default function Login() {
   };
 
   return (
-    <div 
-      className="bg-scroll bg-no-repeat bg-cover min-h-screen flex flex-col justify-center" 
-      style={{ backgroundImage: `url(${BackgroundImage})` }} 
+    <div
+      className="bg-scroll bg-no-repeat bg-cover min-h-screen flex flex-col justify-center"
+      style={{ backgroundImage: `url(${BackgroundImage})` }}
     >
       <img src={Logo} alt="logo" className="m-10 self-start"/>
       <div className="flex justify-center items-center">
@@ -47,11 +47,11 @@ export default function Login() {
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">Email</label>
               <div className="flex items-center border border-gray-400 rounded w-full h-[50px]">
                 <img src={EmailIcon} alt="email-icon" className="ml-[20px]" style={{ width: '20px', height: '20px', verticalAlign: 'middle' }} />
-                <input 
-                  className="w-full py-2 px-5 text-gray-700 focus:outline-none" 
-                  id="email" 
-                  type="email" 
-                  placeholder="Enter your email" 
+                <input
+                  className="w-full py-2 px-5 text-gray-700 focus:outline-none"
+                  id="email"
+                  type="email"
+                  placeholder="Enter your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   onKeyDown={handleKeyPress}
@@ -62,14 +62,14 @@ export default function Login() {
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">Password</label>
               <div className="flex items-center border border-gray-400 rounded w-full h-[50px]">
                 <img src={PasswordIcon} alt="password-icon" className="ml-[20px]" style={{ width: '20px', height: '20px', verticalAlign: 'middle' }} />
-                <input 
-                  className="w-full py-2 px-5 text-gray-700 focus:outline-none" 
-                  id="password" 
-                  type="password" 
-                  placeholder="Enter your password" 
+                <input
+                  className="w-full py-2 px-5 text-gray-700 focus:outline-none"
+                  id="password"
+                  type="password"
+                  placeholder="Enter your password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  onKeyDown={handleKeyPress}  
+                  onKeyDown={handleKeyPress}
                 />
               </div>
               <div className="flex justify-end">
@@ -79,8 +79,8 @@ export default function Login() {
               </div>
             </div>
             <div className="flex items-center justify-center">
-              <button 
-                className="bg-[#728969] hover:bg-[#728969] text-white font-bold w-full py-4 px-4 rounded focus:outline-none focus:shadow-outline" 
+              <button
+                className="bg-[#728969] hover:bg-[#728969] text-white font-bold w-full py-4 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="submit"
               >
                 Login

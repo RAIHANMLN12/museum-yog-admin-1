@@ -13,7 +13,7 @@ const AddPacketTicket = ({onSave, onClose}) => {
 
     const handleSubmit = async () => {
         try {
-            const response = await axios.post('http://localhost:4000/addNewPacketTicket', {
+            const response = await axios.post('http://localhost:4000/tiket/addNewPacketTicket', {
                 nama_tiket: ticketName,
                 deskripsi_tiket: ticketDescription,
                 harga_tiket: ticketPrice

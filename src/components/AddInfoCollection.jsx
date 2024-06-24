@@ -1,43 +1,61 @@
 import React, { useState } from 'react';
 import AddIcon from "/src/assets/icons/add-icon.png";
 import ImageIcon from "/src/assets/icons/image-icon.png";
+import axios from 'axios';
 
 const AddInfoCollection = ({ onClose }) => {
     const [imageCollection, setImageCollection] = useState(null);
     const [titleCollection, setTitleCollection] = useState("");
     const [descCollection, setDescCollection] = useState("");
+    const [imageFile, setImageFile] = useState(null);
 
     const handleImageChange = (e) => {
         if (e.target.files.length > 0) {
             const file = e.target.files[0];
             setImageCollection(URL.createObjectURL(file));
+            setImageFile(file);
         } else {
             setImageCollection(null);
+            setImageFile(null);
         }
     };
 
-    const handleSubmit = () => {
-        // Logika untuk menambah koleksi museum bisa ditambahkan di sini
-        // Setelah selesai, tutup modal
-        onClose();
-    }
+    const handleSubmit = async () => {
+        const formData = new FormData();
+        formData.append('nama_koleksi', titleCollection);
+        formData.append('deskripsi_koleksi', descCollection);
+        if (imageFile) {
+            formData.append('gambar_koleksi', imageFile);
+        }
+
+        try {
+            await axios.post('http://localhost:4000/collection/addNewCollection', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            onClose();
+        } catch (error) {
+            console.error('Error submitting form:', error);
+        }
+    };
 
 
     return (
         <>
             <div className='flex flex-col w-[600px] bg-white mb-[50px] px-7 py-8 space-y-5 rounded-[8px] shadow-sm'>
                 <div className="flex flex-col items-center justify-center py-[40px] w-full border border-[#728969] rounded-md">
-                    <input 
-                        type="file" 
-                        id="file-input" 
-                        className="hidden" 
-                        accept="image/*" 
+                    <input
+                        type="file"
+                        id="file-input"
+                        className="hidden"
+                        accept="image/*"
                         onChange={handleImageChange}
-                    />            
+                    />
                     {imageCollection ? (
                         <div className="flex flex-col items-center space-y-4">
                             <img src={imageCollection} alt="Preview" className="w-full max-w-xs rounded-md" />
-                            <button 
+                            <button
                                 onClick={() => {
                                     setImageCollection(null);
                                 }}
@@ -47,8 +65,8 @@ const AddInfoCollection = ({ onClose }) => {
                             </button>
                         </div>
                     ) : (
-                        <label 
-                            htmlFor="file-input" 
+                        <label
+                            htmlFor="file-input"
                             className="flex flex-col justify-center items-center space-y-4 cursor-pointer"
                         >
                             <img src={AddIcon} alt="Add Icon" />
@@ -65,9 +83,9 @@ const AddInfoCollection = ({ onClose }) => {
                     <h1 className="text-[#505050] font-bold text-[24px]">
                         Collection Name
                     </h1>
-                    <input 
-                        type="text" 
-                        placeholder="exp. museum raihan" 
+                    <input
+                        type="text"
+                        placeholder="exp. museum raihan"
                         className="w-full h-[60px] border border-[#728969] focus:outline-none rounded-md p-5"
                         value={titleCollection}
                         onChange={(e) => setTitleCollection(e.target.value)}
@@ -80,8 +98,8 @@ const AddInfoCollection = ({ onClose }) => {
                         Description of Collection
                     </h1>
                     <div className="relative w-full">
-                    <textarea 
-                        placeholder="exp. museum raihan" 
+                    <textarea
+                        placeholder="exp. museum raihan"
                         className="w-full h-[100px] border border-[#728969] focus:outline-none rounded-md p-5 resize-none"
                         maxLength={100}
                         value={descCollection}
@@ -93,8 +111,14 @@ const AddInfoCollection = ({ onClose }) => {
                     </div>
                 </div>
 
-                <div className='flex justify-end'>
-                    <button 
+                <div className='flex justify-end space-x-6'>
+                    <button
+                            className='bg-[#FC5C65] rounded-[8px] text-white px-3 py-2 text-[14px]'
+                            onClick={onClose}
+                        >
+                        Cancel
+                    </button>
+                    <button
                         className='bg-[#7F9275] rounded-[8px] w-[250px] text-white px-3 py-2 text-[14px]'
                         onClick={handleSubmit}
                     >

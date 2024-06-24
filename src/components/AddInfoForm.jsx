@@ -5,7 +5,7 @@ import AddIcon from "/src/assets/icons/add-icon.png";
 import ImageIcon from "/src/assets/icons/image-icon.png";
 import LocationIcon from "/src/assets/icons/location-icon.png";
 import DropdownIcon from "/src/assets/icons/arrow-down.png";
-
+import axios from "axios";
 
 const AddInformationForm = () => {
     const [museumName, setMuseumName] = useState("");
@@ -51,7 +51,7 @@ const AddInformationForm = () => {
         <>
             <div className="flex-1 p-4 overflow-y-auto ml-[250px] mt-16 pt-10 overflow-x-hidden bg-[#F8F8F8]">
                 <div className="mx-10 my-11 space-y-5">
-                            
+
                     <h1 className="text-[#728969] text-[32px] font-bold">Add Information</h1>
 
                     {/* museum name input field */}
@@ -59,9 +59,9 @@ const AddInformationForm = () => {
                             <h1 className="text-[#505050] font-bold text-[24px]">
                                 Museum Name
                             </h1>
-                            <input 
-                                type="text" 
-                                placeholder="exp. museum raihan" 
+                            <input
+                                type="text"
+                                placeholder="exp. museum raihan"
                                 className="w-full h-[60px] border border-[#728969] focus:outline-none rounded-md p-5 bg-[#F8F8F8]"
                                 value={museumName}
                                 onChange={(e) => setMuseumName(e.target.value)}
@@ -74,17 +74,17 @@ const AddInformationForm = () => {
                                 Add Thumbnail Picture
                             </h1>
                             <div className="flex flex-col items-center justify-center py-[40px] w-full max-h-[400px] border border-[#728969] rounded-md">
-                                <input 
-                                    type="file" 
-                                    id="file-input" 
-                                    className="hidden" 
-                                    accept="image/*" 
+                                <input
+                                    type="file"
+                                    id="file-input"
+                                    className="hidden"
+                                    accept="image/*"
                                     onChange={handleThumbnailChange}
                                 />
                                 {museumThumbnail ? (
                                         <div className="flex flex-col items-center space-y-4">
                                             <img src={museumThumbnail} alt="Preview" className="w-full max-w-xs h-[300px] rounded-md" />
-                                        <button 
+                                        <button
                                             onClick={() => {
                                                 setMuseumThumbnail(null)
                                             }}
@@ -94,8 +94,8 @@ const AddInformationForm = () => {
                                         </button>
                                     </div>
                                 ) : (
-                                        <label 
-                                            htmlFor="file-input" 
+                                        <label
+                                            htmlFor="file-input"
                                             className="flex flex-col justify-center items-center space-y-4 cursor-pointer"
                                         >
                                         <img src={AddIcon} alt="Add Icon" />
@@ -117,17 +117,17 @@ const AddInformationForm = () => {
                             <div className="flex flex-row items-center space-x-5">
                                 {otherPictures.map((picture, index) => (
                                     <div key={index} className="flex flex-col items-center justify-center py-[40px] w-[250px] max-h-[350px] border border-[#728969] rounded-md">
-                                        <input 
-                                            type="file" 
-                                            id={`file-input-${index}`} 
-                                            className="hidden" 
-                                            accept="image/*" 
+                                        <input
+                                            type="file"
+                                            id={`file-input-${index}`}
+                                            className="hidden"
+                                            accept="image/*"
                                             onChange={(e) => handleOtherPicturesChange(e, index)}
                                         />
                                         {picture ? (
                                             <div className="flex flex-col items-center space-y-4">
                                                 <img src={picture} alt="Preview" className="w-full max-w-xs h-[250px] rounded-md p-4" />
-                                                <button 
+                                                <button
                                                     onClick={() => {
                                                         const newOtherPictures = [...otherPictures];
                                                         newOtherPictures[index] = null;
@@ -139,8 +139,8 @@ const AddInformationForm = () => {
                                                 </button>
                                             </div>
                                         ) : (
-                                            <label 
-                                                htmlFor={`file-input-${index}`} 
+                                            <label
+                                                htmlFor={`file-input-${index}`}
                                                 className="flex flex-col justify-center items-center space-y-4 cursor-pointer"
                                             >
                                                 <img src={AddIcon} alt="Add Icon" />
@@ -161,8 +161,8 @@ const AddInformationForm = () => {
                                 Description of Museum
                             </h1>
                             <div className="relative w-full">
-                                <textarea 
-                                    placeholder="exp. museum raihan" 
+                                <textarea
+                                    placeholder="exp. museum raihan"
                                     className="w-full h-[150px] border border-[#728969] focus:outline-none rounded-md p-5 resize-none bg-[#F8F8F8]"
                                     maxLength={150}
                                     value={museumDesc}
@@ -267,8 +267,8 @@ const AddInformationForm = () => {
                                     </div>
                                 </div>
                             ))}
-                            <button 
-                                onClick={addTransportation} 
+                            <button
+                                onClick={addTransportation}
                                 className="w-full px-5 py-4 text-center text-[#728969] bg-[#E8ECDC] border border-[#CBCBCB] rounded-md"
                             >
                                 + Add other transportation
@@ -300,7 +300,7 @@ const AddInformationForm = () => {
                                     </div>
                                 </div>
                             ))}
-                            <button 
+                            <button
                                 className="w-full px-5 py-4 text-center text-[#728969] bg-[#E8ECDC] border border-[#CBCBCB] rounded-md"
                                 onClick={addFasilitas}
                             >
@@ -314,7 +314,7 @@ const AddInformationForm = () => {
                             </button>
                         </Link>
 
-                    </div>  
+                    </div>
                 </div>
             </div>
         </>

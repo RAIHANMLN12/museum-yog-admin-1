@@ -12,7 +12,7 @@ const events = [
     status: "Finished",
     image: "https://www.metmuseum.org/-/media/images/join-and-give/host-an-event/corporate-receptions/teaser.jpg",
   },
-  
+
   {
     name: "Workshop Membatik",
     status: "On Progress",
@@ -36,37 +36,37 @@ export default function Dashboard() {
   const [currentUser, setCurrentUser] = useState({});
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:3000/auth/currentUser', {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-        setCurrentUser(response.data);
-      } catch (error) {
-        console.error(error);
-        navigate("/login");
-      }
-    };
+  // useEffect(() => {
+  //   const fetchUser = async () => {
+  //     try {
+  //       const token = localStorage.getItem('token');
+  //       const response = await axios.get('http://localhost:3000/auth/currentUser', {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`
+  //         }
+  //       });
+  //       setCurrentUser(response.data);
+  //     } catch (error) {
+  //       console.error(error);
+  //       navigate("/login");
+  //     }
+  //   };
 
-    fetchUser();
-  }, [navigate]);
+  //   fetchUser();
+  // }, [navigate]);
 
-  useEffect(() => {
-    const handlePopState = (e) => {
-      window.history.pushState(null, document.title, window.location.href);
-      navigate("/dashboard", { replace: true });
-    };
-    window.history.pushState(null, document.title, window.location.href);
-    window.addEventListener('popstate', handlePopState);
+  // useEffect(() => {
+  //   const handlePopState = (e) => {
+  //     window.history.pushState(null, document.title, window.location.href);
+  //     navigate("/dashboard", { replace: true });
+  //   };
+  //   window.history.pushState(null, document.title, window.location.href);
+  //   window.addEventListener('popstate', handlePopState);
 
-    return () => {
-      window.removeEventListener('popstate', handlePopState);
-    };
-  }, [navigate]);
+  //   return () => {
+  //     window.removeEventListener('popstate', handlePopState);
+  //   };
+  // }, [navigate]);
 
   const handleFilterChange = (e) => {
     setFilter(e.target.value);
