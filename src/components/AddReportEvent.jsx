@@ -60,38 +60,38 @@ const AddReportEvent = () => {
         formData.append('event_date_end', EventEndDate);
         formData.append('event_price', EventPrice);
 
-        fetch('http://localhost:3000/events', {
-            method: 'POST',
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token') // Menambahkan token jika ada
-            },
-            body: formData,
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);
-            // Navigasi ke halaman Event Setting setelah berhasil menambahkan event
-            navigate('/report_event');
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-            // Tambahkan logika untuk menampilkan pesan kesalahan
-        });
+        // fetch('http://localhost:3000/events', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Authorization': 'Bearer ' + localStorage.getItem('token') // Menambahkan token jika ada
+        //     },
+        //     body: formData,
+        // })
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         console.log('Success:', data);
+        //         // Navigasi ke halaman Event Setting setelah berhasil menambahkan event
+        //         navigate('/report_event');
+        //     })
+        //     .catch((error) => {
+        //         console.error('Error:', error);
+        //         // Tambahkan logika untuk menampilkan pesan kesalahan
+        //     });
     };
 
     return (
-       <>
-       <div className="flex-1 p-4 overflow-y-auto ml-[250px] mt-16 pt-10 overflow-x-hidden">
+        <>
+            <div className="flex-1 p-4 overflow-y-auto ml-[250px] mt-16 pt-10 overflow-x-hidden">
                 <div className="mx-10 my-11 space-y-5">
                     <Link to={'/report_event'}>
                         <div className="flex flex-row items-center">
-                            <img src={BackIcon} alt="" className="mr-2"/>
+                            <img src={BackIcon} alt="" className="mr-2" />
                             <h1 className="text-[#AFAFAF]">Report</h1>
                             <h1 className="mx-[5px] text-[#AFAFAF] ">/</h1>
                             <h1 className="text-[#CF8E72]">Add New Event</h1>
                         </div>
                     </Link>
-                            
+
                     <h1 className="text-[#728969] text-[32px] font-bold">Add Event</h1>
 
                     <form onSubmit={handleSubmit}>
@@ -115,17 +115,17 @@ const AddReportEvent = () => {
                                 Add Event Picture
                             </h1>
                             <div className="flex flex-col items-center justify-center py-[40px] w-full max-h-[400px] border border-[#728969] rounded-md">
-                                <input 
-                                    type="file" 
-                                    id="file-input" 
-                                    className="hidden" 
-                                    accept="image/*" 
+                                <input
+                                    type="file"
+                                    id="file-input"
+                                    className="hidden"
+                                    accept="image/*"
                                     onChange={handlePictureChange}
                                 />
                                 {EventPicture ? (
-                                        <div className="flex flex-col items-center space-y-4">
-                                            <img src={URL.createObjectURL(EventPicture)} alt="Preview" className="w-full max-w-xs h-[300px] rounded-md" />
-                                        <button 
+                                    <div className="flex flex-col items-center space-y-4">
+                                        <img src={URL.createObjectURL(EventPicture)} alt="Preview" className="w-full max-w-xs h-[300px] rounded-md" />
+                                        <button
                                             type="button"
                                             onClick={() => {
                                                 setEventPicture(null)
@@ -136,10 +136,10 @@ const AddReportEvent = () => {
                                         </button>
                                     </div>
                                 ) : (
-                                        <label 
-                                            htmlFor="file-input" 
-                                            className="flex flex-col justify-center items-center space-y-4 cursor-pointer"
-                                        >
+                                    <label
+                                        htmlFor="file-input"
+                                        className="flex flex-col justify-center items-center space-y-4 cursor-pointer"
+                                    >
                                         <img src={AddIcon} alt="Add Icon" />
                                         <div className="flex flex-row justify-center items-center space-x-2">
                                             <img src={ImageIcon} alt="Image Icon" />
@@ -173,7 +173,7 @@ const AddReportEvent = () => {
                             </h1>
                             <div className="flex space-x-4">
                                 <div className="relative w-1/1">
-                                   
+
                                     <input
                                         type="date"
                                         placeholder="Start Date"
@@ -183,7 +183,7 @@ const AddReportEvent = () => {
                                     />
                                 </div>
                                 <div className="relative w-1/1">
-                                
+
                                     <input
                                         type="date"
                                         placeholder="End Date"
@@ -194,14 +194,14 @@ const AddReportEvent = () => {
                                 </div>
                             </div>
                         </div>
-                        
+
                         {/* Event price input field */}
                         <div className="flex flex-col justify-start space-y-4 pt-5">
                             <h1 className="text-[#505050] font-bold text-[24px]">
                                 Event Price
                             </h1>
                             <div className="relative w-full">
-                                <img src={Ticket} alt="" className="absolute left-3 top-1/2 transform -translate-y-1/2 w-[24px] h-[24px]"/>
+                                <img src={Ticket} alt="" className="absolute left-3 top-1/2 transform -translate-y-1/2 w-[24px] h-[24px]" />
                                 <input
                                     type="number"
                                     placeholder="Rp.100000"
@@ -214,17 +214,19 @@ const AddReportEvent = () => {
 
                         {/* Save Changes button */}
                         <div className="flex justify-end mt-10">
-                            <button
-                                type="submit"
-                                className="w-full px-5 py-3 text-center text-white bg-[#728969] border border-[#CBCBCB] rounded-md"
-                            >
-                                Add Event
-                            </button>
+                            <Link to={'/report_event'} className="w-full px-5 py-3 text-center text-white bg-[#728969] border border-[#CBCBCB] rounded-md">
+                                <button
+                                    type="submit"
+
+                                >
+                                    Add Event
+                                </button>
+                            </Link>
                         </div>
                     </form>
                 </div>
-            </div>  
-       </>
+            </div>
+        </>
     );
 }
 

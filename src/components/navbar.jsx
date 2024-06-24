@@ -2,8 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Translate from '../assets/icons/translate.png';
 import Logo from '../assets/logo.png';
+import users from '../dataSample/UserAccount';
 
-export default function Navbar({ user }) {
+export default function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-10 flex items-center justify-between p-4 bg-white border-b border-gray-200">
       <div className="flex items-center pl-5">
@@ -19,13 +20,13 @@ export default function Navbar({ user }) {
         </div>
         <div className="flex items-center pr-5">
           <Link to="/profile">
-            <img src={user.image || 'default-profile.png'} alt="User" className="h-10 w-10 rounded-full mr-2" />
+            <img src={users[0].image || 'default-profile.png'} alt="User" className="h-10 w-10 rounded-full mr-2" />
           </Link>
           <div className="flex flex-col">
             <Link to="/profile">
-              <span className="font-bold">{user.username}</span>
+              <span className="font-bold">{users[0].name}</span>
             </Link>
-            <span className="text-sm text-gray-600">{user.email}</span>
+            <span className="text-sm text-gray-600">{users[0].email}</span>
           </div>
         </div>
       </div>

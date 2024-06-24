@@ -60,23 +60,23 @@ const AddInfoEvent = () => {
         formData.append('event_date_end', EventEndDate);
         formData.append('event_price', EventPrice);
 
-        fetch('http://localhost:3000/events', {
-            method: 'POST',
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token') // Menambahkan token jika ada
-            },
-            body: formData,
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);
-            // Navigasi ke halaman Event Setting setelah berhasil menambahkan event
-            navigate('/setting_event');
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-            // Tambahkan logika untuk menampilkan pesan kesalahan
-        });
+        // fetch('http://localhost:3000/events', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Authorization': 'Bearer ' + localStorage.getItem('token') // Menambahkan token jika ada
+        //     },
+        //     body: formData,
+        // })
+        // .then(response => response.json())
+        // .then(data => {
+        //     console.log('Success:', data);
+        //     // Navigasi ke halaman Event Setting setelah berhasil menambahkan event
+        //     navigate('/setting_event');
+        // })
+        // .catch((error) => {
+        //     console.error('Error:', error);
+        //     // Tambahkan logika untuk menampilkan pesan kesalahan
+        // });
     };
 
     return (
@@ -214,12 +214,14 @@ const AddInfoEvent = () => {
 
                         {/* Save Changes button */}
                         <div className="flex justify-end mt-10">
+                            <Link to={'/setting_event'} className="w-full px-5 py-3 text-center text-white bg-[#728969] border border-[#CBCBCB] rounded-md">
                             <button
                                 type="submit"
-                                className="w-full px-5 py-3 text-center text-white bg-[#728969] border border-[#CBCBCB] rounded-md"
+                                
                             >
                                 Add Event
                             </button>
+                            </Link>
                         </div>
                     </form>
                 </div>
