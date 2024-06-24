@@ -16,14 +16,16 @@ export default function Login() {
     e.preventDefault();
     setError("");
 
-    try {
-      const response = await axios.post('http://localhost:4000/adminAuth/adminLogin', { email, password });
-      localStorage.setItem('token', response.data.token);
-      console.log(response.data.token);
-      navigate("/dashboard");
-    } catch (error) {
-      setError(error.response?.data?.error || "An error occurred during login.");
-    }
+    // try {
+    //   const response = await axios.post('http://localhost:4000/adminAuth/adminLogin', { email, password });
+    //   localStorage.setItem('token', response.data.token);
+    //   console.log(response.data.token);
+
+    // } catch (error) {
+    //   setError(error.response?.data?.error || "An error occurred during login.");
+    // }
+
+    navigate("/dashboard");
   };
 
   const handleKeyPress = (e) => {
