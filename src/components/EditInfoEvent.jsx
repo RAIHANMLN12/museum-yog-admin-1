@@ -17,24 +17,24 @@ const EditInfoEvent = () => {
     const [EventPrice, setEventPrice] = useState("");
     const [wordCount, setWordCount] = useState(0);
 
-    useEffect(() => {
-        fetch(`http://localhost:3000/events/${id}`, {
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            setEventName(data.event_name);
-            setEventPicture(data.event_picture);
-            setEventDesc(data.event_description);
-            setEventStartDate(data.event_date_start);
-            setEventEndDate(data.event_date_end);
-            setEventPrice(data.event_price);
-            setWordCount(data.event_description.split(/\s+/).filter((word) => word.length > 0).length);
-        })
-        .catch(error => console.error('Error fetching event data:', error));
-    }, [id]);
+    // useEffect(() => {
+    //     fetch(`http://localhost:3000/events/${id}`, {
+    //         headers: {
+    //             'Authorization': 'Bearer ' + localStorage.getItem('token')
+    //         }
+    //     })
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         setEventName(data.event_name);
+    //         setEventPicture(data.event_picture);
+    //         setEventDesc(data.event_description);
+    //         setEventStartDate(data.event_date_start);
+    //         setEventEndDate(data.event_date_end);
+    //         setEventPrice(data.event_price);
+    //         setWordCount(data.event_description.split(/\s+/).filter((word) => word.length > 0).length);
+    //     })
+    //     .catch(error => console.error('Error fetching event data:', error));
+    // }, [id]);
 
     const handleEventName = (e) => {
         setEventName(e.target.value);
@@ -82,21 +82,21 @@ const EditInfoEvent = () => {
         formData.append('event_date_end', EventEndDate);
         formData.append('event_price', EventPrice);
 
-        fetch(`http://localhost:3000/events/${id}`, {
-            method: 'PUT',
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
-            },
-            body: formData,
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);
-            navigate('/setting_event');
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
+        // fetch(`http://localhost:3000/events/${id}`, {
+        //     method: 'PUT',
+        //     headers: {
+        //         'Authorization': 'Bearer ' + localStorage.getItem('token')
+        //     },
+        //     body: formData,
+        // })
+        // .then(response => response.json())
+        // .then(data => {
+        //     console.log('Success:', data);
+        //     navigate('/setting_event');
+        // })
+        // .catch((error) => {
+        //     console.error('Error:', error);
+        // });
     };
 
     return (
@@ -105,13 +105,13 @@ const EditInfoEvent = () => {
                 <div className="mx-10 my-11 space-y-5">
                     <Link to={'/setting_event'}>
                         <div className="flex flex-row items-center">
-                            <img src={BackIcon} alt="Back Icon" className="mr-2"/>
+                            <img src={BackIcon} alt="Back Icon" className="mr-2" />
                             <h1 className="text-[#AFAFAF]">Setting Event</h1>
                             <h1 className="mx-[5px] text-[#AFAFAF]">/</h1>
                             <h1 className="text-[#CF8E72]">Edit Event</h1>
                         </div>
                     </Link>
-                            
+
                     <h1 className="text-[#728969] text-[32px] font-bold">Edit Information</h1>
 
                     <form onSubmit={handleSubmit}>
@@ -135,17 +135,17 @@ const EditInfoEvent = () => {
                                 Add Event Picture
                             </h1>
                             <div className="flex flex-col items-center justify-center py-[40px] w-full max-h-[400px] border border-[#728969] rounded-md">
-                                <input 
-                                    type="file" 
-                                    id="file-input" 
-                                    className="hidden" 
-                                    accept="image/*" 
+                                <input
+                                    type="file"
+                                    id="file-input"
+                                    className="hidden"
+                                    accept="image/*"
                                     onChange={handlePictureChange}
                                 />
                                 {EventPicture ? (
-                                        <div className="flex flex-col items-center space-y-4">
-                                            <img src={EventPicture instanceof File ? URL.createObjectURL(EventPicture) : `http://localhost:3000/uploads/${EventPicture}`} alt="Preview" className="w-full max-w-xs h-[300px] rounded-md" />
-                                        <button 
+                                    <div className="flex flex-col items-center space-y-4">
+                                        <img src={EventPicture instanceof File ? URL.createObjectURL(EventPicture) : `http://localhost:3000/uploads/${EventPicture}`} alt="Preview" className="w-full max-w-xs h-[300px] rounded-md" />
+                                        <button
                                             type="button"
                                             onClick={() => {
                                                 setEventPicture(null)
@@ -156,10 +156,10 @@ const EditInfoEvent = () => {
                                         </button>
                                     </div>
                                 ) : (
-                                        <label 
-                                            htmlFor="file-input" 
-                                            className="flex flex-col justify-center items-center space-y-4 cursor-pointer"
-                                        >
+                                    <label
+                                        htmlFor="file-input"
+                                        className="flex flex-col justify-center items-center space-y-4 cursor-pointer"
+                                    >
                                         <img src={AddIcon} alt="Add Icon" />
                                         <div className="flex flex-row justify-center items-center space-x-2">
                                             <img src={ImageIcon} alt="Image Icon" />
@@ -193,7 +193,7 @@ const EditInfoEvent = () => {
                             </h1>
                             <div className="flex space-x-4">
                                 <div className="relative w-1/1">
-                                    <img src={Calender} alt="Calendar Icon" className="absolute left-3 top-1/2 transform -translate-y-1/2 w-[24px] h-[24px]"/>
+                                    <img src={Calender} alt="Calendar Icon" className="absolute left-3 top-1/2 transform -translate-y-1/2 w-[24px] h-[24px]" />
                                     <input
                                         type="date"
                                         placeholder="Start Date"
@@ -203,7 +203,7 @@ const EditInfoEvent = () => {
                                     />
                                 </div>
                                 <div className="relative w-1/1">
-                                    <img src={Calender} alt="Calendar Icon" className="absolute left-3 top-1/2 transform -translate-y-1/2 w-[24px] h-[24px]"/>
+                                    <img src={Calender} alt="Calendar Icon" className="absolute left-3 top-1/2 transform -translate-y-1/2 w-[24px] h-[24px]" />
                                     <input
                                         type="date"
                                         placeholder="End Date"
@@ -214,14 +214,14 @@ const EditInfoEvent = () => {
                                 </div>
                             </div>
                         </div>
-                        
+
                         {/* Event price input field */}
                         <div className="flex flex-col justify-start space-y-4 pt-5">
                             <h1 className="text-[#505050] font-bold text-[24px]">
                                 Event Price
                             </h1>
                             <div className="relative">
-                                <img src={Ticket} alt="Ticket Icon" className="absolute left-3 top-1/2 transform -translate-y-1/2 w-[24px] h-[24px]"/>
+                                <img src={Ticket} alt="Ticket Icon" className="absolute left-3 top-1/2 transform -translate-y-1/2 w-[24px] h-[24px]" />
                                 <input
                                     type="text"
                                     placeholder="exp. 50000"
@@ -231,15 +231,17 @@ const EditInfoEvent = () => {
                                 />
                             </div>
                         </div>
-                        
+
                         {/* Save button */}
                         <div className="flex justify-center py-10">
-                            <button
-                                type="submit"
-                                 className="w-full px-5 py-3 text-center text-white bg-[#728969] border border-[#CBCBCB] rounded-md"
-                            >
-                                Save
-                            </button>
+                            <Link to={'/setting_event'} className="w-full px-5 py-3 text-center text-white bg-[#728969] border border-[#CBCBCB] rounded-md">
+                                <button
+                                    type="submit"
+
+                                >
+                                    Save
+                                </button>
+                            </Link>
                         </div>
                     </form>
                 </div>

@@ -234,12 +234,14 @@ const EditReport = () => {
                         
                         {/* Save button */}
                         <div className="flex justify-center py-10">
+                            <Link to={'/report_event'}  className="w-full px-5 py-3 text-center text-white bg-[#728969] border border-[#CBCBCB] rounded-md">
                             <button
                                 type="submit"
-                                 className="w-full px-5 py-3 text-center text-white bg-[#728969] border border-[#CBCBCB] rounded-md"
+                                
                             >
                                 Save
                             </button>
+                            </Link>
                         </div>
                     </form>
                 </div>
