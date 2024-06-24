@@ -45,7 +45,7 @@ const ProfileScreen = () => {
                                     <h1 className="font-reguler text-[18px]">Last Name</h1>
                                     <h1 className="font-bold text-[18px] mt-2">Doe</h1>
                                 </div>
-                                
+
                             </div>
                             <div className="flex flex-row justify-between mt-6">
                                 <div>
@@ -75,7 +75,7 @@ const ProfileScreen = () => {
                                 </div>
                             </div>
                         </div>
-                        <Link to={'/login'} className="ml-auto">
+                        <Link to={'/'} className="ml-auto">
                             <button className="px-4 py-2 rounded bg-[#728969] hover:bg-[#728969] text-white font-bold">Log Out </button>
                         </Link>
                     </div>
