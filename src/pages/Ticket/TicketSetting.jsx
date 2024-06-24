@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DeleteIcon from "../../assets/icons/delete.png";
+import IndividualTicket from "../../dataSample/IndividualTicketData";
 import PacketTicketData from "../../dataSample/PacketTicketData";
 import AddIndividualTicket from "../../components/AddIndividualTicket";
 import EditIndividualTicket from "../../components/EditIndividualTicket";
@@ -18,28 +19,28 @@ const SettingTicket = () => {
     const [selectedIndividualTicket, setSelectedIndividualTicket] = useState(null);
     const [selectedPacketTicket, setSelectedPacketTicket] = useState(null);
 
-    useEffect(() => {
-        fetchIndividualTickets();
-        fetchPacketTickets();
-    }, []);
+    // useEffect(() => {
+    //     fetchIndividualTickets();
+    //     fetchPacketTickets();
+    // }, []);
 
-    const fetchIndividualTickets = async () => {
-        try {
-            const response = await axios.get('http://localhost:4000/tiket/getTiketIndividual');
-            setIndividualTickets(response.data.data);
-        } catch (error) {
-            console.error("Error fetching individual tickets:", error);
-        }
-    };
+    // const fetchIndividualTickets = async () => {
+    //     try {
+    //         const response = await axios.get('http://localhost:4000/tiket/getTiketIndividual');
+    //         setIndividualTickets(response.data.data);
+    //     } catch (error) {
+    //         console.error("Error fetching individual tickets:", error);
+    //     }
+    // };
 
-    const fetchPacketTickets = async () => {
-        try {
-            const response = await axios.get('http://localhost:4000/tiket/getTiketPaket');
-            setPacketTickets(response.data.data);
-        } catch (error) {
-            console.error("Error fetching individual tickets:", error);
-        }
-    };
+    // const fetchPacketTickets = async () => {
+    //     try {
+    //         const response = await axios.get('http://localhost:4000/tiket/getTiketPaket');
+    //         setPacketTickets(response.data.data);
+    //     } catch (error) {
+    //         console.error("Error fetching individual tickets:", error);
+    //     }
+    // };
 
     const handleAddIndividual = () => {
         setIsAddIndividual(true);
@@ -47,18 +48,15 @@ const SettingTicket = () => {
 
     const handleCloseAddIndividual = () => {
         setIsAddIndividual(false);
-        fetchIndividualTickets();
     }
 
-    const handleEditIndividual = (ticket) => {
-        setSelectedIndividualTicket(ticket);
+    const handleEditIndividual = () => {
         setIsEditIndividual(true);
 
     }
 
     const handleCloseEditIndividual = () => {
         setIsEditIndividual(false);
-        fetchIndividualTickets();
     }
 
     const handleAddPacket = () => {
@@ -67,36 +65,33 @@ const SettingTicket = () => {
 
     const handleCloseAddPacket = () => {
         setIsAddPacket(false)
-        fetchPacketTickets()
     }
 
-    const handleEditPacket = (ticket) => {
-        setSelectedPacketTicket(ticket);
+    const handleEditPacket = () => {
         setIsEditPacket(true);
     }
 
     const handleCloseEditPacket = () => {
         setIsEditPacket(false);
-        fetchPacketTickets();
     }
 
-    const handleDeleteIndividual = async (id) => {
-        try {
-            await axios.delete(`http://localhost:4000/tiket/deleteIndividualTicket/${id}`)
-        }catch (error) {
-            console.error("Error deleting ticket:", error);
-        }
-        fetchIndividualTickets()
-    }
+    // const handleDeleteIndividual = async (id) => {
+    //     try {
+    //         await axios.delete(`http://localhost:4000/tiket/deleteIndividualTicket/${id}`)
+    //     }catch (error) {
+    //         console.error("Error deleting ticket:", error);
+    //     }
+    //     fetchIndividualTickets()
+    // }
 
-    const handleDeletePacket = async (id) => {
-        try {
-            await axios.delete(`http://localhost:4000/tiket/deletePacketTicket/${id}`)
-        }catch (error) {
-            console.error("Error deleting ticket:", error);
-        }
-        fetchPacketTickets()
-    }
+    // const handleDeletePacket = async (id) => {
+    //     try {
+    //         await axios.delete(`http://localhost:4000/tiket/deletePacketTicket/${id}`)
+    //     }catch (error) {
+    //         console.error("Error deleting ticket:", error);
+    //     }
+    //     fetchPacketTickets()
+    // }
 
 
     return(
@@ -118,25 +113,25 @@ const SettingTicket = () => {
                         </button>
                     </div>
 
-                    {individualTickets.length === 0 ? (
+                    {IndividualTicket.length === 0 ? (
                         <p className="text-center text-gray-500 font-light text-[20px]">Tidak ada data tiket individual</p>
                     ) : (
                         <div className="grid grid-cols-2 gap-x-5 gap-y-4">
-                            {individualTickets.map((ticket) =>
-                                <div key={ticket.id} className="flex flex-row justify-between items-center rounded-[8px] border border-[#728969] bg-white h-[250px] px-8">
+                            {IndividualTicket.map((ticket, index) =>
+                                <div key={index} className="flex flex-row justify-between items-center rounded-[8px] border border-[#728969] bg-white h-[250px] px-8">
                                     <div className="flex flex-col space-y-4">
                                         <h1 className="font-bold text-[20px] text-black">
-                                            {ticket.nama_tiket}
+                                            {ticket.ticketName}
                                         </h1>
                                         <p className="font-light text-black text-[16px]">
-                                            {ticket.deskripsi_tiket}
+                                            {ticket.ticketDescription}
                                         </p>
                                         <div className="flex flex-row items-center space-x-3 ">
                                             <h1 className="bg-[#728969] px-5 py-2 rounded-[100px] font-bold text-white text-[16px]">
                                                 Weekdays
                                             </h1>
                                             <h1 className="font-normal text-black text-[20px]">
-                                                Rp {ticket.harga_weekdays}
+                                                Rp {ticket.ticketPriceWeekdays}
                                             </h1>
                                         </div>
                                         <div className="flex flex-row items-center space-x-3 ">
@@ -144,15 +139,15 @@ const SettingTicket = () => {
                                                 Weekend
                                             </h1>
                                             <h1 className="font-normal text-black text-[20px]">
-                                                Rp {ticket.harga_weekend}
+                                                Rp {ticket.ticketPriceWeekend}
                                             </h1>
                                         </div>
                                     </div>
                                     <div className="flex flex-row items-center space-x-5">
-                                        <button className="bg-[#7F9275] text-white rounded-[8px] px-4 py-2" onClick={() => handleEditIndividual(ticket)}>
+                                        <button className="bg-[#7F9275] text-white rounded-[8px] px-4 py-2" onClick={() => handleEditIndividual()}>
                                             Edit
                                         </button>
-                                        <button className="bg-[#C57557] text-white rounded-[8px] px-4 py-2" onClick={() => handleDeleteIndividual(ticket.id)}>
+                                        <button className="bg-[#C57557] text-white rounded-[8px] px-4 py-2" >
                                             <img src={DeleteIcon} alt="Delete" />
                                         </button>
                                     </div>
@@ -190,29 +185,29 @@ const SettingTicket = () => {
                         </button>
                     </div>
 
-                    {packetTickets.length === 0 ? (
+                    {PacketTicketData.length === 0 ? (
                         <p className="text-center text-gray-500 font-light text-[20px]">Tidak ada data tiket individual</p>
                     ) : (
                         <div className="flex flex-col items-start space-y-5">
-                            {packetTickets.map((ticket) =>
-                                <div key={ticket.id} className="flex flex-col items-start rounded-[8px] border border-[#728969] bg-white max-h-[250px] px-8 py-7 w-full space-y-7">
+                            {PacketTicketData.map((ticket, index) =>
+                                <div key={index} className="flex flex-col items-start rounded-[8px] border border-[#728969] bg-white max-h-[250px] px-8 py-7 w-full space-y-7">
                                     <div className="flex flex-col space-y-6">
                                         <h1 className="font-bold text-black text-[20px]">
-                                            {ticket.nama_tiket}
+                                            {ticket.ticketName}
                                         </h1>
                                         <p className="font-light text-black text-[16px]">
-                                            {ticket.deskripsi_tiket}
+                                            {ticket.ticketDescription}
                                         </p>
                                     </div>
                                     <div className="flex flex-row justify-between items-center w-full">
                                         <p className="font-bold text-[#728969] text-[24px]">
-                                            Rp {ticket.harga_tiket}/pack
+                                            Rp {ticket.ticketPrice}/pack
                                         </p>
                                         <div className="flex flex-row items-center space-x-5">
-                                            <button className="bg-[#7F9275] text-white rounded-[8px] px-4 py-2" onClick={() => handleEditPacket(ticket)}>
+                                            <button className="bg-[#7F9275] text-white rounded-[8px] px-4 py-2" onClick={() => handleEditPacket()}>
                                                 Edit
                                             </button>
-                                            <button className="bg-[#C57557] text-white rounded-[8px] px-4 py-2" onClick={() => handleDeletePacket(ticket.id)}>
+                                            <button className="bg-[#C57557] text-white rounded-[8px] px-4 py-2">
                                                 <img src={DeleteIcon} alt="" />
                                             </button>
                                         </div>
