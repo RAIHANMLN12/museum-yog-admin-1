@@ -21,23 +21,7 @@ const AddInfoCollection = ({ onClose }) => {
     };
 
     const handleSubmit = async () => {
-        const formData = new FormData();
-        formData.append('nama_koleksi', titleCollection);
-        formData.append('deskripsi_koleksi', descCollection);
-        if (imageFile) {
-            formData.append('gambar_koleksi', imageFile);
-        }
-
-        try {
-            await axios.post('http://localhost:4000/collection/addNewCollection', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            });
-            onClose();
-        } catch (error) {
-            console.error('Error submitting form:', error);
-        }
+        onClose();
     };
 
 

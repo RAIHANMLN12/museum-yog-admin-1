@@ -18,24 +18,25 @@ const EditInfoCollection = ({ data, onClose }) => {
     };
 
     const handleSubmit = async () => {
-        const formData = new FormData();
-        formData.append('nama_koleksi', nama_koleksi);
-        formData.append('deskripsi_koleksi', deskripsi_koleksi);
-        if (imageCollection) {
-            formData.append('gambar_koleksi', imageCollection);
-        }
+        // const formData = new FormData();
+        // formData.append('nama_koleksi', nama_koleksi);
+        // formData.append('deskripsi_koleksi', deskripsi_koleksi);
+        // if (imageCollection) {
+        //     formData.append('gambar_koleksi', imageCollection);
+        // }
 
-        try {
-            const response = await axios.put(`http://localhost:4000/collection/editCollection/${data.id}`, formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            });
-            console.log(response.data);
-            onClose();
-        } catch (error) {
-            console.error('Error updating collection:', error);
-        }
+        // try {
+        //     const response = await axios.put(`http://localhost:4000/collection/editCollection/${data.id}`, formData, {
+        //         headers: {
+        //             'Content-Type': 'multipart/form-data'
+        //         }
+        //     });
+        //     console.log(response.data);
+
+        // } catch (error) {
+        //     console.error('Error updating collection:', error);
+        // }
+        onClose();
     };
 
 
