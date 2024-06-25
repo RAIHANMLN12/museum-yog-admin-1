@@ -15,18 +15,19 @@ const AddIndividualTicket = ({onSave, onClose}) => {
     }
 
     const handleSubmit = async () => {
-        try {
-            const response = await axios.post('http://localhost:4000/tiket/addNewIndividualTicket', {
-                nama_tiket: ticketName,
-                deskripsi_tiket: ticketDescription,
-                harga_weekdays: ticketPriceWeekdays,
-                harga_weekend: samePrice ? ticketPriceWeekdays : ticketPriceWeekend,
-            });
-            resetForm();
-            onSave();
-        } catch (error) {
-            console.error("There was an error adding the ticket:", error);
-        }
+        // try {
+        //     const response = await axios.post('http://localhost:4000/tiket/addNewIndividualTicket', {
+        //         nama_tiket: ticketName,
+        //         deskripsi_tiket: ticketDescription,
+        //         harga_weekdays: ticketPriceWeekdays,
+        //         harga_weekend: samePrice ? ticketPriceWeekdays : ticketPriceWeekend,
+        //     });
+        //     resetForm();
+
+        // } catch (error) {
+        //     console.error("There was an error adding the ticket:", error);
+        // }
+        onSave();
     };
 
     const handleSamePriceChange = () => {

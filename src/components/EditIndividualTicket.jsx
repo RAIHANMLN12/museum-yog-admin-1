@@ -12,18 +12,19 @@ const EditIndividualTicket = ({data, onSave, onClose}) => {
 
 
     const handleSubmit = async () => {
-        try {
-            const updatedTicket = {
-                nama_tiket: ticketName,
-                deskripsi_tiket: ticketDescription,
-                harga_weekdays: ticketPriceWeekdays,
-                harga_weekend: ticketPriceWeekend
-            };
-            const response = await axios.put(`http://localhost:4000/tiket/updateIndividualTiket/${data.id}`, updatedTicket);
-            onSave();
-        } catch (error) {
-            console.error("Error updating ticket:", error);
-        }
+        // try {
+        //     const updatedTicket = {
+        //         nama_tiket: ticketName,
+        //         deskripsi_tiket: ticketDescription,
+        //         harga_weekdays: ticketPriceWeekdays,
+        //         harga_weekend: ticketPriceWeekend
+        //     };
+        //     const response = await axios.put(`http://localhost:4000/tiket/updateIndividualTiket/${data.id}`, updatedTicket);
+
+        // } catch (error) {
+        //     console.error("Error updating ticket:", error);
+        // }
+        onSave();
     };
 
     const handleSamePriceChange = () => {

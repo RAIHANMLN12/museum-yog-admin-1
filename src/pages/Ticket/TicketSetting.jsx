@@ -226,7 +226,7 @@ const SettingTicket = () => {
                 )}
                 {isEditPacket && (
                     <div className="fixed ml-[280px] inset-0 pt-[100px] bg-black bg-opacity-50 flex flex-col justify-center items-center z-60 overflow-y-auto">
-                        <EditPacketTicket onSave={handleCloseEditPacket} data={selectedPacketTicket} onClose={handleCloseEditPacket}/>
+                        <EditPacketTicket onSave={handleCloseEditPacket} onClose={handleCloseEditPacket}/>
                     </div>
                 )}
             </div>

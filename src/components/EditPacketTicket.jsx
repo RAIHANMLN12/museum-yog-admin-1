@@ -12,18 +12,7 @@ const EditPacketTicket = ({data, onSave, onClose}) => {
     }
 
     const handleSubmit = async () => {
-        try {
-            const updatedTicket = {
-                nama_tiket: ticketName,
-                deskripsi_tiket: ticketDescription,
-                harga_tiket: ticketPrice
-            };
-            const response = await axios.put(`http://localhost:4000/tiket/updatePacketTiket/${data.id}`, updatedTicket);
-            onSave();
-        } catch (error) {
-            console.error("Error updating ticket:", error);
-        }
-
+        onSave();
     }
 
     return (
